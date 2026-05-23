@@ -1,4 +1,4 @@
-import { useState, type ReactElement } from 'react';
+import { useState, type SubmitEvent as ReactSubmitEvent, type ReactElement } from 'react';
 import '../scss/components/contact-form.scss';
 
 export function ContactForm(): ReactElement {
@@ -20,7 +20,7 @@ export function ContactForm(): ReactElement {
     }, 10000);
   }
 
-  async function handleSubmit(event: SubmitEvent) { 
+  async function handleSubmit(event: ReactSubmitEvent<HTMLFormElement>) { 
     event.preventDefault();
     
     if (loading) return;
@@ -31,11 +31,14 @@ export function ContactForm(): ReactElement {
     setErrorMsg(null);
 
     try {
-      const response = await fetch(import.meta.env.VITE_SERVER_URL, {
-        body: JSON.stringify({ userName, userEmail, userSubject, userMessage }),
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        method: 'POST'
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/mail`, 
+        {
+          body: JSON.stringify({ userName, userEmail, userSubject, userMessage }),
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          method: 'POST'
+        }
+      );
       const data = await response.json();
 
       if (!response.ok) {

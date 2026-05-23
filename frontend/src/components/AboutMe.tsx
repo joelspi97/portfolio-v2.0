@@ -17,7 +17,7 @@ import nestJsIcon from '../assets/icons/nest-js-icon.svg';
 import sqlIcon from '../assets/icons/sql-icon.png';
 import postgresIcon from '../assets/icons/postgres-icon.png';
 
-import { AnimatedDiv } from './AnimatedDiv';
+import { AnimatedDiv } from './reusable/AnimatedDiv';
 
 export function AboutMe(): ReactElement {
   return (

@@ -2,7 +2,7 @@ import '../scss/components/contact.scss';
 
 import { type ReactElement } from 'react';
 
-import { AnimatedDiv } from './AnimatedDiv';
+import { AnimatedDiv } from './reusable/AnimatedDiv';
 import { ContactForm } from './ContactForm';
 
 export function Contact(): ReactElement {

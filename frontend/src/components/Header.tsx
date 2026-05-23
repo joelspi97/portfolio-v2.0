@@ -3,8 +3,8 @@ import '../scss/components/header.scss';
 import { useState, type ReactElement } from 'react';
 import { tsParticles } from '@tsparticles/engine';
 
-import { AnimatedBackground } from './AnimatedBackground';
-import { AnimatedDiv } from './AnimatedDiv';
+import { AnimatedBackground } from './reusable/AnimatedBackground';
+import { AnimatedDiv } from './reusable/AnimatedDiv';
 import { NavigationBar } from './NavigationBar';
 
 import profilePicture from '../assets/profile-picture-2.jpg';

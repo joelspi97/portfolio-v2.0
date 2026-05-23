@@ -5,7 +5,7 @@ import './scss/components/footer.scss';
 import type { ReactElement } from 'react';
 
 import { AboutMe } from './components/AboutMe';
-import { AnimatedDiv } from './components/AnimatedDiv';
+import { AnimatedDiv } from './components/reusable/AnimatedDiv';
 import { Contact } from './components/Contact';
 import { Header } from './components/Header';
 import { ProjectsSection } from './components/ProjectsSection';
