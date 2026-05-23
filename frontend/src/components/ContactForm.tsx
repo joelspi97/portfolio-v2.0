@@ -25,36 +25,24 @@ export function ContactForm(): ReactElement {
     
     if (loading) return;
 
-    let formData = {
-      userName,
-      userEmail,
-      userSubject,
-      userMessage
-    };
-
-    const fetchConfig = {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    };
-
     setLoading(true);
     setSuccess(false);
     setError(false);
     setErrorMsg(null);
 
     try {
-      // const response = await fetch(process.env.REACT_APP_SERVER_URL, fetchConfig);
-      // const data = await response.json();
+      const response = await fetch(import.meta.env.VITE_SERVER_URL, {
+        body: JSON.stringify({ userName, userEmail, userSubject, userMessage }),
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        method: 'POST'
+      });
+      const data = await response.json();
 
-      // if (!response.ok) {
-      //   handleResponse(setError);
-      //   setErrorMsg(data.errorMessage);
-      //   return;
-      // } 
+      if (!response.ok) {
+        handleResponse(setError);
+        setErrorMsg(data.errorMessage);
+        return;
+      } 
 
       setUserName('');
       setUserEmail('');
