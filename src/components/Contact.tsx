@@ -23,7 +23,7 @@ export function Contact(): ReactElement {
             <a 
               aria-label='Visit my LinkedIn profile.'
               className='focusable'
-              href='https://www.linkedin.com/in/joel-spinelli-497a1418b/' 
+              href='https://www.linkedin.com/in/joel-spinelli' 
               rel='noreferrer' 
               target='_blank'
               title='Visit my LinkedIn profile' 
@@ -35,10 +35,10 @@ export function Contact(): ReactElement {
             <a 
               aria-label='Visit my GitHub profile.'
               className='focusable'
-              href='https://github.com/joelspi97' 
+              href='https://github.com/joelspi97/portfolio-v2.0' 
               rel='noreferrer' 
               target='_blank' 
-              title='Visit my Github profile' 
+              title="Check this website's code" 
               >
               <span className='github-icon'></span>
               GitHub
