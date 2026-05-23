@@ -1,135 +1,204 @@
-import { useState, type SubmitEvent as ReactSubmitEvent, type ReactElement } from 'react';
 import '../scss/components/contact-form.scss';
 
+import { 
+  useEffect,
+  useRef,
+  useState, 
+  type ChangeEvent as ReactChangeEvent, 
+  type SubmitEvent as ReactSubmitEvent, 
+  type ReactElement 
+} from 'react';
+
+interface IFormFieldProps {
+  error: string | null;
+  id: string;
+  label: string;
+  onChange: (value: ReactChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  placeholder?: string;
+  readOnly: boolean;
+  type: 'email' | 'text' | 'textarea';
+  value: string;
+}
+
+type FormFieldConfig = Omit<IFormFieldProps, 'error' | 'onChange' | 'readOnly' | 'value'>;
+type FormValueMap = Record<string, { error: string | null; value: string }>;
+type SubmitStatus = { 
+  loading: boolean; 
+  message: string | null; 
+  type: 'error' | 'success' | null; 
+};
+
+const fields: FormFieldConfig[] = [
+  { id: 'name', label: 'Full Name', placeholder: 'e.g. Jhon Doe', type: 'text' },
+  { id: 'email', label: 'Email', placeholder: 'example@email.com', type: 'email' },
+  { id: 'subject', label: 'Subject', type: 'text' },
+  { id: 'body', label: 'Message', type: 'textarea' }
+];
+
+function createDefaultFormValues(): FormValueMap {
+  return fields.reduce<FormValueMap>((formValues, field) => {
+    formValues[field.id] = { error: null, value: '' };
+    return formValues;
+  }, {});
+}
+
+function createDefaultSubmitStatus(): SubmitStatus {
+  return { loading: false, message: null, type: null };
+}
+
+function FormField(props: IFormFieldProps): ReactElement {
+  const { error, id, label, onChange, placeholder = '', readOnly, type, value } = props;
+
+  return (
+    <>
+      <label htmlFor={id}>{label}</label>
+    
+      {type === 'textarea'
+        ? <textarea
+            className='contact-form__input'
+            id={id}
+            name={id}
+            onChange={onChange}
+            placeholder={placeholder}
+            readOnly={readOnly}
+            required
+            rows={9}
+            value={value}
+          />
+        : <input
+            className='contact-form__input'
+            id={id}
+            name={id}
+            onChange={onChange}
+            placeholder={placeholder}
+            readOnly={readOnly}
+            required
+            type={type}
+            value={value}
+          />
+      }
+
+      {error && <span>{error}</span>}
+    </>
+  );
+}
+
 export function ContactForm(): ReactElement {
-  const [error, setError] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState<string>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [success, setSuccess] = useState<boolean>(false);
-  const [userName, setUserName] = useState<string>('');
-  const [userEmail, setUserEmail] = useState<string>('');
-  const [userSubject, setUserSubject] = useState<string>('');
-  const [userMessage, setUserMessage] = useState<string>('');
+  const [formValues, setFormValues] = useState<FormValueMap>(createDefaultFormValues);
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(createDefaultSubmitStatus);
 
-  function handleResponse(stateFunction: React.Dispatch<React.SetStateAction<boolean>>): void { 
-    setLoading(false);
-    stateFunction(true);
+  const statusResetTimeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    setTimeout(() => {
-      stateFunction(false);
+  useEffect(() => {
+    return clearStatusResetTimeout;
+  }, []);
+
+  function clearStatusResetTimeout(): void {
+    if (!statusResetTimeoutId.current) return;
+    clearTimeout(statusResetTimeoutId.current);
+    statusResetTimeoutId.current = null;
+  }
+  
+  function scheduleStatusReset(): void {
+    clearStatusResetTimeout();
+  
+    statusResetTimeoutId.current = setTimeout(() => {
+      setSubmitStatus(createDefaultSubmitStatus());
+      statusResetTimeoutId.current = null;
     }, 10000);
   }
 
-  async function handleSubmit(event: ReactSubmitEvent<HTMLFormElement>) { 
+  async function submitMessage(event: ReactSubmitEvent<HTMLFormElement>): Promise<void> { 
     event.preventDefault();
     
-    if (loading) return;
-
-    setLoading(true);
-    setSuccess(false);
-    setError(false);
-    setErrorMsg(null);
+    if (submitStatus.loading) return;
+    
+    setSubmitStatus({ loading: true, message: null, type: null });
 
     try {
+      const payload = Object
+        .keys(formValues)
+        .reduce<Record<string, string>>((formattedFormValues, formValueKey) => {
+          formattedFormValues[formValueKey] = formValues[formValueKey].value;
+          return formattedFormValues;
+        }, {});
+
       const response = await fetch(
         `${import.meta.env.VITE_SERVER_URL}/mail`, 
         {
-          body: JSON.stringify({ userName, userEmail, userSubject, userMessage }),
+          body: JSON.stringify(payload),
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
           method: 'POST'
         }
       );
       const data = await response.json();
 
-      if (!response.ok) {
-        handleResponse(setError);
-        setErrorMsg(data.errorMessage);
-        return;
-      } 
+      if (response.ok) {
+        setFormValues(createDefaultFormValues());
+        setSubmitStatus({ 
+          loading: false, 
+          message: 'Your message has been delivered successfully!', 
+          type: 'success' 
+        });
 
-      setUserName('');
-      setUserEmail('');
-      setUserSubject('');
-      setUserMessage('');
-      handleResponse(setSuccess);
-    } catch (err) {
-      handleResponse(setError);
-      setErrorMsg(err.message);
+      } else {
+        setSubmitStatus({ loading: false, message: data.errorMessage, type: 'error' });
+      }
+
+    } catch (error) {
+      setSubmitStatus({
+        loading: false, 
+        message: error instanceof Error ? error.message : 'Something went wrong.', 
+        type: 'error' 
+      });
+    
+    } finally {
+      scheduleStatusReset();
     }
   }
 
+  function updateFormValues(id: string, value: string): void {
+    setFormValues(prevValue => ({ ...prevValue, [id]: { ...prevValue[id], value } }));
+  }
+
   return (
-    <form className='contact-form' onSubmit={e => handleSubmit(e)}>
-      <label htmlFor='name'>Name</label>
-      <input
-        className='contact-form__input'
-        id='name'
-        name='name'
-        onChange={e => setUserName(e.target.value)}
-        placeholder='e.g. Jhon Doe'
-        readOnly={loading} 
-        required
-        type='text'
-        value={userName}
-      />
+    <form className='contact-form' onSubmit={event => submitMessage(event)}>
+      {fields.map(({ id, label, placeholder, type }): ReactElement => (
+        <FormField
+          error={formValues[id].error}
+          id={id} 
+          key={id}
+          label={label}
+          onChange={event => updateFormValues(id, event.target.value)} 
+          placeholder={placeholder}
+          readOnly={submitStatus.loading} 
+          type={type}
+          value={formValues[id].value}
+        />
+      ))}
 
-      <label htmlFor='email'>Your email</label>
-      <input
-        className='contact-form__input'
-        id='email'
-        name='email'
-        onChange={e => setUserEmail(e.target.value)}
-        placeholder='example@email.com'
-        readOnly={loading}
-        required
-        type='email'
-        value={userEmail}
-      />
-
-      <label htmlFor='subject'>Subject</label>
-      <input
-        className='contact-form__input'
-        id='subject'
-        name='subject'
-        onChange={e => setUserSubject(e.target.value)}
-        readOnly={loading}
-        required
-        type='text'
-        value={userSubject}
-      />
-
-      <label htmlFor='body'>Message</label>
-      <textarea
-        className='contact-form__input'
-        id='body'
-        name='body'
-        onChange={e => setUserMessage(e.target.value)}
-        readOnly={loading}
-        required
-        rows={9}
-        value={userMessage}
-      />
-
-      {success && (
-        <div aria-live='assertive' className='contact-form__state-msg contact-form__state-msg--success'>
-          Your message has been delivered successfully!
+      {submitStatus.message && (
+        <div 
+          aria-live='assertive' 
+          className={`contact-form__state-msg contact-form__state-msg--${submitStatus.type}`}
+        >
+          {submitStatus.message}
         </div> 
       )}
-        
-      {error && (
-        <div aria-live='assertive' className='contact-form__state-msg contact-form__state-msg--error'>
-          <span className='sr-only'>Error: </span>
-          {errorMsg}
-        </div>
-      )}
       
-      {loading && (
+      {submitStatus.loading && (
         <div aria-live='assertive' className='contact-form__loading-spinner'>
           <span className='sr-only'>Sending message.</span>
         </div>
       )}
 
-      <button className='portfolio-btn' disabled={loading} type='submit'>Send message</button>
+      <button 
+        className='portfolio-btn' 
+        disabled={submitStatus.loading} 
+        type='submit'
+      >
+        Send message
+      </button>
     </form>
   );
 }
