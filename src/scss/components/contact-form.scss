@@ -1,0 +1,100 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins/icon' as *;
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 70rem;
+  position: relative;
+  width: 90%;
+
+  label {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    text-align: start;
+    width: fit-content;
+  }
+
+  &__input {
+    border: 0.15rem solid $dark-blue;
+    border-radius: 0.25rem;
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+    padding: 0.7rem 1rem;
+    transition: border-color 0.15s ease-in-out;
+
+    &:read-only {
+      border-color: $grey;
+      color: $grey;
+    }
+
+    &::placeholder {
+      color: #595959;
+    }
+
+    &--error {
+      border-color: $red;
+      outline-color: $red;
+    }
+  }
+  
+  textarea.contact__input {
+    min-height: 5.1rem;
+    resize: vertical;
+  }
+
+  &__state-msg {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    margin-top: -2.45rem;
+
+    &--success {
+      color: $dark-green;
+    }
+  
+    &--error {
+      color: $red;
+    }
+  }
+  
+  &__loading-spinner {
+    align-items: center;
+    bottom: 5.5rem;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: calc(50% - 1.5rem);
+  
+    &::after {
+      animation: spin 1.2s linear infinite;
+      content: '';
+      background-color: $green;
+      border: 0.5rem solid #ffffff;
+      border-radius: 50%;
+      border-top-color: $dark-blue;
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+   
+  .portfolio-btn {
+    border: 0.2rem solid $dark-blue;
+    font-size: 1.8rem;
+    margin-top: 2.9rem;
+
+    &:disabled {
+      background-color: $portfolio-white;
+      border-color: $grey;
+      color: $grey;
+      cursor: default;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}

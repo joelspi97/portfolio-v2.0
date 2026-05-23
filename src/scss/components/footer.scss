@@ -1,0 +1,37 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins/icon' as *;
+
+.footer {
+  background-color: $portfolio-white;
+  color: $dark-blue;
+  padding-bottom: 4rem;
+  padding-top: 0.5rem;
+  text-align: center;
+
+  p {
+    font-size: 1.4rem;
+    font-weight: 600;
+
+    &:first-of-type {
+      margin-bottom: 1rem;
+      padding: 0 2rem;
+    }
+  }
+
+  a {
+    white-space: nowrap;
+
+    &:focus-visible {
+      border-radius: 0.25rem;
+      outline: 0.2rem solid $dark-blue;
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .footer {
+    p {
+      font-size: 1.6rem;
+    }
+  }
+}
