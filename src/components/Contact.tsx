@@ -54,6 +54,8 @@ export function Contact(): ReactElement {
               <span className='mail-icon'></span>
               Send me an email
             </a>
+
+            agregar link de descarga para mi CV
         </AnimatedDiv>
     </section>
   );

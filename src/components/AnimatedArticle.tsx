@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import type { ReactElement } from 'react';
 
 interface IAnimatedArticle {
-  children: ReactElement | ReactElement[];
+  children: ReactElement | string | (ReactElement | string)[];
   className?: string;
   isOnTheLeft?: boolean;
 }

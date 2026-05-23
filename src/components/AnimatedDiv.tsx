@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 import { motion } from 'framer-motion';
 
 interface IAnimatedDivProps {
-  children: ReactElement | ReactElement[];
+  children: ReactElement | string | (ReactElement | string)[];
   elementClassName?: string;
 }
 
