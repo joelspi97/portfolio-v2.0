@@ -1,8 +1,8 @@
-import '../scss/components/project.scss';
+import './project.scss';
 
 import { useEffect, useState, type ReactElement } from 'react';
 
-import { AnimatedArticle } from './reusable/AnimatedArticle';
+import { AnimatedArticle } from '../reusable/AnimatedArticle';
 
 interface IProjectProps {
   demoUrl: string;

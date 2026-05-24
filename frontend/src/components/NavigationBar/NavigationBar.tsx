@@ -1,8 +1,8 @@
-import '../scss/components/navigation-bar.scss';
+import './navigation-bar.scss';
 
 import { useEffect, useRef, useState, type ReactElement } from 'react';
 
-import { useMediaQuery } from '../hooks/useMediaQuery';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 const navLinkDefinitions: { href: string, label: string }[] = [
   { href: '#about-me', label: 'About me' },

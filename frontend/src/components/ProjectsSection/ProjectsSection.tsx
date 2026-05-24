@@ -1,8 +1,8 @@
-import '../scss/components/projects-section.scss';
+import './projects-section.scss';
 
 import { type ReactElement } from 'react';
 
-import { Project } from './Project';
+import { Project } from '../Project/Project';
 
 export function ProjectsSection(): ReactElement {
   return (

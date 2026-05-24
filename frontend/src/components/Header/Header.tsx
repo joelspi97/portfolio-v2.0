@@ -1,13 +1,13 @@
-import '../scss/components/header.scss';
+import './header.scss';
 
 import { useState, type ReactElement } from 'react';
 import { tsParticles } from '@tsparticles/engine';
 
-import { AnimatedBackground } from './reusable/AnimatedBackground';
-import { AnimatedDiv } from './reusable/AnimatedDiv';
-import { NavigationBar } from './NavigationBar';
+import { AnimatedBackground } from '../reusable/AnimatedBackground';
+import { AnimatedDiv } from '../reusable/AnimatedDiv';
+import { NavigationBar } from '../NavigationBar/NavigationBar';
 
-import profilePicture from '../assets/profile-picture-2.jpg';
+import profilePicture from '../../assets/profile-picture-2.jpg';
 
 export function Header(): ReactElement {
   const [areAnimationsEnabled, setAreAnimationsEnabled] = useState(true);

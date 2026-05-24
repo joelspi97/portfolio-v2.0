@@ -1,4 +1,4 @@
-import '../scss/components/contact-form.scss';
+import './contact-form.scss';
 
 import { 
   useEffect,
@@ -8,9 +8,9 @@ import {
   type ReactElement 
 } from 'react';
 
-import { sendContactMessage, type ContactMessagePayload } from '../services/contactService';
+import { sendContactMessage, type ContactMessagePayload } from '../../services/contactService';
 
-import { FormField, type FormFieldProps } from './FormField';
+import { FormField, type FormFieldProps } from '../FormField/FormField';
 
 type FieldId = 'body' | 'email' | 'name' | 'subject';
 type ContactFormFieldProps = FormFieldProps<FieldId>;

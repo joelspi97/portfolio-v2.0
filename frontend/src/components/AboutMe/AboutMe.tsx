@@ -1,23 +1,23 @@
-import '../scss/components/about-me.scss';
+import './about-me.scss';
 
 import type { ReactElement } from 'react';
 
-import htmlIcon from '../assets/icons/html-icon.png';
-import cssIcon from '../assets/icons/css-icon.png';
-import javascriptIcon from '../assets/icons/javascript-icon.png';
-import reactIcon from '../assets/icons/react-icon.png';
-import nodeIcon from '../assets/icons/node-icon.png';
-import expressIcon from '../assets/icons/express-icon.png';
-import angularIcon from '../assets/icons/angular-icon.png';
-import typescriptIcon from '../assets/icons/typescript-icon.png';
-import sassIcon from '../assets/icons/sass-icon.png';
-import gitIcon from '../assets/icons/git-icon.png';
-import webAccessibilityIcon from '../assets/icons/web-accessibility-icon.png';
-import nestJsIcon from '../assets/icons/nest-js-icon.svg';
-import sqlIcon from '../assets/icons/sql-icon.png';
-import postgresIcon from '../assets/icons/postgres-icon.png';
+import htmlIcon from '../../assets/icons/html-icon.png';
+import cssIcon from '../../assets/icons/css-icon.png';
+import javascriptIcon from '../../assets/icons/javascript-icon.png';
+import reactIcon from '../../assets/icons/react-icon.png';
+import nodeIcon from '../../assets/icons/node-icon.png';
+import expressIcon from '../../assets/icons/express-icon.png';
+import angularIcon from '../../assets/icons/angular-icon.png';
+import typescriptIcon from '../../assets/icons/typescript-icon.png';
+import sassIcon from '../../assets/icons/sass-icon.png';
+import gitIcon from '../../assets/icons/git-icon.png';
+import webAccessibilityIcon from '../../assets/icons/web-accessibility-icon.png';
+import nestJsIcon from '../../assets/icons/nest-js-icon.svg';
+import sqlIcon from '../../assets/icons/sql-icon.png';
+import postgresIcon from '../../assets/icons/postgres-icon.png';
 
-import { AnimatedDiv } from './reusable/AnimatedDiv';
+import { AnimatedDiv } from '../reusable/AnimatedDiv';
 
 export function AboutMe(): ReactElement {
   return (

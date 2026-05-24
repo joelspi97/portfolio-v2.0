@@ -1,9 +1,9 @@
-import '../scss/components/contact.scss';
+import './contact.scss';
 
 import { type ReactElement } from 'react';
 
-import { AnimatedDiv } from './reusable/AnimatedDiv';
-import { ContactForm } from './ContactForm';
+import { AnimatedDiv } from '../reusable/AnimatedDiv';
+import { ContactForm } from '../ContactForm/ContactForm';
 
 export function Contact(): ReactElement {
   return (

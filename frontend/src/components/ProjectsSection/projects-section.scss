@@ -1,5 +1,5 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins/icon' as *;
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins/icon' as *;
 
 .projects-section {
   background-color: $dark-blue;
