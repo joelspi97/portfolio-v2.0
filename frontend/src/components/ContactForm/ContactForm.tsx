@@ -10,50 +10,14 @@ import {
 
 import { sendContactMessage, type ContactMessagePayload } from '../../services/contactService';
 
-import { FormField, type FormFieldProps } from '../FormField/FormField';
-
-type FieldId = 'body' | 'email' | 'name' | 'subject';
-type ContactFormFieldProps = FormFieldProps<FieldId>;
-type FormFieldConfig = Omit<ContactFormFieldProps, 'error' | 'id' | 'onChange' | 'readOnly' | 'value'>;
-type FormValueMap = Record<FieldId, { error: string | null; value: string }>;
-type SubmitStatus = { 
-  loading: boolean; 
-  message: string | null; 
-  type: 'error' | 'success' | null; 
-};
-
-const fields: Record<FieldId, FormFieldConfig> = {  
-  name: {
-    label: 'Full Name',
-    maxLength: 80,
-    minLength: 2,
-    placeholder: 'e.g. John Doe',
-    required: true,
-    type: 'text'
-  },
-  email: {
-    label: 'Email',
-    maxLength: 254,
-    minLength: 7,
-    placeholder: 'example@email.com',
-    required: true,
-    type: 'email'
-  },
-  subject: {
-    label: 'Subject',
-    maxLength: 120,
-    minLength: 3,
-    required: false,
-    type: 'text'
-  },
-  body: {
-    label: 'Message',
-    maxLength: 2000,
-    minLength: 10,
-    required: true,
-    type: 'textarea'
-  }
-};
+import { FormField } from '../FormField/FormField';
+import {
+  fields,
+  type FieldId,
+  type FormFieldConfig,
+  type FormValueMap,
+  type SubmitStatus
+} from './ContactForm.types';
 
 function createDefaultFormValues(): FormValueMap {
   return {
