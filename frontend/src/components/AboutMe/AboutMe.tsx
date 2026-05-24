@@ -3,11 +3,11 @@ import './about-me.scss';
 import type { ReactElement } from 'react';
 
 import htmlIcon from '../../assets/icons/html-icon.png';
+import codexIcon from '../../assets/icons/codex-icon.svg';
 import cssIcon from '../../assets/icons/css-icon.png';
 import javascriptIcon from '../../assets/icons/javascript-icon.png';
 import reactIcon from '../../assets/icons/react-icon.png';
 import nodeIcon from '../../assets/icons/node-icon.png';
-import expressIcon from '../../assets/icons/express-icon.png';
 import angularIcon from '../../assets/icons/angular-icon.png';
 import typescriptIcon from '../../assets/icons/typescript-icon.png';
 import sassIcon from '../../assets/icons/sass-icon.png';
@@ -19,120 +19,95 @@ import postgresIcon from '../../assets/icons/postgres-icon.png';
 
 import { AnimatedDiv } from '../reusable/AnimatedDiv';
 
+type LanguageListItemProps = {
+  label: string;
+  src: string;
+};
+
+const languageListItemDefinitions: LanguageListItemProps[] = [
+  { label: 'React', src: reactIcon },
+  { label: 'Angular', src: angularIcon },
+  { label: 'TypeScript', src: typescriptIcon },
+  { label: 'JavaScript', src: javascriptIcon },
+  { label: 'HTML5', src: htmlIcon },
+  { label: 'CSS3', src: cssIcon },
+  { label: 'Sass', src: sassIcon },
+  { label: 'Git', src: gitIcon },
+  { label: 'Web Accessibility', src: webAccessibilityIcon },
+  { label: 'NestJS', src: nestJsIcon },
+  { label: 'Node.js', src: nodeIcon },
+  { label: 'PostgreSQL', src: postgresIcon },
+  { label: 'SQL', src: sqlIcon },
+  { label: 'Codex', src: codexIcon }
+];
+
+function LanguageListItem(props: LanguageListItemProps): ReactElement {
+  const { label, src } = props;
+
+  return (
+    <li className='language'>
+      <AnimatedDiv>
+        <img src={src} alt='' />
+        <strong>{label}</strong>
+      </AnimatedDiv>
+    </li>
+  );
+}
+
 export function AboutMe(): ReactElement {
   return (
     <section className='section about-me' id='about-me'>
       <div className='section-decoration'></div>
 
       <AnimatedDiv elementClassName='about-me__heading-container center-content'>
-        <h1 className='section-heading'>Hello, my name is <span>Joel Spinelli</span>.</h1>
+        <h2 className='section-heading'>About me</h2>
       </AnimatedDiv>
 
       <AnimatedDiv elementClassName='about-me__text-container center-content'>
         <p>
-          <span>I'm a Frontend Web Developer</span> with 4 years of professional experience and a deep passion for programming.
+          <strong>I'm a Frontend Engineer</strong> with 5 years of professional experience building 
+          {' '}production-grade web applications.
           <br />
-          I specialize in JavaScript and TypeScript, building applications with technologies like <span>React, Angular (2+)</span> and <span>NodeJS</span>.
+          I work mainly with <strong>React, Angular, TypeScript,</strong> and <strong>JavaScript</strong>, 
+          {' '}with additional backend experience using <strong>Node.js, NestJS, REST APIs</strong> 
+          {' '}and <strong>PostgreSQL</strong>.
         </p>
 
         <p>
-          Currently working as a <span>Frontend Engineer</span> at
+          Currently working as a <strong>Frontend Developer</strong> at
           {' '} 
           <a 
             className='focusable simple-link' 
             href='https://www.innovateod.com/' 
             rel='noreferrer' 
-            target='_blank' 
+            target='_blank'
             title='Visit the official Innovate Group website'
           >
             Innovate Group
+            <span className='sr-only'>, opens in a new tab</span>
           </a>
-          , using <span>React</span> and <span>JavaScript</span>.
+          , contributing to a real-time asset tracking platform for a US-based startup client.
         </p>
 
         <p>
-          My goal is to create fully responsive, pixel-perfect, and accessible websites. 
+          My focus is on building <strong>performant, accessible and maintainable</strong> user interfaces, 
+          {' '}with experience across enterprise applications, public-sector platforms and fast-moving product teams.
           <br />
-          I'm also eager to expand my skills into mobile development, particularly with <span>React Native</span> and <span>Swift</span>.
+          I also use AI-assisted development tools like <strong>Codex</strong> to speed up iteration, 
+          {' '}reduce boilerplate and improve development workflows.
         </p>
       </AnimatedDiv>
 
       <div className='about-me__stack center-content'>
         <AnimatedDiv>
-          <h2>My stack:</h2>
+          <h3>Core technologies:</h3>
         </AnimatedDiv>
 
-        <div className='language-wrapper'>
-          <AnimatedDiv elementClassName='language'>
-            <img src={reactIcon} alt='' />
-            <span>React</span>
-          </AnimatedDiv>
-          
-          <AnimatedDiv elementClassName='language'>
-            <img src={angularIcon} alt='' />
-            <span>Angular</span>
-          </AnimatedDiv>
-          
-          <AnimatedDiv elementClassName='language'>
-            <img src={typescriptIcon} alt='' />
-            <span>TypeScript</span>
-          </AnimatedDiv>
-          
-          <AnimatedDiv elementClassName='language'>
-            <img src={javascriptIcon} alt='' />
-            <span>JavaScript</span>
-          </AnimatedDiv>
-          
-          <AnimatedDiv elementClassName='language'>
-            <img src={htmlIcon} alt='' />
-            <span>HTML5</span>
-          </AnimatedDiv>
-          
-          <AnimatedDiv elementClassName='language'>
-            <img src={cssIcon} alt='' />
-            <span>CSS3</span>
-          </AnimatedDiv>
-          
-          <AnimatedDiv elementClassName='language'>
-            <img src={sassIcon} alt='' />
-            <span>Sass</span>
-          </AnimatedDiv>
-          
-          <AnimatedDiv elementClassName='language'>
-            <img src={gitIcon} alt='' />
-            <span>Git</span>
-          </AnimatedDiv>
-          
-          <AnimatedDiv elementClassName='language'>
-            <img src={webAccessibilityIcon} alt='' />
-            <span>Web Accessibility</span>
-          </AnimatedDiv>
-          
-          <AnimatedDiv elementClassName='language'>
-            <img src={nestJsIcon} alt='' />
-            <span>NestJS</span>
-          </AnimatedDiv>
-          
-          <AnimatedDiv elementClassName='language'>
-            <img src={expressIcon} alt='' />
-            <span>Express</span>
-          </AnimatedDiv>
-          
-          <AnimatedDiv elementClassName='language'>
-            <img src={nodeIcon} alt='' />
-            <span>NodeJS</span>
-          </AnimatedDiv>
-          
-          <AnimatedDiv elementClassName='language'>
-            <img src={postgresIcon} alt='' />
-            <span>PostgreSQL</span>
-          </AnimatedDiv>
-          
-          <AnimatedDiv elementClassName='language'>
-            <img src={sqlIcon} alt='' />
-            <span>SQL</span>
-          </AnimatedDiv>
-        </div>
+        <ul className='language-wrapper' role='list'>
+          {languageListItemDefinitions.map(({ label, src }): ReactElement => (
+            <LanguageListItem key={label} label={label} src={src} />
+          ))}
+        </ul>
       </div>
     </section>
   );

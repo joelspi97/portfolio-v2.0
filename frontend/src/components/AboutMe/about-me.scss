@@ -6,12 +6,6 @@
   color: $dark-blue;
   z-index: 2;
 
-  &__heading-container {
-    span {
-      color: $green;
-    }
-  }
-
   &__image-container {
     margin-bottom: 2.5rem;
 
@@ -31,17 +25,13 @@
       &:first-of-type {
         margin-top: 2.5rem;
       }
-
-      span {
-        font-weight: 600;
-      }
     }
   }
 
   &__stack {
     width: 90%;
 
-    h2 {
+    h3 {
       font-size: 2.5rem;
       font-weight: 600;
     }
@@ -53,16 +43,21 @@
       grid-template-columns: 1fr;
       justify-content: center;
       justify-items: center;
+      list-style: none;
       margin-top: 3rem;
 
       .language {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
         height: 100%;
-        justify-content: flex-end;
         width: 10rem;
 
+        > div {
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          justify-content: flex-end;
+          width: 100%;
+        }
         img {
           margin-bottom: auto;
           margin-top: auto;
@@ -71,9 +66,8 @@
           width: 70%;
         }
 
-        span {
+        strong {
           font-size: 1.6rem;
-          font-weight: 600;
           margin-top: 1rem;
         }
       }
@@ -138,7 +132,7 @@
     &__stack {
       width: 90%;
 
-      h2 {
+      h3 {
         font-size: 2.5rem;
         font-weight: 600;
       }
