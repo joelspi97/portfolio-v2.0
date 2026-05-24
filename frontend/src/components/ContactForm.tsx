@@ -9,9 +9,16 @@ import {
   type ReactElement 
 } from 'react';
 
+enum FieldIds {
+  Body = 'body',
+  Email  = 'email',
+  Name = 'name',
+  Subject = 'subject',
+}
+
 interface IFormFieldProps {
   error: string | null;
-  id: string;
+  id: FieldIds;
   label: string;
   onChange: (value: ReactChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   placeholder?: string;
@@ -29,10 +36,10 @@ type SubmitStatus = {
 };
 
 const fields: FormFieldConfig[] = [
-  { id: 'name', label: 'Full Name', placeholder: 'e.g. Jhon Doe', type: 'text' },
-  { id: 'email', label: 'Email', placeholder: 'example@email.com', type: 'email' },
-  { id: 'subject', label: 'Subject', type: 'text' },
-  { id: 'body', label: 'Message', type: 'textarea' }
+  { id: FieldIds.Name, label: 'Full Name', placeholder: 'e.g. Jhon Doe', type: 'text' },
+  { id: FieldIds.Email, label: 'Email', placeholder: 'example@email.com', type: 'email' },
+  { id: FieldIds.Subject, label: 'Subject', type: 'text' },
+  { id: FieldIds.Body, label: 'Message', type: 'textarea' }
 ];
 
 function createDefaultFormValues(): FormValueMap {
@@ -157,7 +164,12 @@ export function ContactForm(): ReactElement {
     }
   }
 
-  function updateFormValues(id: string, value: string): void {
+  function updateFormValues(id: FieldIds, value: string): void {
+
+    switch(id) {
+      
+    }
+
     setFormValues(prevValue => ({ ...prevValue, [id]: { ...prevValue[id], value } }));
   }
 

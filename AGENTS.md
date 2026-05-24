@@ -20,12 +20,18 @@ For frontend work, care about responsive behavior, accessibility, visual consist
 
 ## Working Rules
 
+- If the prompt is simply a question about the code don't write new code nor make changes in existing files. 
 - Keep changes focused on the requested task.
 - Prefer existing patterns over new abstractions.
 - Do not rewrite unrelated code or reformat files unnecessarily.
 - Do not remove user changes unless explicitly asked.
 - Use TypeScript types directly; avoid `any` unless there is a clear boundary reason.
-- Don't add comments rare and useful. If something requires explaning, do it in the chat window. Do not explain obvious code.
+- Don't add comments. If something requires explaining, do it in the chat window. Do not explain obvious code.
+- Don't add any new libraries without explicit permission.
+- Don't refactor code just because you disagree with the styling and formatting of it. 
+- When a line of code would exceed 100 characters in the code editor break the line across multiple lines if possible to improve readability.
+- Always try to write the minimum amount of code for any task. Do not write multiple, small, helper functions unless they actually get reused in multiple places or explicitly requested to do so.
+- Don't run commands outside the project's folder unless explicitly requested to do so. If you think you need to do it, ask for user permission first and explain what commands you need to run and why.
 
 ## Commands
 
@@ -48,21 +54,13 @@ pnpm dev
 pnpm build
 ```
 
-## General Guidance 
-
-- Don't add any new libraries without explicit permission.
-- Don't refactor code just because you disagree with the styling and formatting of it. 
-- When a line of code would exceed 100 characters (also counting the space before it) drop a line to improve readability if possible.
-- Always try to write the minimum amount of code for any task. Do not write multiple, small, helper functions unless they actually get reused in multiple places or explicitly requested to do so.
-- Don't run commands outside the project's folder unless explicitly requested to do so. If you think you need to do it, ask for user permission first and explain what commands you need to run and why.
-
 ## Frontend Guidance
 
 - Keep UI consistent with the existing SCSS/component structure.
 - Use reusable components only when they reduce real duplication.
 - Preserve responsive behavior and verify mobile impact for layout changes.
 - Keep styling in the existing SCSS organization unless a local pattern says otherwise.
-- Make every HTML piece you work on comply with AAA WCAG accessibility standards.
+- Any UI touched should preserve or improve at least WCAG AA accessibility.
 - Make sure to prioritize good performance and avoid solutions that can increase the number of re-renders.
 
 ## Backend Guidance
@@ -79,4 +77,4 @@ Before finishing, run the most relevant checks:
 - Frontend UI/code changes: `pnpm lint` and/or `pnpm build` from `frontend/`.
 - Backend API/code changes: `pnpm build` from `backend/`.
 - If checks cannot run, state why and what remains unverified.
-- Do not run commands outside of the ones listed on the Commands section without explicit permission.
+- For verification, use only the listed commands. For inspection, use read-only commands as needed.
