@@ -51,6 +51,7 @@ export function ContactForm(): ReactElement {
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(createDefaultSubmitStatus);
 
   const hasVisibleErrors = Object.values(formValues).some(({ error }): boolean => Boolean(error));
+  const invalidFieldFocusId = useRef<FieldId | null>(null);
   const statusResetTimeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function clearStatusResetTimeout(): void {
@@ -62,6 +63,12 @@ export function ContactForm(): ReactElement {
   useEffect(() => {
     return clearStatusResetTimeout;
   }, []);
+
+  useEffect(() => {
+    if (!invalidFieldFocusId.current) return;
+    document.getElementById(invalidFieldFocusId.current)?.focus();
+    invalidFieldFocusId.current = null;
+  }, [formValues]);
   
   function scheduleStatusReset(): void {
     clearStatusResetTimeout();
@@ -72,10 +79,39 @@ export function ContactForm(): ReactElement {
     }, 10000);
   }
 
+  function createValidatedFormValues(): FormValueMap {
+    return (Object.entries(formValues) as [FieldId, FormValueMap[FieldId]][]).reduce<FormValueMap>(
+      (validatedValues, [id, fieldValue]) => {
+        validatedValues[id] = {
+          error: validateFormField(id, fieldValue.value),
+          value: fieldValue.value
+        };
+        return validatedValues;
+      },
+      createDefaultFormValues()
+    );
+  }
+
+  function getFirstInvalidFieldId(validatedFormValues: FormValueMap): FieldId | null {
+    const invalidFieldEntry = (Object.entries(validatedFormValues) as [FieldId, FormValueMap[FieldId]][])
+      .find(([, fieldValue]): boolean => Boolean(fieldValue.error));
+
+    return invalidFieldEntry?.[0] ?? null;
+  }
+
   async function submitMessage(event: ReactSubmitEvent<HTMLFormElement>): Promise<void> { 
     event.preventDefault();
     
     if (submitStatus.loading) return;
+
+    const validatedFormValues = createValidatedFormValues();
+    const firstInvalidFieldId = getFirstInvalidFieldId(validatedFormValues);
+
+    if (firstInvalidFieldId) {
+      invalidFieldFocusId.current = firstInvalidFieldId;
+      setFormValues(validatedFormValues);
+      return;
+    }
     
     setSubmitStatus({ loading: true, message: null, type: null });
 
@@ -114,7 +150,7 @@ export function ContactForm(): ReactElement {
   }
 
   return (
-    <form className='contact-form' onSubmit={event => submitMessage(event)}>
+    <form className='contact-form' noValidate onSubmit={event => submitMessage(event)}>
       <p className='contact-form__required-note'>
         Fields marked with an asterisk (
         <span aria-hidden='true' className='contact-form__required-mark'>*</span>
@@ -142,15 +178,16 @@ export function ContactForm(): ReactElement {
 
       {submitStatus.message && (
         <div 
-          aria-live='assertive' 
+          aria-live={submitStatus.type === 'error' ? 'assertive' : 'polite'} 
           className={`contact-form__state-msg contact-form__state-msg--${submitStatus.type}`}
+          role={submitStatus.type === 'error' ? 'alert' : 'status'}
         >
           {submitStatus.message}
         </div> 
       )}
       
       {submitStatus.loading && (
-        <div aria-live='assertive' className='contact-form__loading-spinner'>
+        <div aria-live='polite' className='contact-form__loading-spinner' role='status'>
           <span className='sr-only'>Sending message.</span>
         </div>
       )}

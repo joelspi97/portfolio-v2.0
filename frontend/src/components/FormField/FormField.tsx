@@ -19,6 +19,7 @@ export function FormField<FieldId extends string>(props: FormFieldProps<FieldId>
           value } = props;
   
   const counterId = `${id}-character-count`;
+  const errorId = `${id}-error`;
   const inputClassName = `contact-form__input${error ? ' contact-form__input--error' : ''}`;
 
   return (
@@ -31,7 +32,7 @@ export function FormField<FieldId extends string>(props: FormFieldProps<FieldId>
       {type === 'textarea'
         ? <div className='contact-form__textarea-field'>
             <textarea
-              aria-describedby={counterId}
+              aria-describedby={error ? `${counterId} ${errorId}` : counterId}
               aria-invalid={Boolean(error)}
               className={inputClassName}
               id={id}
@@ -51,6 +52,7 @@ export function FormField<FieldId extends string>(props: FormFieldProps<FieldId>
           </div>
         : <input
             autoComplete='on'
+            aria-describedby={error ? errorId : undefined}
             aria-invalid={Boolean(error)}
             className={inputClassName}
             id={id}
@@ -65,7 +67,7 @@ export function FormField<FieldId extends string>(props: FormFieldProps<FieldId>
           />
       }
 
-      {error && <span className='contact-form__error'>{error}</span>}
+      {error && <span className='contact-form__error' id={errorId}>{error}</span>}
     </>
   );
 }
