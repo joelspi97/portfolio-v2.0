@@ -30,8 +30,7 @@ For frontend work, care about responsive behavior, accessibility, visual consist
 - Don't add comments. If something requires explaining, do it in the chat window. Do not explain obvious code.
 - Don't add any new libraries without explicit permission.
 - Don't refactor code just because you disagree with the styling and formatting of it. 
-- When a line of code would exceed 100 characters in the code editor break the line across multiple lines if possible to improve readability.
-- Always try to write the minimum amount of code for any task. Do not write multiple, small, helper functions unless they actually get reused in multiple places or explicitly requested to do so.
+- When a line of code would exceed 100 characters in the code editor break the line across multiple lines if possible to improve readability. This rule doesn't apply to the function declaration line of functional components or custom hooks. It also doesn't apply for destructured objects.
 - Don't run commands outside the project's folder unless explicitly requested to do so. If you think you need to do it, ask for user permission first and explain what commands you need to run and why.
 
 ## Commands

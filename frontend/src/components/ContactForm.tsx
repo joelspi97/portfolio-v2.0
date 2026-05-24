@@ -4,26 +4,17 @@ import {
   useEffect,
   useRef,
   useState, 
-  type ChangeEvent as ReactChangeEvent, 
   type SubmitEvent as ReactSubmitEvent, 
   type ReactElement 
 } from 'react';
 
+import { sendContactMessage, type ContactMessagePayload } from '../services/contactService';
+
+import { FormField, type FormFieldProps } from './FormField';
+
 type FieldId = 'body' | 'email' | 'name' | 'subject';
-type FormFieldProps = {
-  error: string | null;
-  id: FieldId;
-  label: string;
-  maxLength: number;
-  minLength: number;
-  onChange: (value: ReactChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  placeholder?: string;
-  readOnly: boolean;
-  required: boolean;
-  type: 'email' | 'text' | 'textarea';
-  value: string;
-};
-type FormFieldConfig = Omit<FormFieldProps, 'error' | 'id' | 'onChange' | 'readOnly' | 'value'>;
+type ContactFormFieldProps = FormFieldProps<FieldId>;
+type FormFieldConfig = Omit<ContactFormFieldProps, 'error' | 'id' | 'onChange' | 'readOnly' | 'value'>;
 type FormValueMap = Record<FieldId, { error: string | null; value: string }>;
 type SubmitStatus = { 
   loading: boolean; 
@@ -77,61 +68,6 @@ function createDefaultSubmitStatus(): SubmitStatus {
   return { loading: false, message: null, type: null };
 }
 
-function FormField(props: FormFieldProps): ReactElement {
-  const { error, id, label, maxLength, minLength, onChange, placeholder = '', readOnly, type,
-          required, value } = props;
-  const counterId = `${id}-character-count`;
-  const inputClassName = `contact-form__input${error ? ' contact-form__input--error' : ''}`;
-
-  return (
-    <>
-      <label htmlFor={id}>
-        {label}
-        {required && <span aria-hidden='true' className='contact-form__required-mark'> *</span>}
-      </label>
-    
-      {type === 'textarea'
-        ? <div className='contact-form__textarea-field'>
-            <textarea
-              aria-describedby={counterId}
-              aria-invalid={Boolean(error)}
-              className={inputClassName}
-              id={id}
-              minLength={minLength}
-              name={id}
-              onChange={onChange}
-              placeholder={placeholder}
-              readOnly={readOnly}
-              required={required}
-              rows={9}
-              value={value}
-            />
-
-            <span className='contact-form__character-count' id={counterId}>
-              {value.length} / {maxLength}
-            </span>
-          </div>
-        : <input
-            autoComplete='on'
-            aria-invalid={Boolean(error)}
-            className={inputClassName}
-            id={id}
-            minLength={minLength}
-            name={id}
-            onChange={onChange}
-            placeholder={placeholder}
-            readOnly={readOnly}
-            required={required}
-            type={type}
-            value={value}
-          />
-      }
-
-      {error && <span className='contact-form__error'>{error}</span>}
-    </>
-  );
-}
-
 function validateFormField(id: FieldId, value: string): string | null {
   const { label, maxLength, minLength, required } = fields[id];
   const trimmedValue = value.trim();
@@ -180,34 +116,21 @@ export function ContactForm(): ReactElement {
     setSubmitStatus({ loading: true, message: null, type: null });
 
     try {
-      const payload: Record<FieldId, string> = {
+      const payload: ContactMessagePayload = {
         body: formValues.body.value,
         email: formValues.email.value,
         name: formValues.name.value,
         subject: formValues.subject.value
       };
 
-      const response = await fetch(
-        `${import.meta.env.VITE_SERVER_URL}/mail`, 
-        {
-          body: JSON.stringify(payload),
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          method: 'POST'
-        }
-      );
-      const data = await response.json();
+      await sendContactMessage(payload);
 
-      if (response.ok) {
-        setFormValues(createDefaultFormValues());
-        setSubmitStatus({ 
-          loading: false, 
-          message: 'Your message has been delivered successfully!', 
-          type: 'success' 
-        });
-
-      } else {
-        setSubmitStatus({ loading: false, message: data.errorMessage, type: 'error' });
-      }
+      setFormValues(createDefaultFormValues());
+      setSubmitStatus({ 
+        loading: false, 
+        message: 'Your message has been delivered successfully!', 
+        type: 'success' 
+      });
 
     } catch (error) {
       setSubmitStatus({
