@@ -1,3 +1,5 @@
+import './form-field.scss';
+
 import type { ChangeEvent as ReactChangeEvent, ReactElement } from 'react';
 
 export type FormFieldProps<FieldId extends string> = {
@@ -20,17 +22,17 @@ export function FormField<FieldId extends string>(props: FormFieldProps<FieldId>
   
   const counterId = `${id}-character-count`;
   const errorId = `${id}-error`;
-  const inputClassName = `contact-form__input${error ? ' contact-form__input--error' : ''}`;
+  const inputClassName = `form-field__input${error ? ' form-field__input--error' : ''}`;
 
   return (
-    <>
-      <label htmlFor={id}>
+    <div className='form-field'>
+      <label className='form-field__label' htmlFor={id}>
         {label}
-        {required && <span aria-hidden='true' className='contact-form__required-mark'> *</span>}
+        {required && <span aria-hidden='true' className='form-field__required-mark'> *</span>}
       </label>
     
       {type === 'textarea'
-        ? <div className='contact-form__textarea-field'>
+        ? <div className='form-field__textarea-field'>
             <textarea
               aria-describedby={error ? `${counterId} ${errorId}` : counterId}
               aria-invalid={Boolean(error)}
@@ -46,7 +48,7 @@ export function FormField<FieldId extends string>(props: FormFieldProps<FieldId>
               value={value}
             />
 
-            <span className='contact-form__character-count' id={counterId}>
+            <span className='form-field__character-count' id={counterId}>
               {value.length} / {maxLength}
             </span>
           </div>
@@ -67,7 +69,7 @@ export function FormField<FieldId extends string>(props: FormFieldProps<FieldId>
           />
       }
 
-      {error && <span className='contact-form__error' id={errorId}>{error}</span>}
-    </>
+      {error && <span className='form-field__error' id={errorId}>{error}</span>}
+    </div>
   );
 }
