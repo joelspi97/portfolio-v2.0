@@ -9,107 +9,164 @@ import {
   type ReactElement 
 } from 'react';
 
-enum FieldIds {
-  Body = 'body',
-  Email  = 'email',
-  Name = 'name',
-  Subject = 'subject',
-}
-
-interface IFormFieldProps {
+type FieldId = 'body' | 'email' | 'name' | 'subject';
+type FormFieldProps = {
   error: string | null;
-  id: FieldIds;
+  id: FieldId;
   label: string;
+  maxLength: number;
+  minLength: number;
   onChange: (value: ReactChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   placeholder?: string;
   readOnly: boolean;
+  required: boolean;
   type: 'email' | 'text' | 'textarea';
   value: string;
-}
-
-type FormFieldConfig = Omit<IFormFieldProps, 'error' | 'onChange' | 'readOnly' | 'value'>;
-type FormValueMap = Record<string, { error: string | null; value: string }>;
+};
+type FormFieldConfig = Omit<FormFieldProps, 'error' | 'id' | 'onChange' | 'readOnly' | 'value'>;
+type FormValueMap = Record<FieldId, { error: string | null; value: string }>;
 type SubmitStatus = { 
   loading: boolean; 
   message: string | null; 
   type: 'error' | 'success' | null; 
 };
 
-const fields: FormFieldConfig[] = [
-  { id: FieldIds.Name, label: 'Full Name', placeholder: 'e.g. Jhon Doe', type: 'text' },
-  { id: FieldIds.Email, label: 'Email', placeholder: 'example@email.com', type: 'email' },
-  { id: FieldIds.Subject, label: 'Subject', type: 'text' },
-  { id: FieldIds.Body, label: 'Message', type: 'textarea' }
-];
+const fields: Record<FieldId, FormFieldConfig> = {  
+  name: {
+    label: 'Full Name',
+    maxLength: 80,
+    minLength: 2,
+    placeholder: 'e.g. John Doe',
+    required: true,
+    type: 'text'
+  },
+  email: {
+    label: 'Email',
+    maxLength: 254,
+    minLength: 7,
+    placeholder: 'example@email.com',
+    required: true,
+    type: 'email'
+  },
+  subject: {
+    label: 'Subject',
+    maxLength: 120,
+    minLength: 3,
+    required: false,
+    type: 'text'
+  },
+  body: {
+    label: 'Message',
+    maxLength: 2000,
+    minLength: 10,
+    required: true,
+    type: 'textarea'
+  }
+};
 
 function createDefaultFormValues(): FormValueMap {
-  return fields.reduce<FormValueMap>((formValues, field) => {
-    formValues[field.id] = { error: null, value: '' };
-    return formValues;
-  }, {});
+  return {
+    body: { error: null, value: '' },
+    email: { error: null, value: '' },
+    name: { error: null, value: '' },
+    subject: { error: null, value: '' }
+  };
 }
 
 function createDefaultSubmitStatus(): SubmitStatus {
   return { loading: false, message: null, type: null };
 }
 
-function FormField(props: IFormFieldProps): ReactElement {
-  const { error, id, label, onChange, placeholder = '', readOnly, type, value } = props;
+function FormField(props: FormFieldProps): ReactElement {
+  const { error, id, label, maxLength, minLength, onChange, placeholder = '', readOnly, type,
+          required, value } = props;
+  const counterId = `${id}-character-count`;
+  const inputClassName = `contact-form__input${error ? ' contact-form__input--error' : ''}`;
 
   return (
     <>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id}>
+        {label}
+        {required && <span aria-hidden='true' className='contact-form__required-mark'> *</span>}
+      </label>
     
       {type === 'textarea'
-        ? <textarea
-            className='contact-form__input'
-            id={id}
-            name={id}
-            onChange={onChange}
-            placeholder={placeholder}
-            readOnly={readOnly}
-            required
-            rows={9}
-            value={value}
-          />
+        ? <div className='contact-form__textarea-field'>
+            <textarea
+              aria-describedby={counterId}
+              aria-invalid={Boolean(error)}
+              className={inputClassName}
+              id={id}
+              minLength={minLength}
+              name={id}
+              onChange={onChange}
+              placeholder={placeholder}
+              readOnly={readOnly}
+              required={required}
+              rows={9}
+              value={value}
+            />
+
+            <span className='contact-form__character-count' id={counterId}>
+              {value.length} / {maxLength}
+            </span>
+          </div>
         : <input
-            className='contact-form__input'
+            autoComplete='on'
+            aria-invalid={Boolean(error)}
+            className={inputClassName}
             id={id}
+            minLength={minLength}
             name={id}
             onChange={onChange}
             placeholder={placeholder}
             readOnly={readOnly}
-            required
+            required={required}
             type={type}
             value={value}
           />
       }
 
-      {error && <span>{error}</span>}
+      {error && <span className='contact-form__error'>{error}</span>}
     </>
   );
+}
+
+function validateFormField(id: FieldId, value: string): string | null {
+  const { label, maxLength, minLength, required } = fields[id];
+  const trimmedValue = value.trim();
+
+  if (!trimmedValue) return required ? `${label} is required.` : null;
+  if (trimmedValue.length < minLength) return `${label} must be at least ${minLength} characters.`;
+  if (id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedValue)) {
+    return 'Email must use a valid format.';
+  }
+
+  if (value.length > maxLength) return `${label} must be ${maxLength} characters or less.`;
+  return null;
 }
 
 export function ContactForm(): ReactElement {
   const [formValues, setFormValues] = useState<FormValueMap>(createDefaultFormValues);
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(createDefaultSubmitStatus);
 
+  const hasVisibleErrors = Object.values(formValues).some(({ error }): boolean => Boolean(error));
   const statusResetTimeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    return clearStatusResetTimeout;
-  }, []);
 
   function clearStatusResetTimeout(): void {
     if (!statusResetTimeoutId.current) return;
     clearTimeout(statusResetTimeoutId.current);
     statusResetTimeoutId.current = null;
   }
+
+  useEffect(() => {
+    return clearStatusResetTimeout;
+  }, []);
   
   function scheduleStatusReset(): void {
     clearStatusResetTimeout();
   
-    statusResetTimeoutId.current = setTimeout(() => {
+    statusResetTimeoutId.current = setTimeout((): void => {
       setSubmitStatus(createDefaultSubmitStatus());
       statusResetTimeoutId.current = null;
     }, 10000);
@@ -123,12 +180,12 @@ export function ContactForm(): ReactElement {
     setSubmitStatus({ loading: true, message: null, type: null });
 
     try {
-      const payload = Object
-        .keys(formValues)
-        .reduce<Record<string, string>>((formattedFormValues, formValueKey) => {
-          formattedFormValues[formValueKey] = formValues[formValueKey].value;
-          return formattedFormValues;
-        }, {});
+      const payload: Record<FieldId, string> = {
+        body: formValues.body.value,
+        email: formValues.email.value,
+        name: formValues.name.value,
+        subject: formValues.subject.value
+      };
 
       const response = await fetch(
         `${import.meta.env.VITE_SERVER_URL}/mail`, 
@@ -164,30 +221,37 @@ export function ContactForm(): ReactElement {
     }
   }
 
-  function updateFormValues(id: FieldIds, value: string): void {
-
-    switch(id) {
-      
-    }
-
-    setFormValues(prevValue => ({ ...prevValue, [id]: { ...prevValue[id], value } }));
+  function updateFormValues(id: FieldId, value: string): void {
+    const error: string | null = validateFormField(id, value);
+    setFormValues(prevValue => ({ ...prevValue, [id]: { error, value } }));
   }
 
   return (
     <form className='contact-form' onSubmit={event => submitMessage(event)}>
-      {fields.map(({ id, label, placeholder, type }): ReactElement => (
-        <FormField
-          error={formValues[id].error}
-          id={id} 
-          key={id}
-          label={label}
-          onChange={event => updateFormValues(id, event.target.value)} 
-          placeholder={placeholder}
-          readOnly={submitStatus.loading} 
-          type={type}
-          value={formValues[id].value}
-        />
-      ))}
+      <p className='contact-form__required-note'>
+        Fields marked with an asterisk (
+        <span aria-hidden='true' className='contact-form__required-mark'>*</span>
+        ) are required.
+      </p>
+
+      {(Object.entries(fields) as [FieldId, FormFieldConfig][]).map(
+        ([id, field]): ReactElement => (
+          <FormField 
+            error={formValues[id].error}
+            id={id} 
+            key={id}
+            label={field.label}
+            maxLength={field.maxLength}
+            minLength={field.minLength}
+            onChange={event => updateFormValues(id, event.target.value)} 
+            placeholder={field.placeholder}
+            readOnly={submitStatus.loading} 
+            required={field.required}
+            type={field.type}
+            value={formValues[id].value}
+          />
+        )
+      )}
 
       {submitStatus.message && (
         <div 
@@ -206,7 +270,7 @@ export function ContactForm(): ReactElement {
 
       <button 
         className='portfolio-btn' 
-        disabled={submitStatus.loading} 
+        disabled={submitStatus.loading || hasVisibleErrors} 
         type='submit'
       >
         Send message

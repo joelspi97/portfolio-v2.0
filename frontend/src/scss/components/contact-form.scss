@@ -16,6 +16,16 @@
     width: fit-content;
   }
 
+  &__required-note {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    margin-bottom: 1.6rem;
+  }
+
+  &__required-mark {
+    color: $red;
+  }
+
   &__input {
     border: 0.15rem solid $dark-blue;
     border-radius: 0.25rem;
@@ -38,8 +48,34 @@
       outline-color: $red;
     }
   }
+
+  &__textarea-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+
+    .contact-form__input {
+      margin-bottom: 0.4rem;
+    }
+  }
+
+  &__character-count {
+    color: #595959;
+    font-size: 1.3rem;
+    line-height: 1;
+    text-align: end;
+  }
+
+  &__error {
+    color: $red;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 1.2rem;
+    margin-top: -2.2rem;
+  }
   
-  textarea.contact__input {
+  textarea.contact-form__input {
     min-height: 5.1rem;
     resize: vertical;
   }

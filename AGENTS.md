@@ -24,7 +24,8 @@ For frontend work, care about responsive behavior, accessibility, visual consist
 - Keep changes focused on the requested task.
 - Prefer existing patterns over new abstractions.
 - Do not rewrite unrelated code or reformat files unnecessarily.
-- Do not remove user changes unless explicitly asked.
+- Do not remove user changes unless explicitly asked. This rule includes user comments. 
+- When fixing an error, do not introduce alternate structures, helper constants, or formatting changes unless they are required for the requested change. If a type fix requires changing structure, explain it first.
 - Use TypeScript types directly; avoid `any` unless there is a clear boundary reason.
 - Don't add comments. If something requires explaining, do it in the chat window. Do not explain obvious code.
 - Don't add any new libraries without explicit permission.
