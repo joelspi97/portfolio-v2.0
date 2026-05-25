@@ -1,6 +1,8 @@
 import './header.scss';
 
 import { useState, type ReactElement } from 'react';
+
+import { useReducedMotion } from 'framer-motion';
 import { tsParticles } from '@tsparticles/engine';
 
 import { AnimatedBackground } from '../reusable/AnimatedBackground';
@@ -12,6 +14,8 @@ import profilePicture from '../../assets/profile-picture-2.jpg';
 export function Header(): ReactElement {
   const [areAnimationsEnabled, setAreAnimationsEnabled] = useState(true);
 
+  const shouldReduceMotion = useReducedMotion();
+
   function pauseAnimations(): void {
     const animations = tsParticles.item(0);
     areAnimationsEnabled ? animations.pause() : animations.play();
@@ -20,16 +24,19 @@ export function Header(): ReactElement {
 
   return (
     <header className='header section'>
-      <AnimatedBackground />
+      {!shouldReduceMotion && <AnimatedBackground />}
 
       <AnimatedDiv elementClassName='header__menu'>
-        <button 
-          className='animation-btn portfolio-btn focusable' 
-          type='button' 
-          onClick={pauseAnimations}
-        >
-          Pause animation
-        </button>
+        {!shouldReduceMotion && (
+          <button 
+            className='animation-btn portfolio-btn focusable' 
+            type='button' 
+            onClick={pauseAnimations}
+          >
+            Pause animation
+          </button>
+        )}
+        
         <NavigationBar />
       </AnimatedDiv>
 

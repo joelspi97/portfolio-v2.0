@@ -9,15 +9,16 @@ interface IAnimatedArticle {
 
 export function AnimatedArticle(props: IAnimatedArticle): ReactElement {
   const { children, className, isOnTheLeft } = props;
+
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <motion.article
       className={className}
       initial={
-        shouldReduceMotion 
-          ? { opacity: 0 } 
-          : isOnTheLeft ? { opacity: 0, x: -100 } : { opacity: 0, x: 100 } 
+        shouldReduceMotion
+          ? { opacity: 0 }
+          : isOnTheLeft ? { opacity: 0, x: -100 } : { opacity: 0, x: 100 }
       }
       transition={{ delay: 0.25, duration: 0.55 }}
       viewport={{ once: true }}

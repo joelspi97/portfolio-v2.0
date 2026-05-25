@@ -23,7 +23,7 @@ export function ProjectsSection(): ReactElement {
           ]}
           iconClassName='generic-blog-icon'
           isOnTheLeft={true}
-          name='MI Blog'
+          name='Innovate Group'
           repositoryUrl='https://github.com/joelspi97/MI-blog'
           stack={['NodeJS', 'Express', 'MongoDB', 'HTML5', 'CSS3']}
         />
@@ -38,7 +38,7 @@ export function ProjectsSection(): ReactElement {
             'An accessible UI that follows the Web Content Accessibility Guidelines (WCAG) 2.1.'
           ]}
           iconClassName='movie-finder-icon'
-          name='Movie Finder'
+          name='EY (Ernst & Young)'
           repositoryUrl='https://github.com/joelspi97/movie-finder'
           stack={['React', 'TypeScript', 'Redux (+Thunk)', 'Bootstrap', 'Sass']}
         />
@@ -56,18 +56,9 @@ export function ProjectsSection(): ReactElement {
           ]}
           iconClassName='to-do-list-icon'
           isOnTheLeft={true}
-          name='To-do List'
+          name='Online Services - Buenos Aires'
           repositoryUrl='https://github.com/joelspi97/To-do-List'
           stack={['React', 'Redux', 'Sass']}
-        />
-
-        <Project
-          demoUrl='https://batata-bit-joelspinelli.netlify.app/'
-          description='Batata Bit is a crypto currency website. It consists of a fully responsive static layout that follows the Web Content Accessibility Guidelines (WCAG) 2.1.'
-          iconClassName='batata-bit-icon'
-          name='Batata Bit'
-          repositoryUrl='https://github.com/joelspi97/batata-bit'
-          stack={['HTML5', 'Sass']}
         />
       </div>
     </section>
