@@ -31,18 +31,8 @@
   &__form-wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
     width: 100%;
-  }
-
-  &__links-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: space-between;
-    margin-bottom: 3rem;
-    max-width: 70rem;
-    width: 80%;
   }
 }
 

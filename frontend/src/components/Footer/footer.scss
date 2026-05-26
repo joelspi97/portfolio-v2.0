@@ -4,27 +4,25 @@
 .footer {
   background-color: $portfolio-white;
   color: $dark-blue;
-  padding-bottom: 2rem;
-  padding-top: 0.5rem;
+  padding: 0 2rem 2rem;
   text-align: center;
 
-  p {
-    font-size: 1.3rem;
-    font-weight: 600;
-    line-height: 1.95rem;
-
-    &:first-of-type {
-      margin-bottom: 1rem;
-      padding: 0 2rem;
+  &__content {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    
+    p {
+      font-size: 1.3rem;
+      font-weight: 600;
+      min-width: 28rem;
     }
-  }
 
-  a {
-    white-space: nowrap;
-
-    &:focus-visible {
-      border-radius: 0.25rem;
-      outline: 0.2rem solid $dark-blue;
+    .footer__links-container {
+      display: flex;
+      gap: 2rem;
     }
   }
 }

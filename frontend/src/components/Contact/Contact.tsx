@@ -4,7 +4,6 @@ import { type ReactElement } from 'react';
 
 import { AnimatedDiv } from '../reusable/AnimatedDiv';
 import { ContactForm } from '../ContactForm/ContactForm';
-import { DownloadIconLink, GithubIconLink, LinkedInIconLink } from '../reusable/IconLink/IconLink';
 
 export function Contact(): ReactElement {
   return (
@@ -18,12 +17,6 @@ export function Contact(): ReactElement {
 
         <AnimatedDiv className='contact__form-wrapper'>
           <ContactForm />
-        </AnimatedDiv>
-
-        <AnimatedDiv className='contact__links-container'>
-          <GithubIconLink size={60} />
-          <LinkedInIconLink size={60} />
-          <DownloadIconLink size={60} />
         </AnimatedDiv>
     </section>
   );

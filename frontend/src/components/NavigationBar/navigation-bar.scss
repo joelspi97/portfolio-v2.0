@@ -2,9 +2,20 @@
 @use '../../scss/abstracts/mixins/icon' as *;
 
 .nav {
+  align-items: center;
   display: flex;
   justify-content: space-around;
   width: 100%;
+
+  &__wcag-link {
+    display: flex;
+
+    &:focus-visible {
+      border-radius: 0.25rem;
+      outline: 0.2rem solid $green;
+      outline-offset: 0.2rem;
+    }
+  }
 
   .hamburger-menu {
     align-items: center;

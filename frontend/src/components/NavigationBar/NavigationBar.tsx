@@ -4,6 +4,8 @@ import { useEffect, useRef, useState, type ReactElement } from 'react';
 
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 
+import wcagIcon from '../../assets/icons/wcag-icon.svg';
+
 type navLinkDefinition = { href: string, label: string };
 
 const navLinkDefinitions: navLinkDefinition[] = [
@@ -110,6 +112,21 @@ export function NavigationBar(): ReactElement {
 
   return (
     <nav aria-label='Primary navigation' className='nav'>
+      <a 
+        className='nav__wcag-link'
+        href='https://www.w3.org/WAI/WCAG2AA-Conformance' 
+        rel='noreferrer'
+        title='Explanation of WCAG 2 Level AA conformance'
+        target='_blank'
+      >
+        <img 
+          alt='Level AA conformance, W3C Web Content Accessibility Guidelines 2.2, opens in a new tab.'
+          height={31} 
+          src={wcagIcon}
+          width={'88'}
+        />
+      </a>
+      
       {!isDesktopNavigation 
         ? <>
             <button 
