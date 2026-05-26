@@ -30,7 +30,6 @@ For frontend work, care about responsive behavior, accessibility, visual consist
 - Don't add comments. If something requires explaining, do it in the chat window. Do not explain obvious code.
 - Don't add any new libraries without explicit permission.
 - Don't refactor code just because you disagree with the styling and formatting of it. 
-- When a line of code would exceed 100 characters in the code editor break the line across multiple lines if possible to improve readability. This rule doesn't apply to the function declaration line of functional components or custom hooks. It also doesn't apply for destructured objects.
 - Don't run commands outside the project's folder unless explicitly requested to do so. If you think you need to do it, ask for user permission first and explain what commands you need to run and why.
 
 ## Commands
@@ -60,7 +59,7 @@ pnpm build
 - Use reusable components only when they reduce real duplication.
 - Preserve responsive behavior and verify mobile impact for layout changes.
 - Keep styling in the existing SCSS organization unless a local pattern says otherwise.
-- Any UI touched should preserve or improve at least WCAG AA accessibility.
+- Any UI touched should preserve or improve at least AA accessibility according to WCAG 2.2 standards.
 - Make sure to prioritize good performance and avoid solutions that can increase the number of re-renders.
 
 ## Backend Guidance

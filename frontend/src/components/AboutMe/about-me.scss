@@ -6,49 +6,26 @@
   color: $dark-blue;
   z-index: 2;
 
-  &__image-container {
-    margin-bottom: 2.5rem;
-
-    img {
-      width: 14.5rem;
-    }
-  }
-
-  &__text-container {
-    margin-bottom: 8rem;
-
-    p {
-      font-size: 1.6rem;
-      line-height: 2.8rem;
-      margin-top: 1.5rem;
-
-      &:first-of-type {
-        margin-top: 2.5rem;
-      }
-    }
+  &__heading-container {
+    margin-bottom: 4.5rem;
   }
 
   &__stack {
     width: 90%;
 
-    h3 {
-      font-size: 2.5rem;
-      font-weight: 600;
-    }
-
     .language-wrapper {
       align-items: flex-start;
       display: grid;
-      gap: 6rem;
-      grid-template-columns: 1fr;
+      column-gap: 10rem;
+      grid-template-columns: repeat(auto-fit, 6rem);
       justify-content: center;
       justify-items: center;
       list-style: none;
-      margin-top: 3rem;
+      row-gap: 5rem;
 
       .language {
         height: 100%;
-        width: 10rem;
+        width: 100%;
 
         > div {
           align-items: center;
@@ -63,82 +40,13 @@
           margin-top: auto;
           max-height: 10rem;
           object-fit: contain;
-          width: 70%;
+          width: 100%;
         }
 
         strong {
-          font-size: 1.6rem;
+          font-size: 1.4rem;
           margin-top: 1rem;
         }
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: 310px) {
-  .about-me {
-    .language-wrapper {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-}
-
-@media only screen and (min-width: 560px) {
-  .about-me {
-    .language-wrapper {
-      grid-template-columns: repeat(auto-fill, minmax(10rem, 19.7rem));
-
-      .language {
-        img {
-          width: 100%;
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  .about-me {
-    &__image-container {
-      img {
-        width: 16rem;
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: 900px) {
-  .about-me {
-    &__image-container {
-      img {
-        width: 17.5rem;
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: 1100px) {
-  .about-me {
-    &__image-container {
-      img {
-        width: 19.5rem;
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: 1600px) {
-  .about-me {
-    &__stack {
-      width: 90%;
-
-      h3 {
-        font-size: 2.5rem;
-        font-weight: 600;
-      }
-
-      .language-wrapper {
-        grid-template-columns: repeat(auto-fill, minmax(10rem, 17rem));
       }
     }
   }

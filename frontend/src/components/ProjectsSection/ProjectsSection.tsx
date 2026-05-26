@@ -9,9 +9,9 @@ export function ProjectsSection(): ReactElement {
     <section className='section projects-section' id='projects'>
       <div className='section-decoration'></div>
 
-      <h1 className='section-heading'>Projects</h1>
+      <h2 className='section-heading'>Projects</h2>
 
-      <div className='projects-section__grid-container center-content'>
+      <div className='projects-section__projects-container center-content'>
         <Project
           demoUrl='https://mi-blog-s6m5.onrender.com'
           description='MI Blog is a generic blog website. It allows its users to create their own blogposts and read the ones others have created before them.'

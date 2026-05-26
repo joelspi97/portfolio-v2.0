@@ -9,16 +9,16 @@
   display: flex;
   flex-direction: column;
   font-family: $projects-font;
-  padding: 2.5rem 3rem;
+  padding: 2rem 3rem;
   width: 100%;
 
   &__heading-wrapper {
     align-items: center;
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 
-    h2 {
-      font-size: 2.8rem;
+    h3 {
+      font-size: 2rem;
       margin-left: 1rem;
     }
   }
@@ -49,14 +49,14 @@
 
     li {
       color: $dark-green;
-      font-size: 1.6rem;
+      font-size: 1.3rem;
       font-style: italic;
       font-weight: 600;
     }
   }
 
   p {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     line-height: 2.8rem;
     margin-bottom: 3rem;
   }
@@ -64,7 +64,7 @@
   &__show-more {
     margin-bottom: 3rem;
 
-    h3 {
+    h4 {
       font-size: 1.6rem;
       margin-bottom: 1.5rem;
       text-align: start;
@@ -75,7 +75,7 @@
       text-align: justify;
 
       li {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         margin-bottom: 1.5rem;
       }
     }
@@ -99,10 +99,10 @@
     color: $portfolio-white;
     cursor: pointer;
     display: flex;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 600;
     flex: 0.8 1 16rem;
-    padding: 1.2rem;
+    padding: 1rem;
     justify-content: center;
     text-decoration: none;
     transition: background-color 0.15s ease-in-out,
@@ -128,7 +128,6 @@
       border: 0.3rem solid $blue;
       border-radius: 0.5rem;
       color: $blue;
-      font-size: 1.6rem;
       flex: 0;
       margin-bottom: 5rem;
       margin-right: auto;
@@ -154,18 +153,5 @@
   .arrow-icon {
     @include icon(2.5rem, 2.5rem, '../../assets/icons/right-arrow.svg');
     margin-left: 0.4rem
-  }
-}
-
-@media only screen and (min-width: 900px) {
-  .project {
-    padding-left: 6rem;
-    padding-right: 6rem;
-
-    &__button {
-      &--show-more {
-        margin-bottom: 4rem;
-      }
-    }
   }
 }

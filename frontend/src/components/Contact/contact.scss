@@ -25,13 +25,13 @@
   }
 
   h1 {
-    margin-bottom: 5rem;
+    margin-bottom: 4.5rem;
   }
 
   &__form-wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
     width: 100%;
   }
 
@@ -39,76 +39,18 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    justify-content: space-evenly;
-    margin-bottom: 5rem;
+    justify-content: space-between;
+    margin-bottom: 3rem;
     max-width: 70rem;
     width: 80%;
-
-    a {
-      align-items: center;
-      border-radius: 0.5rem;
-      color: $dark-blue;
-      display: flex;
-      flex-direction: column;
-      font-weight: 700;
-      font-size: 1.5rem;
-      padding: 1rem;
-      text-align: center;
-      text-decoration: none;
-      width: fit-content;
-
-      span {
-        border-radius: 50%;
-        margin-bottom: 0.8rem;
-        transition: background-color 0.15s ease-in-out;
-      }
-
-      .linkedin-icon {
-        @include icon(8rem, 8rem, '../../assets/icons/linkedin_icon.png');
-      }
-
-      .github-icon {
-        @include icon(8rem, 8rem, '../../assets/icons/github_icon.png');
-      }
-
-      .mail-icon {
-        @include icon(8rem, 8rem, '../../assets/icons/mail_icon.png');
-      }
-
-      &:focus-visible {
-        outline: 0.2rem solid $dark-blue;
-      }
-
-      &:hover span,
-      &:focus-visible span {
-        background-color: $yellow;
-      }
-    }
-
   }
 }
 
 @media only screen and (min-width: 530px) {
   .contact {
-    &__links-container {
-      a {
-        width: 18rem;
-      }
-    }
-
     &__form-wrapper {
       .contact__form {
         width: 70%;
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  .contact {
-    &__links-container {
-      a {
-        font-size: 1.6rem;
       }
     }
   }

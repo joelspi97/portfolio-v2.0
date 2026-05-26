@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, type ReactElement } from 'react';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 const navLinkDefinitions: { href: string, label: string }[] = [
-  { href: '#about-me', label: 'About me' },
+  { href: '#about-me', label: 'Stack' },
   { href: '#projects', label: 'Projects' },
   { href: '#contact', label: 'Contact' }
 ];

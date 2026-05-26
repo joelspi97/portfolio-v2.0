@@ -4,6 +4,7 @@ import { type ReactElement } from 'react';
 
 import { AnimatedDiv } from '../reusable/AnimatedDiv';
 import { ContactForm } from '../ContactForm/ContactForm';
+import { DownloadIconLink, GithubIconLink, LinkedInIconLink } from '../reusable/IconLink/IconLink';
 
 export function Contact(): ReactElement {
   return (
@@ -15,47 +16,14 @@ export function Contact(): ReactElement {
           <h1 className='section-heading'>Get in touch!</h1>
         </AnimatedDiv>
 
-        <AnimatedDiv elementClassName='contact__form-wrapper'>
+        <AnimatedDiv className='contact__form-wrapper'>
           <ContactForm />
         </AnimatedDiv>
 
-        <AnimatedDiv elementClassName='contact__links-container'>
-            <a 
-              aria-label='Visit my LinkedIn profile.'
-              className='focusable'
-              href='https://www.linkedin.com/in/joel-spinelli' 
-              rel='noreferrer' 
-              target='_blank'
-              title='Visit my LinkedIn profile' 
-            >
-              <span className='linkedin-icon'></span>
-              LinkedIn
-            </a>
-
-            <a 
-              aria-label='Visit my GitHub profile.'
-              className='focusable'
-              href='https://github.com/joelspi97/portfolio-v2.0' 
-              rel='noreferrer' 
-              target='_blank' 
-              title="Check this website's code" 
-              >
-              <span className='github-icon'></span>
-              GitHub
-            </a>
-            
-            <a 
-              aria-label='Send me an email.'
-              className='focusable'
-              href='mailto:joelspi97@gmail.com' 
-              rel='noreferrer'
-              title='Send me an email' 
-            >
-              <span className='mail-icon'></span>
-              Send me an email
-            </a>
-
-            agregar link de descarga para mi CV
+        <AnimatedDiv className='contact__links-container'>
+          <GithubIconLink size={70} />
+          <LinkedInIconLink size={70} />
+          <DownloadIconLink size={70} />
         </AnimatedDiv>
     </section>
   );

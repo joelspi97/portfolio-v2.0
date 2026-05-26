@@ -59,50 +59,11 @@ export function AboutMe(): ReactElement {
     <section className='section about-me' id='about-me'>
       <div className='section-decoration'></div>
 
-      <AnimatedDiv elementClassName='about-me__heading-container center-content'>
-        <h2 className='section-heading'>About me</h2>
-      </AnimatedDiv>
-
-      <AnimatedDiv elementClassName='about-me__text-container center-content'>
-        <p>
-          <strong>I'm a Frontend Engineer</strong> with 5 years of professional experience building 
-          {' '}production-grade web applications.
-          <br />
-          I work mainly with <strong>React, Angular, TypeScript,</strong> and <strong>JavaScript</strong>, 
-          {' '}with additional backend experience using <strong>Node.js, NestJS, REST APIs</strong> 
-          {' '}and <strong>PostgreSQL</strong>.
-        </p>
-
-        <p>
-          Currently working as a <strong>Frontend Developer</strong> at
-          {' '} 
-          <a 
-            className='focusable simple-link' 
-            href='https://www.innovateod.com/' 
-            rel='noreferrer' 
-            target='_blank'
-            title='Visit the official Innovate Group website'
-          >
-            Innovate Group
-            <span className='sr-only'>, opens in a new tab</span>
-          </a>
-          , contributing to a real-time asset tracking platform for a US-based startup client.
-        </p>
-
-        <p>
-          My focus is on building <strong>performant, accessible and maintainable</strong> user interfaces, 
-          {' '}with experience across enterprise applications, public-sector platforms and fast-moving product teams.
-          <br />
-          I also use AI-assisted development tools like <strong>Codex</strong> to speed up iteration, 
-          {' '}reduce boilerplate and improve development workflows.
-        </p>
+      <AnimatedDiv className='about-me__heading-container center-content'>
+        <h2 className='section-heading'>Core technologies</h2>
       </AnimatedDiv>
 
       <div className='about-me__stack center-content'>
-        <AnimatedDiv>
-          <h3>Core technologies:</h3>
-        </AnimatedDiv>
-
         <ul className='language-wrapper' role='list'>
           {languageListItemDefinitions.map(({ label, src }): ReactElement => (
             <LanguageListItem key={label} label={label} src={src} />

@@ -1,0 +1,27 @@
+@use '../../../scss/abstracts/variables' as *;
+
+.icon-link {
+  align-items: center;
+  justify-content: center;
+  background-color: $portfolio-white;
+  border-radius: 50%;
+  border: 0 solid $dark-blue;
+  display: flex;
+
+  transition: background-color 0.15s ease-in-out;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $light-green;
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 0.2rem solid $portfolio-white;
+    outline-offset: 0.3rem;
+  }
+
+  img {
+    border-radius: 50%;
+  }
+}

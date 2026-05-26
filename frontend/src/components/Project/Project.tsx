@@ -30,11 +30,11 @@ export function Project(props: IProjectProps): ReactElement {
     <AnimatedArticle className='project' isOnTheLeft={isOnTheLeft}>
       <div className='project__heading-wrapper'>
         <span className={iconClassName}></span>
-        <h2>{name}</h2>
+        <h3>{name}</h3>
       </div>
 
       <section>
-        <h3 className='sr-only'>Technologies used in the {name} project:</h3>
+        <h4 className='sr-only'>Technologies used in the {name} project:</h4>
 
         <ul className='project__stack'>
           {stack.map((language: string, index: number): ReactElement => {
@@ -55,7 +55,7 @@ export function Project(props: IProjectProps): ReactElement {
                 Extra information about the {name} project has been displayed above the button.
               </span>
 
-              <h3 aria-label={`The ${name} project features:`}>This project features:</h3>
+              <h4 aria-label={`The ${name} project features:`}>This project features:</h4>
               
               <ol>
                 {features.map((feature: string): ReactElement => <li key={feature}>{feature}</li>)}
