@@ -159,12 +159,14 @@ export function ContactForm(): ReactElement {
       )}
 
       {submitStatus.message && (
-        <div 
-          aria-live={submitStatus.type === 'error' ? 'assertive' : 'polite'} 
-          className={`contact-form__state-msg contact-form__state-msg--${submitStatus.type}`}
-          role={submitStatus.type === 'error' ? 'alert' : 'status'}
-        >
-          <span>{submitStatus.message}</span>
+        <div className={`contact-form__state-msg contact-form__state-msg--${submitStatus.type}`}>
+          <span
+            aria-live={submitStatus.type === 'error' ? 'assertive' : 'polite'}
+            role={submitStatus.type === 'error' ? 'alert' : 'status'}
+          >
+            {submitStatus.message}
+          </span>
+          
           <button
             aria-label='Dismiss message.'
             className='contact-form__dismiss-btn'
