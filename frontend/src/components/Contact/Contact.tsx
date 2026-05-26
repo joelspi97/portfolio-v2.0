@@ -21,9 +21,9 @@ export function Contact(): ReactElement {
         </AnimatedDiv>
 
         <AnimatedDiv className='contact__links-container'>
-          <GithubIconLink size={70} />
-          <LinkedInIconLink size={70} />
-          <DownloadIconLink size={70} />
+          <GithubIconLink size={60} />
+          <LinkedInIconLink size={60} />
+          <DownloadIconLink size={60} />
         </AnimatedDiv>
     </section>
   );

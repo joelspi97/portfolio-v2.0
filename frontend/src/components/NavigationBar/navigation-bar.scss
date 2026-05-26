@@ -95,6 +95,7 @@
     .portfolio-btn {
       font-size: 1.4rem;
       margin-bottom: 3rem;
+      white-space: wrap;
     }
   }
 }
@@ -123,6 +124,10 @@
       & a:first-of-type {
         margin-left: 0;
       }
+    }
+
+    .portfolio-btn {
+      white-space: normal;
     }
   }
 }
