@@ -23,16 +23,6 @@ export function NavigationBar(): ReactElement {
   const hamburgerButton = useRef<HTMLButtonElement | null>(null);
   const isDesktopNavigation = useMediaQuery('(min-width: 610px)');
 
-  useEffect((): (() => void) => {
-    document.addEventListener('click', closeMenuWithClick);
-    document.addEventListener('keydown', closeMenuWithKeyboard);
-
-    return (): void => {
-      document.removeEventListener('click', closeMenuWithClick);
-      document.removeEventListener('keydown', closeMenuWithKeyboard);
-    };
-  }, []);
-
   useEffect((): void => {
     const focusableElements = Array.from(document.querySelectorAll('.focusable'));
 
@@ -43,6 +33,18 @@ export function NavigationBar(): ReactElement {
       focusableElements.forEach(element => element.removeAttribute('tabindex'));
     }
   }, [isHamburgerMenuOpen]);
+
+  useEffect((): (() => void) => {
+    if (isDesktopNavigation) return;
+
+    document.addEventListener('click', closeMenuWithClick);
+    document.addEventListener('keydown', closeMenuWithKeyboard);
+
+    return (): void => {
+      document.removeEventListener('click', closeMenuWithClick);
+      document.removeEventListener('keydown', closeMenuWithKeyboard);
+    };
+  }, [isDesktopNavigation, isHamburgerMenuOpen]);
 
   useEffect((): void => {
     if (isDesktopNavigation) closeMenu();
