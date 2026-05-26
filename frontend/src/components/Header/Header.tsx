@@ -1,20 +1,23 @@
 import './header.scss';
 
-import { useState, type ReactElement } from 'react';
+import { lazy, Suspense, useState, type ReactElement } from 'react';
 
 import { useReducedMotion } from 'framer-motion';
 import { tsParticles } from '@tsparticles/engine';
 
-import { AnimatedBackground } from '../reusable/AnimatedBackground';
 import { AnimatedDiv } from '../reusable/AnimatedDiv';
 import { DownloadIconLink, GithubIconLink, LinkedInIconLink } from '../reusable/IconLink/IconLink';
 
 import { NavigationBar } from '../NavigationBar/NavigationBar';
 
-import profilePicture from '../../assets/profile-picture-2.jpg';
-
 const CAREER_START_YEAR = 2021;
 const CAREER_START_MONTH_INDEX = 6;
+
+const AnimatedBackground = lazy(async () => {
+  const module = await import('../reusable/AnimatedBackground');
+
+  return { default: module.AnimatedBackground };
+});
 
 function getyearsOfProfessionalExperience(): string {
   const currentDate = new Date();
@@ -52,7 +55,11 @@ export function Header(): ReactElement {
 
   return (
     <header className='header section'>
-      {!shouldReduceMotion && <AnimatedBackground id='header-particles' />}
+      {!shouldReduceMotion && (
+        <Suspense fallback={null}>
+          <AnimatedBackground id='header-particles' />
+        </Suspense>
+      )}
 
       <AnimatedDiv className='header__menu'>
         {!shouldReduceMotion && (
@@ -97,7 +104,20 @@ export function Header(): ReactElement {
           </nav>
         </div>
 
-        <img className='header__profile-picture' src={profilePicture} alt='Joel Spinelli coding on his laptop.' />
+        <picture>
+          <source srcSet='/images/profile-picture.avif' type='image/avif' />
+          <source srcSet='/images/profile-picture.webp' type='image/webp' />
+          <img
+            alt='Joel Spinelli coding on his laptop.'
+            className='header__profile-picture'
+            decoding='async'
+            fetchPriority='high'
+            height='300'
+            loading='eager'
+            src='/images/profile-picture.jpg'
+            width='300'
+          />
+        </picture>
       </AnimatedDiv>
     </header>
   );

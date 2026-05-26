@@ -1,18 +1,27 @@
 import './projects-section.scss';
 
-import { type ReactElement } from 'react';
+import { lazy, Suspense, type ReactElement } from 'react';
 
 import { useReducedMotion } from 'framer-motion';
 
-import { AnimatedBackground } from '../reusable/AnimatedBackground';
 import { Project } from '../Project/Project';
+
+const AnimatedBackground = lazy(async () => {
+  const module = await import('../reusable/AnimatedBackground');
+
+  return { default: module.AnimatedBackground };
+});
 
 export function ProjectsSection(): ReactElement {
   const shouldReduceMotion = useReducedMotion();
   
   return (
     <section className='section projects-section' id='projects'>
-      {!shouldReduceMotion && <AnimatedBackground id='projects-particles' />}
+      {!shouldReduceMotion && (
+        <Suspense fallback={null}>
+          <AnimatedBackground id='projects-particles' />
+        </Suspense>
+      )}
 
       <div className='section-decoration'></div>
 

@@ -1,3 +1,4 @@
+import './scss/core/fonts.scss';
 import './scss/core/resets.scss';
 import './scss/core/generic-classes.scss';
 

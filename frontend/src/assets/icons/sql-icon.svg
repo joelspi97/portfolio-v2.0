@@ -1,21 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 250">
-<title>Sql data base with logo</title>
-<defs>
-<style type="text/css">
-#black {
-  fill:#333;
-}
-@media (prefers-color-scheme:dark) {
-    #black {
-        fill: white;
-    }
-} 	
-</style>
-</defs>
-
-<ellipse cx="120" cy="50" ry="35" rx="85" style="fill:none; stroke:#df6c20;stroke-width:15"/> 
-<path d="m35,50 v150  a 85,35 1 1 0 170,0 v-150 m-170,50  a 85,35 1 1 0 170,0 m-170,50 a 85,35 1 1 0 170,0" style="fill:none; stroke:#df6c20;stroke-width:15"/> 
-<path style="fill:none; stroke:#df6c20;stroke-width:15" d="m300,100 a 25,25 1 1 0 -50,0 a 20,25 1 0 0 25,25 a 20,25 1 0 1 20,25 a 25,25 1 0 1 -50,-5 "/>
-<path style="fill:none; stroke:#df6c20;stroke-width:15" d="m375,175 a 50,50 1 1 1 15,-5 m-15,-20 l30,40 "/>
-<path style="fill:none; stroke:#df6c20;stroke-width:15" d="m440,70 v80  a 25,25 1 0 0 25,25 h20 "/>
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 18V6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M20 6V18" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M12 10C16.4183 10 20 8.20914 20 6C20 3.79086 16.4183 2 12 2C7.58172 2 4 3.79086 4 6C4 8.20914 7.58172 10 12 10Z" stroke="#1C274C" stroke-width="1.5"/>
+<path d="M20 12C20 14.2091 16.4183 16 12 16C7.58172 16 4 14.2091 4 12" stroke="#1C274C" stroke-width="1.5"/>
+<path d="M20 18C20 20.2091 16.4183 22 12 22C7.58172 22 4 20.2091 4 18" stroke="#1C274C" stroke-width="1.5"/>
 </svg>

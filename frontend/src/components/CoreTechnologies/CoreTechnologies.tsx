@@ -2,52 +2,54 @@ import './core-technologies.scss';
 
 import type { ReactElement } from 'react';
 
-import htmlIcon from '../../assets/icons/html-icon.png';
+import angularIcon from '../../assets/icons/angular-icon.svg';
 import codexIcon from '../../assets/icons/codex-icon.svg';
-import cssIcon from '../../assets/icons/css-icon.png';
-import javascriptIcon from '../../assets/icons/javascript-icon.png';
-import reactIcon from '../../assets/icons/react-icon.png';
-import nodeIcon from '../../assets/icons/node-icon.png';
-import angularIcon from '../../assets/icons/angular-icon.png';
-import typescriptIcon from '../../assets/icons/typescript-icon.png';
-import sassIcon from '../../assets/icons/sass-icon.png';
-import gitIcon from '../../assets/icons/git-icon.png';
-import webAccessibilityIcon from '../../assets/icons/web-accessibility-icon.png';
+import cssIcon from '../../assets/icons/css-icon.svg';
+import gitIcon from '../../assets/icons/git-icon.svg';
+import htmlIcon from '../../assets/icons/html-icon.svg';
+import javascriptIcon from '../../assets/icons/javascript-icon.svg';
 import nestJsIcon from '../../assets/icons/nest-js-icon.svg';
-import sqlIcon from '../../assets/icons/sql-icon.png';
-import postgresIcon from '../../assets/icons/postgres-icon.png';
+import nodeJsIcon from '../../assets/icons/node-js-icon.svg';
+import postgresqlIcon from '../../assets/icons/postgresql-icon.svg';
+import reactIcon from '../../assets/icons/react-icon.svg';
+import sassIcon from '../../assets/icons/sass-icon.svg';
+import sqlIcon from '../../assets/icons/sql-icon.svg';
+import typescriptIcon from '../../assets/icons/typescript-icon.svg';
+import webAccessibilityIcon from '../../assets/icons/web-accessibility-icon.svg';
 
 import { AnimatedDiv } from '../reusable/AnimatedDiv';
 
 type TechnologyListItemProps = {
+  height: number;
   label: string;
   src: string;
+  width: number;
 };
 
 const technologyListItemDefinitions: TechnologyListItemProps[] = [
-  { label: 'React', src: reactIcon },
-  { label: 'Angular', src: angularIcon },
-  { label: 'TypeScript', src: typescriptIcon },
-  { label: 'JavaScript', src: javascriptIcon },
-  { label: 'HTML5', src: htmlIcon },
-  { label: 'CSS3', src: cssIcon },
-  { label: 'Sass', src: sassIcon },
-  { label: 'Git', src: gitIcon },
-  { label: 'Web Accessibility', src: webAccessibilityIcon },
-  { label: 'NestJS', src: nestJsIcon },
-  { label: 'Node.js', src: nodeIcon },
-  { label: 'PostgreSQL', src: postgresIcon },
-  { label: 'SQL', src: sqlIcon },
-  { label: 'Codex', src: codexIcon }
+  { height: 128, label: 'React', src: reactIcon, width: 144 },
+  { height: 128, label: 'Angular', src: angularIcon, width: 128 },
+  { height: 128, label: 'TypeScript', src: typescriptIcon, width: 128 },
+  { height: 128, label: 'JavaScript', src: javascriptIcon, width: 128 },
+  { height: 128, label: 'HTML5', src: htmlIcon, width: 128 },
+  { height: 128, label: 'CSS3', src: cssIcon, width: 128 },
+  { height: 128, label: 'Sass', src: sassIcon, width: 128 },
+  { height: 128, label: 'Git', src: gitIcon, width: 128 },
+  { height: 128, label: 'Web Accessibility', src: webAccessibilityIcon, width: 128 },
+  { height: 128, label: 'NestJS', src: nestJsIcon, width: 133 },
+  { height: 128, label: 'Node.js', src: nodeJsIcon, width: 128 },
+  { height: 128, label: 'PostgreSQL', src: postgresqlIcon, width: 128 },
+  { height: 128, label: 'SQL', src: sqlIcon, width: 128 },
+  { height: 128, label: 'Codex', src: codexIcon, width: 128 }
 ];
 
 function TechnologyListItem(props: TechnologyListItemProps): ReactElement {
-  const { label, src } = props;
+  const { height, label, src, width } = props;
 
   return (
     <li className='technology'>
       <AnimatedDiv>
-        <img src={src} alt='' />
+        <img alt='' decoding='async' height={height} loading='lazy' src={src} width={width} />
         <strong>{label}</strong>
       </AnimatedDiv>
     </li>
@@ -65,8 +67,8 @@ export function CoreTechnologies(): ReactElement {
 
       <div className='core-technologies__stack center-content'>
         <ul className='technology-wrapper' role='list'>
-          {technologyListItemDefinitions.map(({ label, src }): ReactElement => (
-            <TechnologyListItem key={label} label={label} src={src} />
+          {technologyListItemDefinitions.map(({ height, label, src, width }): ReactElement => (
+            <TechnologyListItem key={label} height={height} label={label} src={src} width={width} />
           ))}
         </ul>
       </div>
