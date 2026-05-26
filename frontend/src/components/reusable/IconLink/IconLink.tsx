@@ -42,7 +42,7 @@ export function DownloadIconLink(props: IconLinkWrapper): ReactElement {
   return (
     <IconLink
       ariaLabel='Download my CV.'
-      href='https://www.linkedin.com/in/joel-spinelli'
+      href='https://docs.google.com/document/d/1SW3h7m5QxT2kelzDsRREQFymh-uJN1xxFs6DV-M3hPk/export?format=pdf'
       size={size}
       src={downloadIcon}
       title="Download my CV"
