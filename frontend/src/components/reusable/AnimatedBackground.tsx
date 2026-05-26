@@ -1,23 +1,22 @@
-import { useCallback, type ReactElement } from 'react';
+import { type ReactElement } from 'react';
 
-import { loadSlim } from '@tsparticles/slim';
-import { Particles, ParticlesProvider } from '@tsparticles/react';
-import { type Engine, type IOptions, type RecursivePartial } from '@tsparticles/engine';
+import { Particles } from '@tsparticles/react';
+import { type IOptions, type RecursivePartial } from '@tsparticles/engine';
 
 import { PARTICLES_CONFIG } from '../../constants/particlesConfig';
 
-export function AnimatedBackground(): ReactElement {
-  const particlesInit = useCallback(async (engine: Engine): Promise<void> => {
-    await loadSlim(engine);
-  }, []);
+type AnimatedBackgroundProps = {
+  id: string;
+};
 
+export function AnimatedBackground(props: AnimatedBackgroundProps): ReactElement {
+  const { id } = props;
+  
   return (
-    <ParticlesProvider init={particlesInit}>
-      <Particles
-        className='animated-background'
-        id='tsparticles'
-        options={PARTICLES_CONFIG.options as RecursivePartial<IOptions>}
-      />
-    </ParticlesProvider>
+    <Particles
+      className='animated-background'
+      id={id}
+      options={PARTICLES_CONFIG.options as RecursivePartial<IOptions>}
+    />
   );
 }

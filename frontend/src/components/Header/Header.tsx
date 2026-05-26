@@ -39,19 +39,25 @@ export function Header(): ReactElement {
   const yearsOfProfessionalExperience = getyearsOfProfessionalExperience();
 
   function pauseAnimations(): void {
-    const animations = tsParticles.item(0);
-    areAnimationsEnabled ? animations.pause() : animations.play();
+    tsParticles.items.forEach(animation => {
+      if (areAnimationsEnabled) {
+        animation.pause();
+      } else {
+        animation.play();
+      }
+    });
+
     setAreAnimationsEnabled(prevValue => !prevValue);
   }
 
   return (
     <header className='header section'>
-      {!shouldReduceMotion && <AnimatedBackground />}
+      {!shouldReduceMotion && <AnimatedBackground id='header-particles' />}
 
       <AnimatedDiv className='header__menu'>
         {!shouldReduceMotion && (
           <button className='portfolio-btn focusable' onClick={pauseAnimations} type='button'>
-            Pause animation
+            {areAnimationsEnabled ? 'Pause' : 'Resume'} animations
           </button>
         )}
 
