@@ -42,7 +42,6 @@ export const fields: Record<FieldId, FormFieldConfig> = {
     type: 'text'
   },
   body: {    
-    autoComplete: 'on',
     label: 'Message',
     maxLength: 2000,
     minLength: 10,

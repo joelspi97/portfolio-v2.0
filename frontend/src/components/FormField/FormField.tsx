@@ -3,7 +3,7 @@ import './form-field.scss';
 import type { ChangeEvent as ReactChangeEvent, ReactElement } from 'react';
 
 export type FormFieldProps<FieldId extends string> = {
-  autoComplete: string;
+  autoComplete?: string;
   error: string | null;
   id: FieldId;
   label: string;
@@ -18,8 +18,8 @@ export type FormFieldProps<FieldId extends string> = {
 };
 
 export function FormField<FieldId extends string>(props: FormFieldProps<FieldId>): ReactElement {
-  const { error, id, label, maxLength, minLength, onChange, placeholder = '', readOnly, type, required, 
-          value } = props;
+  const { autoComplete, error, id, label, maxLength, minLength, onChange, placeholder = '', readOnly,
+          required, type, value } = props;
   
   const counterId = `${id}-character-count`;
   const errorId = `${id}-error`;
@@ -54,7 +54,7 @@ export function FormField<FieldId extends string>(props: FormFieldProps<FieldId>
             </span>
           </div>
         : <input
-            autoComplete='on'
+            autoComplete={autoComplete}
             aria-describedby={error ? errorId : undefined}
             aria-invalid={Boolean(error)}
             className={inputClassName}

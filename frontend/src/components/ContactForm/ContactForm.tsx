@@ -52,32 +52,12 @@ export function ContactForm(): ReactElement {
 
   const hasVisibleErrors = Object.values(formValues).some(({ error }): boolean => Boolean(error));
   const invalidFieldFocusId = useRef<FieldId | null>(null);
-  const statusResetTimeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  function clearStatusResetTimeout(): void {
-    if (!statusResetTimeoutId.current) return;
-    clearTimeout(statusResetTimeoutId.current);
-    statusResetTimeoutId.current = null;
-  }
-
-  useEffect(() => {
-    return clearStatusResetTimeout;
-  }, []);
 
   useEffect(() => {
     if (!invalidFieldFocusId.current) return;
     document.getElementById(invalidFieldFocusId.current)?.focus();
     invalidFieldFocusId.current = null;
   }, [formValues]);
-  
-  function scheduleStatusReset(): void {
-    clearStatusResetTimeout();
-  
-    statusResetTimeoutId.current = setTimeout((): void => {
-      setSubmitStatus(createDefaultSubmitStatus());
-      statusResetTimeoutId.current = null;
-    }, 10000);
-  }
 
   function createValidatedFormValues(): FormValueMap {
     return (Object.entries(formValues) as [FieldId, FormValueMap[FieldId]][]).reduce<FormValueMap>(
@@ -138,15 +118,16 @@ export function ContactForm(): ReactElement {
         message: error instanceof Error ? error.message : 'Something went wrong.', 
         type: 'error' 
       });
-    
-    } finally {
-      scheduleStatusReset();
     }
   }
 
   function updateFormValues(id: FieldId, value: string): void {
     const error: string | null = validateFormField(id, value);
     setFormValues(prevValue => ({ ...prevValue, [id]: { error, value } }));
+  }
+
+  function dismissSubmitStatus(): void {
+    setSubmitStatus(createDefaultSubmitStatus());
   }
 
   return (
@@ -183,7 +164,15 @@ export function ContactForm(): ReactElement {
           className={`contact-form__state-msg contact-form__state-msg--${submitStatus.type}`}
           role={submitStatus.type === 'error' ? 'alert' : 'status'}
         >
-          {submitStatus.message}
+          <span>{submitStatus.message}</span>
+          <button
+            aria-label='Dismiss message.'
+            className='contact-form__dismiss-btn'
+            onClick={dismissSubmitStatus}
+            type='button'
+          >
+            <span aria-hidden='true' className='contact-form__dismiss-icon'></span>
+          </button>
         </div> 
       )}
       

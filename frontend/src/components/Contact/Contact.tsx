@@ -13,7 +13,7 @@ export function Contact(): ReactElement {
       <div className='section-decoration section-decoration--left'></div>
       <div className='section-decoration section-decoration--right'></div>
         <AnimatedDiv>
-          <h1 className='section-heading'>Get in touch!</h1>
+          <h2 className='section-heading'>Get in touch!</h2>
         </AnimatedDiv>
 
         <AnimatedDiv className='contact__form-wrapper'>

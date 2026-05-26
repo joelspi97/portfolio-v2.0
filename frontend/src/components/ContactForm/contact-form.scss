@@ -19,18 +19,47 @@
   }
 
   &__state-msg {
-    font-size: 1.6rem;
+    align-items: center;
+    border-radius: 0.5rem;
+    color: $portfolio-white;
+    display: flex;
+    font-size: 1.4rem;
     font-weight: 600;
+    justify-content: space-between;
+    gap: 1.5rem;
     margin-bottom: 0.5rem;
-    margin-top: -2.45rem;
+    padding: 0.4rem 1rem;
 
     &--success {
-      color: $dark-green;
+      background-color: $dark-green;
     }
   
     &--error {
-      color: $red;
+      background-color: $red;
     }
+  }
+
+  &__dismiss-btn {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    flex: 0 0 auto;
+    height: 3rem;
+    justify-content: center;
+    width: 3rem;
+
+    &:focus-visible {
+      outline: 0.2rem solid $portfolio-white;
+    }
+  }
+
+  &__dismiss-icon {
+    @include icon(2rem, 2rem, '../../assets/icons/x-icon.png');
+    display: block;
+    filter: brightness(0) invert(1);
   }
   
   &__loading-spinner {
