@@ -4,13 +4,15 @@ import { useEffect, useRef, useState, type ReactElement } from 'react';
 
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 
-const navLinkDefinitions: { href: string, label: string }[] = [
-  { href: '#about-me', label: 'Stack' },
+type navLinkDefinition = { href: string, label: string };
+
+const navLinkDefinitions: navLinkDefinition[] = [
+  { href: '#core-technologies', label: 'Core Technologies' },
   { href: '#projects', label: 'Projects' },
   { href: '#contact', label: 'Contact' }
 ];
 
-const navLinks: ReactElement[] = navLinkDefinitions.map(({ href, label }) => (
+const navLinks: ReactElement[] = navLinkDefinitions.map(({ href, label }): ReactElement => (
   <a className='portfolio-btn' href={href} key={label}>{label}</a>
 ));
 

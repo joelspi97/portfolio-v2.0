@@ -4,7 +4,7 @@ import { useEffect, useState, type ReactElement } from 'react';
 
 import { AnimatedArticle } from '../reusable/AnimatedArticle';
 
-interface IProjectProps {
+type ProjectProps = {
   demoUrl: string;
   description: string;
   features?: string[]; 
@@ -13,9 +13,9 @@ interface IProjectProps {
   name: string;
   repositoryUrl: string;
   stack: string[];
-}
+};
 
-export function Project(props: IProjectProps): ReactElement {
+export function Project(props: ProjectProps): ReactElement {
   const { demoUrl, description, features, iconClassName, isOnTheLeft, name, repositoryUrl, stack } = props;
 
   const [hideInformation, setHideInformation] = useState<boolean>(false);

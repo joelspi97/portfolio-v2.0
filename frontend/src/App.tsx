@@ -3,7 +3,7 @@ import './scss/core/generic-classes.scss';
 
 import type { ReactElement } from 'react';
 
-import { AboutMe } from './components/AboutMe/AboutMe';
+import { CoreTechnologies } from './components/CoreTechnologies/CoreTechnologies';
 import { Contact } from './components/Contact/Contact';
 import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
@@ -15,7 +15,7 @@ export function App(): ReactElement {
       <Header />
       
       <main>
-        <AboutMe />
+        <CoreTechnologies />
         <ProjectsSection />
         <Contact />
       </main>

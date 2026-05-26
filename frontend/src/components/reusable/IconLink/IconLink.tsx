@@ -15,7 +15,7 @@ type IconLinkProps = {
 };
 
 type IconLinkWrapper = {
-  size: number
+  size: number;
 };
 
 export function IconLink(props: IconLinkProps): ReactElement {
@@ -29,7 +29,7 @@ export function IconLink(props: IconLinkProps): ReactElement {
       rel='noreferrer'
       target='_blank'
       title={title}
-      style={{ borderWidth: `${size/200}rem`, padding: `${size/200}rem` }}
+      style={{ borderWidth: `${size/200}rem`, padding: `${size/400}rem` }}
     >
       <img alt="" src={src} height={size} width={size} />
     </a>

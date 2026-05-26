@@ -1,13 +1,13 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import type { ReactElement } from 'react';
 
-interface IAnimatedArticle {
+type AnimatedArticle = {
   children?: ReactElement | string | (ReactElement | string)[];
   className?: string;
   isOnTheLeft?: boolean;
-}
+};
 
-export function AnimatedArticle(props: IAnimatedArticle): ReactElement {
+export function AnimatedArticle(props: AnimatedArticle): ReactElement {
   const { children, className, isOnTheLeft } = props;
 
   const shouldReduceMotion = useReducedMotion();

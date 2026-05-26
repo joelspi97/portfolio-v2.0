@@ -1,7 +1,7 @@
 @use '../../scss/abstracts/variables' as *;
 @use '../../scss/abstracts/mixins/icon' as *;
 
-.about-me {
+.core-technologies {
   background-color: $portfolio-white;
   color: $dark-blue;
   z-index: 2;
@@ -13,7 +13,7 @@
   &__stack {
     width: 90%;
 
-    .language-wrapper {
+    .technology-wrapper {
       align-items: flex-start;
       display: grid;
       column-gap: 10rem;
@@ -23,7 +23,7 @@
       list-style: none;
       row-gap: 5rem;
 
-      .language {
+      .technology {
         height: 100%;
         width: 100%;
 

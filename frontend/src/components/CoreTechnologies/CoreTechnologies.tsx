@@ -1,4 +1,4 @@
-import './about-me.scss';
+import './core-technologies.scss';
 
 import type { ReactElement } from 'react';
 
@@ -19,12 +19,12 @@ import postgresIcon from '../../assets/icons/postgres-icon.png';
 
 import { AnimatedDiv } from '../reusable/AnimatedDiv';
 
-type LanguageListItemProps = {
+type TechnologyListItemProps = {
   label: string;
   src: string;
 };
 
-const languageListItemDefinitions: LanguageListItemProps[] = [
+const technologyListItemDefinitions: TechnologyListItemProps[] = [
   { label: 'React', src: reactIcon },
   { label: 'Angular', src: angularIcon },
   { label: 'TypeScript', src: typescriptIcon },
@@ -41,11 +41,11 @@ const languageListItemDefinitions: LanguageListItemProps[] = [
   { label: 'Codex', src: codexIcon }
 ];
 
-function LanguageListItem(props: LanguageListItemProps): ReactElement {
+function TechnologyListItem(props: TechnologyListItemProps): ReactElement {
   const { label, src } = props;
 
   return (
-    <li className='language'>
+    <li className='technology'>
       <AnimatedDiv>
         <img src={src} alt='' />
         <strong>{label}</strong>
@@ -54,19 +54,19 @@ function LanguageListItem(props: LanguageListItemProps): ReactElement {
   );
 }
 
-export function AboutMe(): ReactElement {
+export function CoreTechnologies(): ReactElement {
   return (
-    <section className='section about-me' id='about-me'>
+    <section className='section core-technologies' id='core-technologies'>
       <div className='section-decoration'></div>
 
-      <AnimatedDiv className='about-me__heading-container center-content'>
+      <AnimatedDiv className='core-technologies__heading-container center-content'>
         <h2 className='section-heading'>Core technologies</h2>
       </AnimatedDiv>
 
-      <div className='about-me__stack center-content'>
-        <ul className='language-wrapper' role='list'>
-          {languageListItemDefinitions.map(({ label, src }): ReactElement => (
-            <LanguageListItem key={label} label={label} src={src} />
+      <div className='core-technologies__stack center-content'>
+        <ul className='technology-wrapper' role='list'>
+          {technologyListItemDefinitions.map(({ label, src }): ReactElement => (
+            <TechnologyListItem key={label} label={label} src={src} />
           ))}
         </ul>
       </div>

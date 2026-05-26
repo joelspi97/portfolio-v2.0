@@ -22,7 +22,8 @@
     margin-bottom: 4.5rem;
     width: 100%;
 
-    .animation-btn {
+    .portfolio-btn {
+      font-size: 1.4rem;
       white-space: nowrap;
     }
   }
@@ -47,7 +48,7 @@
       background-color: $dark-blue;
       display: flex;
       flex-direction: column;
-      font-size: 3rem;
+      font-size: 4rem;
       margin-bottom: 3rem;
 
       span {
@@ -57,8 +58,8 @@
 
         &:last-of-type {
           color: $light-green;
-          font-size: 2.2rem;
-          line-height: 3rem;
+          font-size: 2.5rem;
+          line-height: 3.4rem;
         }
       }
     }
@@ -88,38 +89,5 @@
     border-radius: 25rem;
     max-width: 30rem;
     width: 100%;
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  .header {
-    &__text-content {
-      h1 {
-        font-size: 3.5rem;
-
-        span {
-          &:last-of-type {
-            font-size: 2.5rem;
-            line-height: 3.4rem;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: 900px) {
-  .header {
-    &__menu {
-      .nav-link {
-        font-size: 1.85rem;
-      }
-    }
-
-    &__text-content {
-      h1 {
-        font-size: 4rem;
-      }
-    }
   }
 }

@@ -50,11 +50,7 @@ export function Header(): ReactElement {
 
       <AnimatedDiv className='header__menu'>
         {!shouldReduceMotion && (
-          <button
-            className='animation-btn portfolio-btn focusable'
-            type='button'
-            onClick={pauseAnimations}
-          >
+          <button className='portfolio-btn focusable' onClick={pauseAnimations} type='button'>
             Pause animation
           </button>
         )}
