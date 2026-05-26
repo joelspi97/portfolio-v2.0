@@ -7,7 +7,7 @@ import { Project } from '../Project/Project';
 export function ProjectsSection(): ReactElement {
   return (
     <section className='section projects-section' id='projects'>
-      <div className='section-decoration'></div>
+      <div className='section-decoration' />
 
       <h2 className='section-heading'>Projects</h2>
 

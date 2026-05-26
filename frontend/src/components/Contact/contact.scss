@@ -36,6 +36,119 @@
   }
 }
 
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 70rem;
+  position: relative;
+  width: 90%;
+
+  &__required-note {
+    font-size: 1.3rem;
+    line-height: 1.4;
+    margin-bottom: 1.6rem;
+  }
+
+  &__required-mark {
+    color: $red;
+  }
+
+  &__state-msg {
+    align-items: center;
+    border-radius: 0.5rem;
+    color: $portfolio-white;
+    display: flex;
+    font-size: 1.4rem;
+    font-weight: 600;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.4rem 1rem;
+
+    &--success {
+      background-color: $dark-green;
+    }
+  
+    &--error {
+      background-color: $red;
+    }
+  }
+
+  &__dismiss-btn {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    flex: 0 0 auto;
+    height: 3rem;
+    justify-content: center;
+    width: 3rem;
+
+    &:focus-visible {
+      outline: 0.2rem solid $portfolio-white;
+    }
+  }
+
+  &__dismiss-icon {
+    @include icon(2rem, 2rem, '../../assets/icons/x-icon.svg');
+    display: block;
+    filter: brightness(0) invert(1);
+  }
+  
+  &__loading-spinner {
+    align-items: center;
+    bottom: 5.5rem;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: calc(50% - 1.5rem);
+  
+    &::after {
+      animation: spin 1.2s linear infinite;
+      content: '';
+      background-color: $green;
+      border: 0.5rem solid #ffffff;
+      border-radius: 50%;
+      border-top-color: $dark-blue;
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+
+  &__loading-message {
+    align-self: center;
+    background-color: $dark-blue;
+    border-radius: 0.5rem;
+    color: $portfolio-white;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    padding: 0.7rem 1.2rem;
+    text-align: center;
+  }
+   
+  .portfolio-btn {
+    border: 0.2rem solid $dark-blue;
+    font-size: 1.4rem;
+
+    &:disabled {
+      background-color: $portfolio-white;
+      border-color: $grey;
+      color: $grey;
+      cursor: default;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
 @media only screen and (min-width: 530px) {
   .contact {
     &__form-wrapper {

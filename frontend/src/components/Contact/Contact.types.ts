@@ -1,9 +1,9 @@
 import type { FormFieldProps } from '../FormField/FormField';
 
 export type FieldId = 'body' | 'email' | 'name' | 'subject';
-export type ContactFormFieldProps = FormFieldProps<FieldId>;
+export type ContactFieldProps = FormFieldProps<FieldId>;
 export type FormFieldConfig = Omit<
-  ContactFormFieldProps,
+  ContactFieldProps,
   'error' | 'id' | 'onChange' | 'readOnly' | 'value'
 >;
 export type FormValueMap = Record<FieldId, { error: string | null; value: string }>;
@@ -14,7 +14,6 @@ export type SubmitStatus = {
 };
 
 export const fields: Record<FieldId, FormFieldConfig> = {
-  // The order of the definitions will determine the order in which they are rendered on the UI.  
   name: {
     autoComplete: 'name',
     label: 'Full Name',

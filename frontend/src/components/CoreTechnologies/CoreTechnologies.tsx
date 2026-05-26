@@ -44,7 +44,7 @@ function TechnologyListItem(props: TechnologyListItemProps): ReactElement {
 export function CoreTechnologies(): ReactElement {
   return (
     <section className='section core-technologies' id='core-technologies'>
-      <div className='section-decoration'></div>
+      <div className='section-decoration' />
 
       <AnimatedDiv className='core-technologies__heading-container center-content'>
         <h2 className='section-heading'>Core technologies</h2>
