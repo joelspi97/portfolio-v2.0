@@ -2,18 +2,11 @@ import './projects-section.scss';
 
 import { type ReactElement } from 'react';
 
-// import { useReducedMotion } from 'framer-motion';
-
-// import { AnimatedBackground } from '../reusable/AnimatedBackground';
 import { Project } from '../Project/Project';
 
 export function ProjectsSection(): ReactElement {
-  // const shouldReduceMotion = useReducedMotion();
-  
   return (
     <section className='section projects-section' id='projects'>
-      {/* {!shouldReduceMotion && <AnimatedBackground id='projects-particles' />} */}
-
       <div className='section-decoration'></div>
 
       <h2 className='section-heading'>Projects</h2>

@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import type { ReactElement } from 'react';
 
 type AnimatedArticle = {
-  children?: ReactElement | string | (ReactElement | string)[];
+  children?: ReactElement | string | undefined | (ReactElement | string | undefined)[];
   className?: string;
   isOnTheLeft?: boolean;
 };
@@ -20,7 +20,7 @@ export function AnimatedArticle(props: AnimatedArticle): ReactElement {
           ? { opacity: 0 }
           : isOnTheLeft ? { opacity: 0, x: -100 } : { opacity: 0, x: 100 }
       }
-      transition={{ delay: 0.25, duration: 0.55 }}
+      transition={{ delay: 0.1, duration: 0.5 }}
       viewport={{ once: true }}
       whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
     >

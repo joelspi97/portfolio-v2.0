@@ -2,21 +2,6 @@ import './core-technologies.scss';
 
 import type { ReactElement } from 'react';
 
-import angularIcon from '../../assets/icons/angular-icon.svg';
-import codexIcon from '../../assets/icons/codex-icon.svg';
-import cssIcon from '../../assets/icons/css-icon.svg';
-import gitIcon from '../../assets/icons/git-icon.svg';
-import htmlIcon from '../../assets/icons/html-icon.svg';
-import javascriptIcon from '../../assets/icons/javascript-icon.svg';
-import nestJsIcon from '../../assets/icons/nest-js-icon.svg';
-import nodeJsIcon from '../../assets/icons/node-js-icon.svg';
-import postgresqlIcon from '../../assets/icons/postgresql-icon.svg';
-import reactIcon from '../../assets/icons/react-icon.svg';
-import sassIcon from '../../assets/icons/sass-icon.svg';
-import sqlIcon from '../../assets/icons/sql-icon.svg';
-import typescriptIcon from '../../assets/icons/typescript-icon.svg';
-import webAccessibilityIcon from '../../assets/icons/web-accessibility-icon.svg';
-
 import { AnimatedDiv } from '../reusable/AnimatedDiv';
 
 type TechnologyListItemProps = {
@@ -27,20 +12,20 @@ type TechnologyListItemProps = {
 };
 
 const technologyListItemDefinitions: TechnologyListItemProps[] = [
-  { height: 128, label: 'React', src: reactIcon, width: 144 },
-  { height: 128, label: 'Angular', src: angularIcon, width: 128 },
-  { height: 128, label: 'TypeScript', src: typescriptIcon, width: 128 },
-  { height: 128, label: 'JavaScript', src: javascriptIcon, width: 128 },
-  { height: 128, label: 'HTML5', src: htmlIcon, width: 128 },
-  { height: 128, label: 'CSS3', src: cssIcon, width: 128 },
-  { height: 128, label: 'Sass', src: sassIcon, width: 128 },
-  { height: 128, label: 'Git', src: gitIcon, width: 128 },
-  { height: 128, label: 'Web Accessibility', src: webAccessibilityIcon, width: 128 },
-  { height: 128, label: 'NestJS', src: nestJsIcon, width: 133 },
-  { height: 128, label: 'Node.js', src: nodeJsIcon, width: 128 },
-  { height: 128, label: 'PostgreSQL', src: postgresqlIcon, width: 128 },
-  { height: 128, label: 'SQL', src: sqlIcon, width: 128 },
-  { height: 128, label: 'Codex', src: codexIcon, width: 128 }
+  { height: 128, label: 'React', src: '/images/technologies/react-icon.svg', width: 144 },
+  { height: 128, label: 'Angular', src: '/images/technologies/angular-icon.svg', width: 128 },
+  { height: 128, label: 'TypeScript', src: '/images/technologies/typescript-icon.svg', width: 128 },
+  { height: 128, label: 'JavaScript', src: '/images/technologies/javascript-icon.svg', width: 128 },
+  { height: 128, label: 'HTML5', src: '/images/technologies/html-icon.svg', width: 128 },
+  { height: 128, label: 'CSS3', src: '/images/technologies/css-icon.svg', width: 128 },
+  { height: 128, label: 'Sass', src: '/images/technologies/sass-icon.svg', width: 128 },
+  { height: 128, label: 'Git', src: '/images/technologies/git-icon.svg', width: 128 },
+  { height: 128, label: 'Web Accessibility', src: '/images/technologies/web-accessibility-icon.svg', width: 128 },
+  { height: 128, label: 'NestJS', src: '/images/technologies/nest-js-icon.svg', width: 133 },
+  { height: 128, label: 'Node.js', src: '/images/technologies/node-js-icon.svg', width: 128 },
+  { height: 128, label: 'PostgreSQL', src: '/images/technologies/postgresql-icon.svg', width: 128 },
+  { height: 128, label: 'SQL', src: '/images/technologies/sql-icon.svg', width: 128 },
+  { height: 128, label: 'Codex', src: '/images/technologies/codex-icon.svg', width: 128 }
 ];
 
 function TechnologyListItem(props: TechnologyListItemProps): ReactElement {

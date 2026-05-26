@@ -1,15 +1,9 @@
 import './header.scss';
 
-import { 
-  // useState, 
-  type ReactElement 
-} from 'react';
+import type { ReactElement } from 'react';
 
-// import { useReducedMotion } from 'framer-motion';
-// import { tsParticles } from '@tsparticles/engine';
 
 import { AnimatedDiv } from '../reusable/AnimatedDiv';
-// import { AnimatedBackground } from '../reusable/AnimatedBackground';
 import { DownloadIconLink, GithubIconLink, LinkedInIconLink } from '../reusable/IconLink/IconLink';
 
 import { NavigationBar } from '../NavigationBar/NavigationBar';
@@ -34,36 +28,13 @@ function getyearsOfProfessionalExperience(): string {
 }
 
 export function Header(): ReactElement {
-  // const [areAnimationsEnabled, setAreAnimationsEnabled] = useState(true);
-
-  // const shouldReduceMotion = useReducedMotion();
   const yearsOfProfessionalExperience = getyearsOfProfessionalExperience();
-
-  // function pauseAnimations(): void {
-  //   tsParticles.items.forEach(animation => {
-  //     if (areAnimationsEnabled) {
-  //       animation.pause();
-  //     } else {
-  //       animation.play();
-  //     }
-  //   });
-
-  //   setAreAnimationsEnabled(prevValue => !prevValue);
-  // }
 
   return (
     <header className='header section'>
-      {/* {!shouldReduceMotion && <AnimatedBackground id='header-particles' />} */}
-
-      <AnimatedDiv className='header__menu'>
-        {/* {!shouldReduceMotion && (
-          <button className='portfolio-btn focusable' onClick={pauseAnimations} type='button'>
-            {areAnimationsEnabled ? 'Pause' : 'Resume'} animations
-          </button>
-        )} */}
-
+      <div className='header__menu'>
         <NavigationBar />
-      </AnimatedDiv>
+      </div>
 
       <AnimatedDiv className='header__content'>
         <div className='header__text-content'>

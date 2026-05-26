@@ -35,10 +35,10 @@ export function NavigationBar(): ReactElement {
   }, [isHamburgerMenuOpen]);
 
   useEffect((): (() => void) => {
-    if (isDesktopNavigation) return;
-
-    document.addEventListener('click', closeMenuWithClick);
-    document.addEventListener('keydown', closeMenuWithKeyboard);
+    if (!isDesktopNavigation) {
+      document.addEventListener('click', closeMenuWithClick);
+      document.addEventListener('keydown', closeMenuWithKeyboard);
+    }
 
     return (): void => {
       document.removeEventListener('click', closeMenuWithClick);
