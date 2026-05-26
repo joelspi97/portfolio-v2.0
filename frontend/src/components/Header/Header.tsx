@@ -70,19 +70,22 @@ export function Header(): ReactElement {
           </h1>
 
           <p>
-            <strong>Frontend-focused Software engineer</strong> with {yearsOfProfessionalExperience} years of professional experience building
-            {' '}production-grade web applications.
+            I'm a <strong>Frontend Engineer</strong> with {yearsOfProfessionalExperience} years of  
+            {' '}professional experience building production-grade web applications across startup, 
+            {' '}enterprise and public-sector environments.
           </p>
 
           <p>
-            I work mainly with <strong>React, Angular, TypeScript,</strong> and
-            {' '}<strong>JavaScript</strong>, with backend experience using
-            {' '}<strong>Node.js, NestJS, REST APIs</strong> and <strong>PostgreSQL</strong>.
+            I work mainly with <strong>React</strong>, <strong>Angular</strong>, <strong>TypeScript</strong>, 
+            {' '}and <strong>JavaScript</strong>, with additional backend experience using <strong>Node.js</strong>,
+            {' '}<strong>NestJS</strong>, <strong>REST APIs</strong> and <strong>PostgreSQL</strong>.
+            {' '}I care about building interfaces that are performant, accessible, maintainable and easy to use.
           </p>
 
           <p>
-            Currently contributing to a real-time asset tracking platform for a US-based startup
-            client, focused on performant, accessible and maintainable user interfaces.
+            My work usually sits close to the intersection of product, design and engineering: 
+            {' '}translating requirements into reliable UI, improving existing codebases, 
+            {' '}collaborating with cross-functional teams, and keeping long-term quality in mind.
           </p>
 
           <nav className='header__cta-wrapper' aria-label='Professional links'>
