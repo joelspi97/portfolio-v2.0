@@ -68,17 +68,17 @@
     height: 100vh;
     flex-direction: column;
     margin-left: auto;
-    padding: 3rem 2rem;
+    padding: 2rem;
     position: absolute;
     right: 0%;
     text-align: center;
     top: 0%;
     transition: background-color 0.15s ease-in-out,
       color 0.15s ease-in-out;
-    width: 50vw;
+    width: 62vw;
 
     .close-btn {
-      @include icon(3.5rem, 3.5rem, '../../assets/icons/x-icon.png');
+      @include icon(3rem, 3rem, '../../assets/icons/x-icon.svg');
       background-color: transparent;
       border: none;
       border-radius: 0.5rem;

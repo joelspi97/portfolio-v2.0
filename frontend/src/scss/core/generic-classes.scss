@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 9rem 4.5rem;
+  padding: 9rem 2rem;
   position: relative;
   scroll-margin-top: -4.7rem;
   width: 100%;
@@ -58,7 +58,11 @@
   &:focus-visible {
     background-color: $portfolio-white;
     color: $dark-blue;
-    outline: none;
+  }
+
+  &:focus-visible {
+    outline-offset: 0.2rem;
+    outline: 0.2rem solid $green;
   }
 }
 
@@ -79,5 +83,11 @@
   &:focus-visible {
     outline: 0.2rem solid $dark-blue;
     outline-offset: 0.2rem;
+  }
+}
+
+@media only screen and (min-width: 610px) {
+  .section {
+    padding: 9rem 4.5rem;
   }
 }

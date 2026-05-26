@@ -7,7 +7,7 @@
   &__label {
     font-size: 1.4rem;
     font-weight: 600;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
     text-align: start;
     width: fit-content;
   }
@@ -27,6 +27,11 @@
     &:read-only {
       border-color: $grey;
       color: $grey;
+    }
+
+    &:focus-visible {
+      outline-offset: 0.2rem;
+      outline: 0.2rem solid $green;
     }
 
     &::placeholder {

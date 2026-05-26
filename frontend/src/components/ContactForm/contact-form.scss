@@ -57,7 +57,7 @@
   }
 
   &__dismiss-icon {
-    @include icon(2rem, 2rem, '../../assets/icons/x-icon.png');
+    @include icon(2rem, 2rem, '../../assets/icons/x-icon.svg');
     display: block;
     filter: brightness(0) invert(1);
   }
