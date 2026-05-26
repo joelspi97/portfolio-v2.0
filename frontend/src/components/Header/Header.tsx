@@ -1,23 +1,21 @@
 import './header.scss';
 
-import { lazy, Suspense, useState, type ReactElement } from 'react';
+import { 
+  // useState, 
+  type ReactElement 
+} from 'react';
 
-import { useReducedMotion } from 'framer-motion';
-import { tsParticles } from '@tsparticles/engine';
+// import { useReducedMotion } from 'framer-motion';
+// import { tsParticles } from '@tsparticles/engine';
 
 import { AnimatedDiv } from '../reusable/AnimatedDiv';
+// import { AnimatedBackground } from '../reusable/AnimatedBackground';
 import { DownloadIconLink, GithubIconLink, LinkedInIconLink } from '../reusable/IconLink/IconLink';
 
 import { NavigationBar } from '../NavigationBar/NavigationBar';
 
 const CAREER_START_YEAR = 2021;
 const CAREER_START_MONTH_INDEX = 6;
-
-const AnimatedBackground = lazy(async () => {
-  const module = await import('../reusable/AnimatedBackground');
-
-  return { default: module.AnimatedBackground };
-});
 
 function getyearsOfProfessionalExperience(): string {
   const currentDate = new Date();
@@ -36,37 +34,33 @@ function getyearsOfProfessionalExperience(): string {
 }
 
 export function Header(): ReactElement {
-  const [areAnimationsEnabled, setAreAnimationsEnabled] = useState(true);
+  // const [areAnimationsEnabled, setAreAnimationsEnabled] = useState(true);
 
-  const shouldReduceMotion = useReducedMotion();
+  // const shouldReduceMotion = useReducedMotion();
   const yearsOfProfessionalExperience = getyearsOfProfessionalExperience();
 
-  function pauseAnimations(): void {
-    tsParticles.items.forEach(animation => {
-      if (areAnimationsEnabled) {
-        animation.pause();
-      } else {
-        animation.play();
-      }
-    });
+  // function pauseAnimations(): void {
+  //   tsParticles.items.forEach(animation => {
+  //     if (areAnimationsEnabled) {
+  //       animation.pause();
+  //     } else {
+  //       animation.play();
+  //     }
+  //   });
 
-    setAreAnimationsEnabled(prevValue => !prevValue);
-  }
+  //   setAreAnimationsEnabled(prevValue => !prevValue);
+  // }
 
   return (
     <header className='header section'>
-      {!shouldReduceMotion && (
-        <Suspense fallback={null}>
-          <AnimatedBackground id='header-particles' />
-        </Suspense>
-      )}
+      {/* {!shouldReduceMotion && <AnimatedBackground id='header-particles' />} */}
 
       <AnimatedDiv className='header__menu'>
-        {!shouldReduceMotion && (
+        {/* {!shouldReduceMotion && (
           <button className='portfolio-btn focusable' onClick={pauseAnimations} type='button'>
             {areAnimationsEnabled ? 'Pause' : 'Resume'} animations
           </button>
-        )}
+        )} */}
 
         <NavigationBar />
       </AnimatedDiv>
