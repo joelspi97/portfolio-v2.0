@@ -77,10 +77,10 @@ export function Header(): ReactElement {
             className='header__profile-picture'
             decoding='async'
             fetchPriority='high'
-            height='300'
+            height={600}
             loading='eager'
             src='/images/profile-picture.jpg'
-            width='300'
+            width={600}
           />
         </picture>
       </AnimatedDiv>

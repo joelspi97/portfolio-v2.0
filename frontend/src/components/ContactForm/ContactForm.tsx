@@ -7,6 +7,7 @@ import {
   type SubmitEvent as ReactSubmitEvent, 
   type ReactElement 
 } from 'react';
+import { useReducedMotion } from 'framer-motion';
 
 import { sendContactMessage, type ContactMessagePayload } from '../../services/contactService';
 
@@ -52,6 +53,7 @@ export function ContactForm(): ReactElement {
 
   const hasVisibleErrors = Object.values(formValues).some(({ error }): boolean => Boolean(error));
   const invalidFieldFocusId = useRef<FieldId | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (!invalidFieldFocusId.current) return;
@@ -179,9 +181,13 @@ export function ContactForm(): ReactElement {
       )}
       
       {submitStatus.loading && (
-        <div aria-live='polite' className='contact-form__loading-spinner' role='status'>
-          <span className='sr-only'>Sending message.</span>
-        </div>
+        shouldReduceMotion
+          ? <p aria-live='polite' className='contact-form__loading-message' role='status'>
+              Sending message...
+            </p>
+          : <div aria-live='polite' className='contact-form__loading-spinner' role='status'>
+              <span className='sr-only'>Sending message.</span>
+            </div>
       )}
 
       <button 
