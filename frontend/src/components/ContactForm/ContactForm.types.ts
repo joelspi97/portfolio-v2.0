@@ -13,7 +13,8 @@ export type SubmitStatus = {
   type: 'error' | 'success' | null; 
 };
 
-export const fields: Record<FieldId, FormFieldConfig> = {  
+export const fields: Record<FieldId, FormFieldConfig> = {
+  // The order of the definitions will determine the order in which they are rendered on the UI.  
   name: {
     label: 'Full Name',
     maxLength: 80,

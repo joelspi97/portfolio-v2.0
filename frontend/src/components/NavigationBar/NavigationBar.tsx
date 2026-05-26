@@ -21,7 +21,7 @@ export function NavigationBar(): ReactElement {
   
   const bodyElement = document.body;
   const hamburgerButton = useRef<HTMLButtonElement | null>(null);
-  const isDesktopNavigation = useMediaQuery('(min-width: 600px)');
+  const isDesktopNavigation = useMediaQuery('(min-width: 610px)');
 
   useEffect((): (() => void) => {
     document.addEventListener('click', closeMenuWithClick);
