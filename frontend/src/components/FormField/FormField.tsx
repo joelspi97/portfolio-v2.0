@@ -3,6 +3,7 @@ import './form-field.scss';
 import type { ChangeEvent as ReactChangeEvent, ReactElement } from 'react';
 
 export type FormFieldProps<FieldId extends string> = {
+  autoComplete: string;
   error: string | null;
   id: FieldId;
   label: string;

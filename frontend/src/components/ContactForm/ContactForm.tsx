@@ -160,6 +160,7 @@ export function ContactForm(): ReactElement {
       {(Object.entries(fields) as [FieldId, FormFieldConfig][]).map(
         ([id, field]): ReactElement => (
           <FormField 
+            autoComplete={field.autoComplete}
             error={formValues[id].error}
             id={id} 
             key={id}

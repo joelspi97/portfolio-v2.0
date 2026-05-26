@@ -16,6 +16,7 @@ export type SubmitStatus = {
 export const fields: Record<FieldId, FormFieldConfig> = {
   // The order of the definitions will determine the order in which they are rendered on the UI.  
   name: {
+    autoComplete: 'name',
     label: 'Full Name',
     maxLength: 80,
     minLength: 2,
@@ -24,6 +25,7 @@ export const fields: Record<FieldId, FormFieldConfig> = {
     type: 'text'
   },
   email: {
+    autoComplete: 'email',
     label: 'Email',
     maxLength: 254,
     minLength: 7,
@@ -32,13 +34,15 @@ export const fields: Record<FieldId, FormFieldConfig> = {
     type: 'email'
   },
   subject: {
+    autoComplete: 'on',
     label: 'Subject',
     maxLength: 120,
     minLength: 3,
     required: false,
     type: 'text'
   },
-  body: {
+  body: {    
+    autoComplete: 'on',
     label: 'Message',
     maxLength: 2000,
     minLength: 10,
