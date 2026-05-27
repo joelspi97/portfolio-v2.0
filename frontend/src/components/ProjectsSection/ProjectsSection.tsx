@@ -2,63 +2,190 @@ import './projects-section.scss';
 
 import { type ReactElement } from 'react';
 
-import { Project } from '../Project/Project';
+import { Project, stackOptions } from '../Project/Project';
+
+const innovateDescription = (
+  <>
+    <p>
+      My current role, working on a real-time asset tracking platform for a US-based startup.
+      <br />
+      The product involves complex UI flows, hierarchical location data, and performance-sensitive 
+      {' '}frontend state management.
+    </p>
+  </>
+);
+const innovateBody = (
+  <>
+    <p>
+      One of the most useful pieces of work I contributed to was rebuilding a hierarchical
+      location-management feature from scratch instead of reusing an older, bug-prone
+      implementation from a similar internal app.
+    </p>
+
+    <p>
+      The feature allowed users to browse and edit a tree of entities: campuses, buildings, floors 
+      and locations. The original approach relied heavily on repeated GET requests to keep the entity 
+      tree updated after each create, update or delete action, including expensive full-tree fetches.
+    </p>
+
+    <p>
+      I proposed a different approach: fetch the full tree once on initial load, then keep the frontend 
+      state in sync manually after each mutation since we would already have it in memory anyway. This 
+      avoided unnecessary GET requests and made the UI feel much more responsive, especially when dealing 
+      with large entity trees.
+    </p>
+
+    <p>
+      The main challenge was not just storing the data, but updating it safely. Because each parent
+      entity referenced its children, I had to write efficient search and update algorithms for finding,
+      editing, adding and removing entities inside a nested tree structure without rebuilding more
+      state than necessary.
+    </p>
+
+    <p>
+      <strong>What I learned:</strong> this pushed me to think more carefully about data structures,
+      time complexity and frontend performance beyond just rendering components. It was a good
+      example of how better state design can reduce backend calls and improve perceived performance.
+    </p>
+  </>
+);
+
+const eyDescription = (
+  <p>
+    A full-stack enterprise project for an internal legal team, building a system to prepare and 
+    {' '}submit Spanish tax forms with complex backend calculation logic.
+  </p>
+);
+const eyBody = (
+  <>
+    <p>
+      In one EY project, I worked on an internal application used by a legal team in Spain to
+      prepare tax forms for submission through the Spanish tax authority platform.
+    </p>
+
+    <p>
+      At first, the backend logic looked manageable because we only expected a few form models.
+      Over time, more forms were added, and each one came with its own calculations, exceptions
+      and validation rules. The service layer gradually turned into a large set of conditional
+      blocks handling form-specific behaviour.
+    </p>
+
+    <p>
+      The problem became much worse when yearly versions were introduced. A form was no longer just
+      “Form 222”, for example — it could be “Form 222 for 2013”, “Form 222 for 2015”, and so on,
+      each with different rules. In a short period, the main service grew from roughly 600 lines to 
+      around 1200, and debugging one form could easily break another because the code was tightly coupled.
+    </p>
+
+    <p>
+      I proposed moving the form logic into a more isolated architecture. The idea was to create
+      an abstract base class for shared behaviour, then implement each concrete form/version in its
+      own class. Shared methods could live in the base class, methods with the same signature but
+      different logic could be overridden, and form-specific behaviour could stay inside the
+      individual form classes.
+    </p>
+
+    <p>
+      To instantiate the correct form dynamically, I created a map where each form identifier
+      pointed to its corresponding class. This acted as a simple routing layer between the database
+      form ID and the calculation logic that needed to run.
+    </p>
+
+    <p>
+      <strong>The impact:</strong> the service layer became much smaller, the conditional logic was
+      removed, and adding or debugging form versions became easier and safer because each form's 
+      behaviour was isolated in its own file.
+    </p>
+  </>
+);
+
+const governmentDescription = (
+  <p>
+    My first frontend role, working on public-sector web applications with a strong focus on accessible 
+    {' '}UI implementation, semantic HTML, WCAG standards and maintainable styling.
+  </p>
+); 
+const governmentBody = (
+  <>
+    <p>
+      This was my first frontend role. I started by building React apps for public-sector services, 
+      with a focus on pixel-perfect, responsive, and <strong>accessible</strong> user interfaces.
+    </p>
+
+    <p>
+      Because these were government websites, accessibility was not optional. In practice, however,
+      many screens did not meet the expected standards. I was asked to study WCAG guidelines, review
+      strong public-sector examples such as UK government services, and help bring our interfaces
+      closer to accessible standards.
+    </p>
+
+    <p>
+      A major challenge was that accessibility had not been part of the default design process.
+      Some institutional colors had poor contrast, and several UI patterns needed to be adjusted.
+      I worked with designers to improve those patterns without breaking the visual identity of the
+      product.
+    </p>
+
+    <p>
+      This role also changed the way I write frontend code. I became much more deliberate with
+      semantic HTML, ARIA attributes, keyboard navigation, alternative text and the relationship
+      between design decisions and real usability.
+    </p>
+
+    <p>
+      <strong>Beyond implementation:</strong> I also helped other developers understand accessibility
+      basics, introduced Sass to improve styling maintainability, and wrote internal documentation
+      so the team had a clearer reference for future UI work. By the end of my time there, all projects 
+      I worked on met WCAG AA standards.
+    </p>
+  </>
+);
 
 export function ProjectsSection(): ReactElement {
   return (
     <section className='section projects-section' id='projects'>
       <div className='section-decoration' />
 
-      <h2 className='section-heading'>Projects</h2>
+      <h2 className='section-heading'>Case Studies</h2>
 
       <div className='projects-section__projects-container center-content'>
         <Project
-          demoUrl='https://mi-blog-s6m5.onrender.com'
-          description='MI Blog is a generic blog website. It allows its users to create their own blogposts and read the ones others have created before them.'
-          features={[
-            'A CRUD system, to allow users interact with a database.',
-            'A form with validation logic, to avoid sending incorrect data to the database.',
-            'A details page for each item, which allows user to select a specific blog and get more details on it.',
-            'An accessible UI that follows the Web Content Accessibility Guidelines (WCAG) 2.1.'
-          ]}
-          iconClassName='generic-blog-icon'
+          body={innovateBody}
+          description={innovateDescription}
           isOnTheLeft={true}
+          logoSrc='/images/logos/iod-logo.svg'
           name='Innovate Group'
-          repositoryUrl='https://github.com/joelspi97/MI-blog'
-          stack={['NodeJS', 'Express', 'MongoDB', 'HTML5', 'CSS3']}
+          stack={[stackOptions.react, stackOptions.javaScript]}
         />
 
         <Project
-          demoUrl='https://movie-finder-sigma-bay.vercel.app/'
-          description='Movie Finder is a platform that lets user search for information about any movie they want. It also allows them to rate them using their TMDb account.'
-          features={[
-            'An infinite scroll list, which retrieves data from an API to display movies.',
-            'An input which allows the user to search for specific titles.',
-            'A details page for each movie that offers an option for users to be able to vote on movie ratings.',
-            'An accessible UI that follows the Web Content Accessibility Guidelines (WCAG) 2.1.'
-          ]}
-          iconClassName='movie-finder-icon'
+          body={eyBody}
+          description={eyDescription}
           name='EY (Ernst & Young)'
-          repositoryUrl='https://github.com/joelspi97/movie-finder'
-          stack={['React', 'TypeScript', 'Redux (+Thunk)', 'Bootstrap', 'Sass']}
+          logoSrc='/images/logos/ey-logo.svg'
+          stack={[
+            stackOptions.react, 
+            stackOptions.angular, 
+            stackOptions.typeScript, 
+            stackOptions.nodeJs, 
+            stackOptions.nestJs, 
+            stackOptions.postgreSql, 
+            stackOptions.spfx
+          ]}
         />
 
         <Project
-          demoUrl='https://to-do-list-joelspinelli.netlify.app/'
-          description='To-do List is a web application that allows users to make their own list of chores, and arrenge their tasks as they wish.'
-          features={[
-            'A menu for users to create their own to-do\'s, which can later be edited, marked as completed and/or deleted.',
-            'Usage of a third party library to make to-do\'s draggable and droppable to rearrange them',
-            'Usage of local storage to save and display the user\'s to-do\'s.',
-            'An input which allows the user to search for specific to-do\'s.',
-            'A settings menu which allows the user to customize their experience on the webpage.',
-            'An accessible UI that follows the Web Content Accessibility Guidelines (WCAG) 2.1.'
-          ]}
-          iconClassName='to-do-list-icon'
+          body={governmentBody}
+          description={governmentDescription}
           isOnTheLeft={true}
+          logoSrc='/images/logos/bsas-logo.svg'
           name='Online Services - Buenos Aires'
-          repositoryUrl='https://github.com/joelspi97/To-do-List'
-          stack={['React', 'Redux', 'Sass']}
+          stack={[
+            stackOptions.react, 
+            stackOptions.typeScript, 
+            stackOptions.redux, 
+            stackOptions.wcag
+          ]}
         />
       </div>
     </section>

@@ -4,19 +4,30 @@ import { useEffect, useState, type ReactElement } from 'react';
 
 import { AnimatedArticle } from '../reusable/AnimatedArticle';
 
+export enum stackOptions {
+  angular = 'Angular',
+  javaScript = 'JavaScript',
+  nestJs = 'NestJS', 
+  nodeJs = 'Node.js', 
+  postgreSql = 'PostgreSQL', 
+  react = 'React',
+  redux = 'Redux', 
+  spfx = 'SPFx', 
+  typeScript = 'TypeScript',
+  wcag = 'WCAG'
+}
+
 type ProjectProps = {
-  demoUrl: string;
-  description: string;
-  features?: string[]; 
-  iconClassName: string;
+  body: string | ReactElement; 
+  description: string | ReactElement;
   isOnTheLeft?: boolean;
+  logoSrc: string;
   name: string;
-  repositoryUrl: string;
-  stack: string[];
+  stack: stackOptions[];
 };
 
 export function Project(props: ProjectProps): ReactElement {
-  const { demoUrl, description, features, iconClassName, isOnTheLeft, name, repositoryUrl, stack } = props;
+  const { body, description, isOnTheLeft, logoSrc, name, stack } = props;
 
   const [hideInformation, setHideInformation] = useState<boolean>(false);
   const [showMore, setShowMore] = useState<boolean>(false);
@@ -29,11 +40,12 @@ export function Project(props: ProjectProps): ReactElement {
   return (
     <AnimatedArticle className='project' isOnTheLeft={isOnTheLeft}>
       <div className='project__heading-wrapper'>
-        <span className={iconClassName}></span>
-        <h3>{name}</h3>
+        <img alt='' decoding='async' height={40} loading='lazy' src={logoSrc} width={40} />
       </div>
 
-      <section>
+      <h3>{name}</h3>
+
+      <div>
         <h4 className='sr-only'>Technologies used in the {name} project:</h4>
 
         <ul className='project__stack'>
@@ -43,59 +55,30 @@ export function Project(props: ProjectProps): ReactElement {
             return <li key={language}> {language}</li>;
           })}
         </ul>
-      </section>
-
-      <p>{description}</p>
-
-      {features && (
-        <>
-          {showMore && (
-            <section className='project__show-more'>
-              <span className='sr-only' aria-live='assertive' aria-hidden={hideInformation}>
-                Extra information about the {name} project has been displayed above the button.
-              </span>
-
-              <h4 aria-label={`The ${name} project features:`}>This project features:</h4>
-              
-              <ol>
-                {features.map((feature: string): ReactElement => <li key={feature}>{feature}</li>)}
-              </ol>
-            </section>
-          )}
-
-          <button
-            aria-label={`Show ${showMore ? "less" : "more"} information about the ${name} project.`}
-            className='project__button project__button--show-more focusable'
-            onClick={() => setShowMore(prevValue => !prevValue)}
-            type='button'
-          >
-            {showMore ? 'Show less' : 'Show more'}
-          </button>
-        </>
-      )}
-
-      <div className='project__link-wrapper'>
-        <a
-          className='project__button project__button--repository focusable'
-          href={repositoryUrl}
-          target='_blank'
-          aria-label={`Go to the ${name} project Github repository.`}
-          title={`Visit ${name} Github repository`}
-          rel='noreferrer'
-        >
-          View code <span className='development-icon'></span>
-        </a>
-
-        <a
-          className='project__button focusable'
-          href={demoUrl}
-          target='_blank'
-          aria-label={`Go to the ${name} project webpage.`}
-          rel='noreferrer'
-        >
-          View project <span className='arrow-icon'></span>
-        </a>
       </div>
+
+      <div className='project__description'>
+        {description}
+      </div>
+
+      <button
+        aria-label={`Show ${showMore ? "less" : "more"} information about the ${name} project.`}
+        className='project__button'
+        onClick={() => setShowMore(prevValue => !prevValue)}
+        type='button'
+      >
+        Show {showMore ? 'less' : 'more'}
+      </button>
+
+      {showMore && (
+        <section className='project__body'>
+          <span className='sr-only' aria-live='polite' aria-hidden={hideInformation}>
+            Extra information about the {name} project has been displayed below the button.
+          </span>
+
+          {body}
+        </section>
+      )}
     </AnimatedArticle>
   );
 }
