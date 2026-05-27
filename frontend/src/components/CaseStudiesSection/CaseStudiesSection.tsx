@@ -191,16 +191,17 @@ const governmentBody = (
 
     <p>
       A major challenge was that accessibility had not been part of the default design process.
-      Some institutional colors had <strong>poor contrast, and several UI patterns needed 
-      adjustment</strong>. I collaborated with the design team to improve those patterns without 
-      breaking the visual identity of the product, advising on color choices, animation considerations, 
-      icon and image accessibility, and text readability.
+      Some institutional colors had poor contrast, and several UI patterns needed adjustment. From 
+      an implementation standpoint, <strong>I ensured the websites were fully usable with keyboard 
+      navigation</strong>, including complex UI components such as image carousels. I also <strong>collaborated 
+      with the design team</strong> to improve those patterns without breaking the visual identity of the product, 
+      advising on color choices, animation considerations, icon and image accessibility, and text readability.
     </p>
 
     <p>
-      This role also changed the way I write frontend code. I became much more deliberate with
-      {' '}<strong>semantic HTML, ARIA attributes, keyboard navigation and alternative text</strong>, 
-      especially how those implementation details affect real usability.
+      This role changed the way I write frontend code. I became much more deliberate with <strong>semantic 
+      HTML, ARIA attributes, keyboard navigation and alternative text</strong>, especially how those 
+      implementation details affect real usability.
     </p>
 
     <p>
