@@ -1,7 +1,7 @@
 @use '../../scss/abstracts/variables' as *;
 @use '../../scss/abstracts/mixins/icon' as *;
 
-.projects-section {
+.case-studies-section {
   background-color: $dark-blue;
   color: $portfolio-white;
   overflow: hidden;
@@ -16,7 +16,7 @@
     margin-bottom: 4.5rem;
   }
 
-  &__projects-container {
+  &__case-studies-container {
     display: flex;
     flex-direction: column;
     row-gap: 3.5rem;

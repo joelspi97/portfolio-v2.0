@@ -10,7 +10,7 @@ type navLinkDefinition = { href: string, label: string };
 
 const navLinkDefinitions: navLinkDefinition[] = [
   { href: '#core-technologies', label: 'Core Technologies' },
-  { href: '#projects', label: 'Projects' },
+  { href: '#case-studies', label: 'Case Studies' },
   { href: '#contact', label: 'Contact' }
 ];
 

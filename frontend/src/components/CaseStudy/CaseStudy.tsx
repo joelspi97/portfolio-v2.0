@@ -1,4 +1,4 @@
-import './project.scss';
+import './case-study.scss';
 
 import { useEffect, useState, type ReactElement } from 'react';
 
@@ -17,7 +17,7 @@ export enum stackOptions {
   wcag = 'WCAG'
 }
 
-type ProjectProps = {
+type CaseStudyProps = {
   body: string | ReactElement; 
   description: string | ReactElement;
   isOnTheLeft?: boolean;
@@ -26,7 +26,7 @@ type ProjectProps = {
   stack: stackOptions[];
 };
 
-export function Project(props: ProjectProps): ReactElement {
+export function CaseStudy(props: CaseStudyProps): ReactElement {
   const { body, description, isOnTheLeft, logoSrc, name, stack } = props;
 
   const [hideInformation, setHideInformation] = useState<boolean>(false);
@@ -38,17 +38,17 @@ export function Project(props: ProjectProps): ReactElement {
   }, [showMore]);
 
   return (
-    <AnimatedArticle className='project' isOnTheLeft={isOnTheLeft}>
-      <div className='project__heading-wrapper'>
+    <AnimatedArticle className='case-study' isOnTheLeft={isOnTheLeft}>
+      <div className='case-study__heading-wrapper'>
         <img alt='' decoding='async' height={40} loading='lazy' src={logoSrc} width={40} />
       </div>
 
       <h3>{name}</h3>
 
       <div>
-        <h4 className='sr-only'>Technologies used in the {name} project:</h4>
+        <h4 className='sr-only'>Technologies used in the {name} case study:</h4>
 
-        <ul className='project__stack'>
+        <ul className='case-study__stack'>
           {stack.map((language: string, index: number): ReactElement => {
             if (index === 0) return <li key={language}>{language} |</li>;
             if (stack.length > index + 1) return <li key={language}>{' '}{language} |</li>;
@@ -57,28 +57,28 @@ export function Project(props: ProjectProps): ReactElement {
         </ul>
       </div>
 
-      <div className='project__description'>
+      <div className='case-study__description'>
         {description}
       </div>
 
       <button
-        aria-label={`Show ${showMore ? "less" : "more"} information about the ${name} project.`}
-        className='project__button'
+        aria-label={`Show ${showMore ? "less" : "more"} information about the ${name} case study.`}
+        className='case-study__button'
         onClick={() => setShowMore(prevValue => !prevValue)}
         type='button'
       >
         Show {showMore ? 'less' : 'more'}
       </button>
 
-      {showMore && (
-        <section className='project__body'>
+      {showMore ? (
+        <section className='case-study__body'>
           <span className='sr-only' aria-live='polite' aria-hidden={hideInformation}>
-            Extra information about the {name} project has been displayed below the button.
+            Extra information about the {name} case study has been displayed below the button.
           </span>
 
           {body}
         </section>
-      )}
+      ) : undefined}
     </AnimatedArticle>
   );
 }
