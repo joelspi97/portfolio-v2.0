@@ -75,6 +75,12 @@ const innovateBody = (
           </tr>
 
           <tr>
+            <th scope='row'>Create</th>
+            <td>POST + GET all + GET by id</td>
+            <td><strong>POST only</strong>; update the tree in memory and use it to find the new record</td>
+          </tr>
+
+          <tr>
             <th scope='row'>Update</th>
             <td>PUT + GET all + GET by id</td>
             <td><strong>PUT only</strong>; update the tree in memory</td>
