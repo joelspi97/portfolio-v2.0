@@ -6,18 +6,27 @@ import { AnimatedArticle } from '../reusable/AnimatedArticle';
 import type { CaseStudyProps } from './CaseStudy.types';
 
 export function CaseStudy(props: CaseStudyProps): ReactElement {
-  const { body, description, isOnTheLeft, logoSrc, name, stack } = props;
+  const { body, description, href, slideFromTheLeft, logoSrc, name, stack } = props;
 
   const [showMore, setShowMore] = useState<boolean>(false);
   const bodyId = useId();
 
   return (
-    <AnimatedArticle className='case-study' isOnTheLeft={isOnTheLeft}>
+    <AnimatedArticle 
+      className='case-study' 
+      slideFromTheLeft={slideFromTheLeft} 
+      style={{ width: showMore ? "100%" : "fit-content" }}
+    >
       <div className='case-study__heading-wrapper'>
         <img alt='' decoding='async' height={40} loading='lazy' src={logoSrc} width={40} />
       </div>
 
-      <h3>{name}</h3>
+      <h3>
+        <a href={href} rel='noreferrer' target='_blank'>
+          {name}
+          <span className='sr-only'>, opens in a new tab.</span>
+        </a>
+      </h3>
 
       <div>
         <h4 className='sr-only'>Technologies used in the {name} case study:</h4>

@@ -16,8 +16,10 @@ export enum stackOptions {
 export type CaseStudyProps = {
   body: string | ReactElement; 
   description: string | ReactElement;
-  isOnTheLeft?: boolean;
+  href: string;
+  slideFromTheLeft?: boolean;
   logoSrc: string;
   name: string;
   stack: stackOptions[];
+  style?: Record<string, string>;
 };

@@ -212,7 +212,8 @@ export function CaseStudiesSection(): ReactElement {
         <CaseStudy
           body={innovateBody}
           description={innovateDescription}
-          isOnTheLeft={true}
+          href='https://www.innovateod.com/'
+          slideFromTheLeft={true}
           logoSrc='/images/logos/iod-logo.svg'
           name='Innovate Group'
           stack={[stackOptions.react, stackOptions.javaScript]}
@@ -221,7 +222,8 @@ export function CaseStudiesSection(): ReactElement {
         <CaseStudy
           body={eyBody}
           description={eyDescription}
-          name='EY (Ernst & Young)'
+          href='https://www.ey.com/'
+          name='EY GDS'
           logoSrc='/images/logos/ey-logo.svg'
           stack={[
             stackOptions.react, 
@@ -237,7 +239,8 @@ export function CaseStudiesSection(): ReactElement {
         <CaseStudy
           body={governmentBody}
           description={governmentDescription}
-          isOnTheLeft={true}
+          href='https://gba.gob.ar/'
+          slideFromTheLeft={true}
           logoSrc='/images/logos/bsas-logo.svg'
           name='Online Services - Buenos Aires'
           stack={[
