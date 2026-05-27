@@ -17,9 +17,7 @@ export function CaseStudy(props: CaseStudyProps): ReactElement {
       slideFromTheLeft={slideFromTheLeft} 
       style={{ width: showMore ? "100%" : "fit-content" }}
     >
-      <div className='case-study__heading-wrapper'>
-        <img alt='' decoding='async' height={40} loading='lazy' src={logoSrc} width={40} />
-      </div>
+      <img alt='' decoding='async' height={40} loading='lazy' src={logoSrc} width={40} />
 
       <h3>
         <a href={href} rel='noreferrer' target='_blank'>

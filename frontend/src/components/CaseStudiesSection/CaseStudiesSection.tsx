@@ -5,6 +5,10 @@ import { type ReactElement } from 'react';
 import { CaseStudy } from '../CaseStudy/CaseStudy';
 import { stackOptions } from '../CaseStudy/CaseStudy.types';
 
+import companyIcon from '../../assets/icons/company-icon.svg';
+import governmentIcon from '../../assets/icons/government-icon.svg';
+import locationIcon from '../../assets/icons/location-icon.svg';
+
 const innovateDescription = (
   <>
     <p>
@@ -220,7 +224,7 @@ export function CaseStudiesSection(): ReactElement {
           description={innovateDescription}
           href='https://www.innovateod.com/'
           slideFromTheLeft={true}
-          logoSrc='/images/logos/iod-logo.svg'
+          logoSrc={locationIcon}
           name='Innovate Group'
           stack={[stackOptions.react, stackOptions.javaScript]}
         />
@@ -229,8 +233,8 @@ export function CaseStudiesSection(): ReactElement {
           body={eyBody}
           description={eyDescription}
           href='https://www.ey.com/'
-          name='EY GDS'
-          logoSrc='/images/logos/ey-logo.svg'
+          name='EY'
+          logoSrc={companyIcon}
           stack={[
             stackOptions.react, 
             stackOptions.angular, 
@@ -247,7 +251,7 @@ export function CaseStudiesSection(): ReactElement {
           description={governmentDescription}
           href='https://gba.gob.ar/'
           slideFromTheLeft={true}
-          logoSrc='/images/logos/bsas-logo.svg'
+          logoSrc={governmentIcon}
           name='Online Services - Buenos Aires'
           stack={[
             stackOptions.react, 

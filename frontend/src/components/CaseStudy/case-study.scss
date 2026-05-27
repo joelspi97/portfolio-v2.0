@@ -12,14 +12,8 @@
   padding: 2rem 3rem;
   text-align: start;
 
-  &__heading-wrapper {
-    align-items: center;
-    background-color: $dark-blue;
-    border-radius: 0.5rem;
-    color: $portfolio-white;
-    display: flex;
+  img {
     margin-bottom: 0.5rem;
-    padding: 0.5rem;
   }
 
   h3 {
