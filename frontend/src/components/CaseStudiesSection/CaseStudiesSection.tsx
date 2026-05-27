@@ -191,9 +191,10 @@ const governmentBody = (
 
     <p>
       A major challenge was that accessibility had not been part of the default design process.
-      Some institutional colors had <strong>poor contrast</strong>, and several UI patterns needed 
-      adjustment. I worked with designers to improve those patterns without breaking the visual 
-      identity of the product.
+      Some institutional colors had <strong>poor contrast, and several UI patterns needed 
+      adjustment</strong>. I collaborated with the design team to improve those patterns without 
+      breaking the visual identity of the product, advising on color choices, animation considerations, 
+      icon and image accessibility, and text readability.
     </p>
 
     <p>
