@@ -1,6 +1,6 @@
 import './case-study.scss';
 
-import { useEffect, useState, type ReactElement } from 'react';
+import { useId, useState, type ReactElement } from 'react';
 
 import { AnimatedArticle } from '../reusable/AnimatedArticle';
 
@@ -29,13 +29,8 @@ type CaseStudyProps = {
 export function CaseStudy(props: CaseStudyProps): ReactElement {
   const { body, description, isOnTheLeft, logoSrc, name, stack } = props;
 
-  const [hideInformation, setHideInformation] = useState<boolean>(false);
   const [showMore, setShowMore] = useState<boolean>(false);
-
-  useEffect((): void => {
-    setHideInformation(false);
-    setTimeout((): void => setHideInformation(true), 1);
-  }, [showMore]);
+  const bodyId = useId();
 
   return (
     <AnimatedArticle className='case-study' isOnTheLeft={isOnTheLeft}>
@@ -62,6 +57,8 @@ export function CaseStudy(props: CaseStudyProps): ReactElement {
       </div>
 
       <button
+        aria-controls={bodyId}
+        aria-expanded={showMore}
         aria-label={`Show ${showMore ? "less" : "more"} information about the ${name} case study.`}
         className='case-study__button'
         onClick={() => setShowMore(prevValue => !prevValue)}
@@ -71,11 +68,7 @@ export function CaseStudy(props: CaseStudyProps): ReactElement {
       </button>
 
       {showMore ? (
-        <section className='case-study__body'>
-          <span className='sr-only' aria-live='polite' aria-hidden={hideInformation}>
-            Extra information about the {name} case study has been displayed below the button.
-          </span>
-
+        <section className='case-study__body' id={bodyId}>
           {body}
         </section>
       ) : undefined}

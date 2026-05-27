@@ -70,6 +70,9 @@
   }
 
   &__body {
+    min-width: 0;
+    width: 100%;
+
     h4 {
       font-size: 1.6rem;
       margin-bottom: 1.5rem;
@@ -89,8 +92,14 @@
 
   &__table-wrapper {
     margin-bottom: 2rem;
+    max-width: 100%;
     overflow-x: auto;
     width: 100%;
+
+    &:focus-visible {
+      outline: 0.2rem solid $green;
+      outline-offset: 0.2rem;
+    }
   }
 
   &__comparison-table {

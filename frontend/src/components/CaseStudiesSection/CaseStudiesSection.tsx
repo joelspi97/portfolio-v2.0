@@ -37,7 +37,12 @@ const innovateBody = (
       mutation completed.
     </p>
 
-    <div className='case-study__table-wrapper'>
+    <div
+      aria-label='Scrollable comparison table: Location tree network behavior before and after the refactor.'
+      className='case-study__table-wrapper'
+      role='region'
+      tabIndex={0}
+    >
       <table className='case-study__comparison-table'>
         <caption>Location tree network behavior before and after the refactor.</caption>
 
