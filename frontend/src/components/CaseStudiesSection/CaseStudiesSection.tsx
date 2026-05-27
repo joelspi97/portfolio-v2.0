@@ -2,7 +2,8 @@ import './case-studies-section.scss';
 
 import { type ReactElement } from 'react';
 
-import { CaseStudy, stackOptions } from '../CaseStudy/CaseStudy';
+import { CaseStudy } from '../CaseStudy/CaseStudy';
+import { stackOptions } from '../CaseStudy/CaseStudy.types';
 
 const innovateDescription = (
   <>

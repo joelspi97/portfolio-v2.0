@@ -3,28 +3,7 @@ import './case-study.scss';
 import { useId, useState, type ReactElement } from 'react';
 
 import { AnimatedArticle } from '../reusable/AnimatedArticle';
-
-export enum stackOptions {
-  angular = 'Angular',
-  javaScript = 'JavaScript',
-  nestJs = 'NestJS', 
-  nodeJs = 'Node.js', 
-  postgreSql = 'PostgreSQL', 
-  react = 'React',
-  redux = 'Redux', 
-  spfx = 'SPFx', 
-  typeScript = 'TypeScript',
-  wcag = 'WCAG'
-}
-
-type CaseStudyProps = {
-  body: string | ReactElement; 
-  description: string | ReactElement;
-  isOnTheLeft?: boolean;
-  logoSrc: string;
-  name: string;
-  stack: stackOptions[];
-};
+import type { CaseStudyProps } from './CaseStudy.types';
 
 export function CaseStudy(props: CaseStudyProps): ReactElement {
   const { body, description, isOnTheLeft, logoSrc, name, stack } = props;
