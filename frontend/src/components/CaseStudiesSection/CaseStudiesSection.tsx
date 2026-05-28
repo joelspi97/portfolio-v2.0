@@ -9,6 +9,16 @@ import companyIcon from '../../assets/icons/company-icon.svg';
 import governmentIcon from '../../assets/icons/government-icon.svg';
 import locationIcon from '../../assets/icons/location-icon.svg';
 
+type CaseStudyDefinition = {
+  body: ReactElement;
+  description: ReactElement;
+  href: string;
+  logoSrc: string;
+  name: string;
+  slideFromTheLeft?: boolean;
+  stack: stackOptions[];
+};
+
 const innovateDescription = (
   <>
     <p>
@@ -212,6 +222,43 @@ const governmentBody = (
   </>
 );
 
+const caseStudies: CaseStudyDefinition[] = [
+  {
+    body: innovateBody,
+    description: innovateDescription,
+    href: 'https://www.innovateod.com/',
+    slideFromTheLeft: true,
+    logoSrc: locationIcon,
+    name: 'Innovate Group',
+    stack: [stackOptions.react, stackOptions.javaScript]
+  },
+  {
+    body: eyBody,
+    description: eyDescription,
+    href: 'https://www.ey.com/',
+    name: 'EY',
+    logoSrc: companyIcon,
+    stack: [
+      stackOptions.react, 
+      stackOptions.angular, 
+      stackOptions.typeScript, 
+      stackOptions.nodeJs, 
+      stackOptions.nestJs, 
+      stackOptions.postgreSql, 
+      stackOptions.spfx
+    ]
+  },
+  {
+    body: governmentBody,
+    description: governmentDescription,
+    href: 'https://gba.gob.ar/',
+    slideFromTheLeft: true,
+    logoSrc: governmentIcon,
+    name: 'Online Services - Buenos Aires',
+    stack: [stackOptions.react, stackOptions.typeScript, stackOptions.redux, stackOptions.wcag]
+  }
+];
+
 export function CaseStudiesSection(): ReactElement {
   return (
     <section className='section case-studies-section' id='case-studies'>
@@ -220,53 +267,11 @@ export function CaseStudiesSection(): ReactElement {
       <h2 className='section-heading'>Case Studies</h2>
 
       <ul className='case-studies-section__case-studies-container center-content'>
-        <li>
-          <CaseStudy
-            body={innovateBody}
-            description={innovateDescription}
-            href='https://www.innovateod.com/'
-            slideFromTheLeft={true}
-            logoSrc={locationIcon}
-            name='Innovate Group'
-            stack={[stackOptions.react, stackOptions.javaScript]}
-          />
-        </li>
-
-        <li>
-          <CaseStudy
-            body={eyBody}
-            description={eyDescription}
-            href='https://www.ey.com/'
-            name='EY'
-            logoSrc={companyIcon}
-            stack={[
-              stackOptions.react, 
-              stackOptions.angular, 
-              stackOptions.typeScript, 
-              stackOptions.nodeJs, 
-              stackOptions.nestJs, 
-              stackOptions.postgreSql, 
-              stackOptions.spfx
-            ]}
-          />
-        </li>
-
-        <li>
-          <CaseStudy
-            body={governmentBody}
-            description={governmentDescription}
-            href='https://gba.gob.ar/'
-            slideFromTheLeft={true}
-            logoSrc={governmentIcon}
-            name='Online Services - Buenos Aires'
-            stack={[
-              stackOptions.react, 
-              stackOptions.typeScript, 
-              stackOptions.redux, 
-              stackOptions.wcag
-            ]}
-          />
-        </li>
+        {caseStudies.map((caseStudy: CaseStudyDefinition): ReactElement => (
+          <li key={caseStudy.name}>
+            <CaseStudy {...caseStudy} />
+          </li>
+        ))}
       </ul>
     </section>
   );
