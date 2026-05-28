@@ -17,6 +17,10 @@ mailRouter.post('/', (
     return;
   }
 
-  sendContactEmail(request.body);
-  response.sendStatus(204);
+  sendContactEmail(request.body)
+    .then(() => response.sendStatus(204))
+    .catch((error: unknown) => {
+      console.error('Failed to send contact email', error);
+      response.status(500).json({ errors: ['Unable to send message. Please try again later.'] });
+    });
 });
