@@ -19,12 +19,12 @@ const technologyListItemDefinitions: TechnologyListItemProps[] = [
   { height: 128, label: 'HTML5', src: '/images/technologies/html-icon.svg', width: 128 },
   { height: 128, label: 'CSS3', src: '/images/technologies/css-icon.svg', width: 128 },
   { height: 128, label: 'Sass', src: '/images/technologies/sass-icon.svg', width: 128 },
-  { height: 128, label: 'Git', src: '/images/technologies/git-icon.svg', width: 128 },
-  { height: 128, label: 'Codex', src: '/images/technologies/codex-icon.svg', width: 128 },
   { height: 128, label: 'NestJS', src: '/images/technologies/nest-js-icon.svg', width: 133 },
   { height: 128, label: 'Node.js', src: '/images/technologies/node-js-icon.svg', width: 128 },
   { height: 128, label: 'PostgreSQL', src: '/images/technologies/postgresql-icon.svg', width: 128 },
   { height: 128, label: 'SQL', src: '/images/technologies/sql-icon.svg', width: 128 },
+  { height: 128, label: 'Codex', src: '/images/technologies/codex-icon.svg', width: 128 },
+  { height: 128, label: 'Git', src: '/images/technologies/git-icon.svg', width: 128 },
   { height: 128, label: 'Web Accessibility', src: '/images/technologies/web-accessibility-icon.svg', width: 128 }
 ];
 
