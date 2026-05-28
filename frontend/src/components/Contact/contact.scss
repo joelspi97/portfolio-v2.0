@@ -99,11 +99,9 @@
   
   &__loading-spinner {
     align-items: center;
-    bottom: 5.5rem;
     display: flex;
     justify-content: center;
-    position: absolute;
-    right: calc(50% - 1.5rem);
+    margin-bottom: 2rem;
   
     &::after {
       animation: spin 1.2s linear infinite;

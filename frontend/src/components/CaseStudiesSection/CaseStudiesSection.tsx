@@ -219,49 +219,55 @@ export function CaseStudiesSection(): ReactElement {
 
       <h2 className='section-heading'>Case Studies</h2>
 
-      <div className='case-studies-section__case-studies-container center-content'>
-        <CaseStudy
-          body={innovateBody}
-          description={innovateDescription}
-          href='https://www.innovateod.com/'
-          slideFromTheLeft={true}
-          logoSrc={locationIcon}
-          name='Innovate Group'
-          stack={[stackOptions.react, stackOptions.javaScript]}
-        />
+      <ul className='case-studies-section__case-studies-container center-content'>
+        <li>
+          <CaseStudy
+            body={innovateBody}
+            description={innovateDescription}
+            href='https://www.innovateod.com/'
+            slideFromTheLeft={true}
+            logoSrc={locationIcon}
+            name='Innovate Group'
+            stack={[stackOptions.react, stackOptions.javaScript]}
+          />
+        </li>
 
-        <CaseStudy
-          body={eyBody}
-          description={eyDescription}
-          href='https://www.ey.com/'
-          name='EY'
-          logoSrc={companyIcon}
-          stack={[
-            stackOptions.react, 
-            stackOptions.angular, 
-            stackOptions.typeScript, 
-            stackOptions.nodeJs, 
-            stackOptions.nestJs, 
-            stackOptions.postgreSql, 
-            stackOptions.spfx
-          ]}
-        />
+        <li>
+          <CaseStudy
+            body={eyBody}
+            description={eyDescription}
+            href='https://www.ey.com/'
+            name='EY'
+            logoSrc={companyIcon}
+            stack={[
+              stackOptions.react, 
+              stackOptions.angular, 
+              stackOptions.typeScript, 
+              stackOptions.nodeJs, 
+              stackOptions.nestJs, 
+              stackOptions.postgreSql, 
+              stackOptions.spfx
+            ]}
+          />
+        </li>
 
-        <CaseStudy
-          body={governmentBody}
-          description={governmentDescription}
-          href='https://gba.gob.ar/'
-          slideFromTheLeft={true}
-          logoSrc={governmentIcon}
-          name='Online Services - Buenos Aires'
-          stack={[
-            stackOptions.react, 
-            stackOptions.typeScript, 
-            stackOptions.redux, 
-            stackOptions.wcag
-          ]}
-        />
-      </div>
+        <li>
+          <CaseStudy
+            body={governmentBody}
+            description={governmentDescription}
+            href='https://gba.gob.ar/'
+            slideFromTheLeft={true}
+            logoSrc={governmentIcon}
+            name='Online Services - Buenos Aires'
+            stack={[
+              stackOptions.react, 
+              stackOptions.typeScript, 
+              stackOptions.redux, 
+              stackOptions.wcag
+            ]}
+          />
+        </li>
+      </ul>
     </section>
   );
 }

@@ -56,6 +56,7 @@ export function Contact(): ReactElement {
   const hasVisibleErrors = Object.values(formValues).some(({ error }): boolean => Boolean(error));
   const invalidFieldFocusId = useRef<FieldId | null>(null);
   const shouldReduceMotion = useReducedMotion();
+  const statusMessage = submitStatus.loading ? 'Sending message.' : submitStatus.message ?? '';
 
   useEffect(() => {
     if (!invalidFieldFocusId.current) return;
@@ -119,7 +120,7 @@ export function Contact(): ReactElement {
     } catch (error) {
       setSubmitStatus({
         loading: false, 
-        message: error instanceof Error ? error.message : 'Something went wrong.', 
+        message: error instanceof Error ? (error as Error).message : 'Something went wrong.', 
         type: 'error' 
       });
     }
@@ -152,6 +153,10 @@ export function Contact(): ReactElement {
             ) are required.
           </p>
 
+          <p aria-atomic='true' aria-live='polite' className='sr-only' role='status'>
+            {statusMessage}
+          </p>
+
           {(Object.entries(fields) as [FieldId, FormFieldConfig][]).map(
             ([id, field]): ReactElement => (
               <FormField 
@@ -174,12 +179,7 @@ export function Contact(): ReactElement {
 
           {submitStatus.message && (
             <div className={`contact-form__state-msg contact-form__state-msg--${submitStatus.type}`}>
-              <span
-                aria-live={submitStatus.type === 'error' ? 'assertive' : 'polite'}
-                role={submitStatus.type === 'error' ? 'alert' : 'status'}
-              >
-                {submitStatus.message}
-              </span>
+              <span>{submitStatus.message}</span>
               
               <button
                 aria-label='Dismiss message.'
@@ -194,12 +194,10 @@ export function Contact(): ReactElement {
           
           {submitStatus.loading && (
             shouldReduceMotion
-              ? <p aria-live='polite' className='contact-form__loading-message' role='status'>
+              ? <p aria-hidden='true' className='contact-form__loading-message'>
                   Sending message...
                 </p>
-              : <div aria-live='polite' className='contact-form__loading-spinner' role='status'>
-                  <span className='sr-only'>Sending message.</span>
-                </div>
+              : <div aria-hidden='true' className='contact-form__loading-spinner'></div>
           )}
 
           <button 
