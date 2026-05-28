@@ -7,17 +7,21 @@ import type { IPostMailRequestDto, IPostMailErrorResponseDto } from '../models/p
 export const mailRouter: Router = Router();
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const requiredFields: Array<keyof Pick<IPostMailRequestDto, 'email' | 'message' | 'name'>> = ['email', 'message', 'name'];
 
-type validationDefinition = { label: string; maxLength: number; minLength: number; };
+type validationDefinition = { 
+  label: string; 
+  maxLength: number; 
+  minLength: number; 
+  required: boolean; 
+};
 const fieldValidations: Record<keyof IPostMailRequestDto, validationDefinition> = {
-  email: { label: 'Email', maxLength: 254, minLength: 7 },
-  message: { label: 'Message', maxLength: 2000, minLength: 10 },
-  name: { label: 'Full Name', maxLength: 80, minLength: 2 },
-  subject: { label: 'Subject', maxLength: 120, minLength: 3 }
+  email: { label: 'Email', maxLength: 254, minLength: 7, required: true },
+  message: { label: 'Message', maxLength: 2000, minLength: 10, required: true },
+  name: { label: 'Full Name', maxLength: 80, minLength: 2, required: true },
+  subject: { label: 'Subject', maxLength: 120, minLength: 3, required: false }
 };
 
-function isNonEmptyString(value: unknown): boolean {
+function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0;
 }
 
@@ -37,13 +41,18 @@ mailRouter.post('/', (
   const body = request.body;
   const { email, message, name, subject } = body;
 
-  const errorMessages = requiredFields.reduce<string[]>((accumulator, key) => {
+  const errorMessages = (Object.keys(fieldValidations) as Array<keyof IPostMailRequestDto>).reduce<string[]>((accumulator, key) => {
     const value = body[key];
     const validation = fieldValidations[key];
     const trimmedValue = typeof value === 'string' ? value.trim() : '';
 
     if (!isNonEmptyString(value)) {
-      accumulator.push(`${validation.label} is required.`);
+      if (validation.required) {
+        accumulator.push(`${validation.label} is required.`);
+
+      } else if (value !== undefined && value !== null && typeof value !== 'string') {
+        accumulator.push(`Field '${key}' must be of type string.`);
+      }
 
     } else if (trimmedValue.length < validation.minLength) {
       accumulator.push(`${validation.label} must be at least ${validation.minLength} characters.`);
@@ -57,22 +66,6 @@ mailRouter.post('/', (
 
     return accumulator;
   }, []);
-
-  if (subject !== undefined && subject !== null) {
-    const validation = fieldValidations.subject;
-
-    if (typeof subject !== 'string') {
-      errorMessages.push("Field 'subject' must be of type string.");
-
-    } else if (subject.trim()) {
-      if (subject.trim().length < validation.minLength) {
-        errorMessages.push(`${validation.label} must be at least ${validation.minLength} characters.`);
-
-      } else if (subject.length > validation.maxLength) {
-        errorMessages.push(`${validation.label} must be ${validation.maxLength} characters or less.`);
-      }
-    }
-  }
 
   if (errorMessages.length) {
     response.status(400).json({ errors: errorMessages });
