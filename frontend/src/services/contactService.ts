@@ -1,6 +1,6 @@
 export type ContactMessagePayload = {
-  body: string;
   email: string;
+  message: string;
   name: string;
   subject: string;
 };

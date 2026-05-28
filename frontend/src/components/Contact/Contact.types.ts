@@ -1,6 +1,6 @@
 import type { FormFieldProps } from '../FormField/FormField';
 
-export type FieldId = 'body' | 'email' | 'name' | 'subject';
+export type FieldId = 'email' | 'message' | 'name' | 'subject';
 export type ContactFieldProps = FormFieldProps<FieldId>;
 export type FormFieldConfig = Omit<
   ContactFieldProps,
@@ -40,7 +40,7 @@ export const fields: Record<FieldId, FormFieldConfig> = {
     required: false,
     type: 'text'
   },
-  body: {    
+  message: {    
     label: 'Message',
     maxLength: 2000,
     minLength: 10,

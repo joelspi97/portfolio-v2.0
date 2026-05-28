@@ -24,8 +24,8 @@ import { FormField } from '../FormField/FormField';
 
 function createDefaultFormValues(): FormValueMap {
   return {
-    body: { error: null, value: '' },
     email: { error: null, value: '' },
+    message: { error: null, value: '' },
     name: { error: null, value: '' },
     subject: { error: null, value: '' }
   };
@@ -102,8 +102,8 @@ export function Contact(): ReactElement {
 
     try {
       const payload: ContactMessagePayload = {
-        body: formValues.body.value,
         email: formValues.email.value,
+        message: formValues.message.value,
         name: formValues.name.value,
         subject: formValues.subject.value
       };

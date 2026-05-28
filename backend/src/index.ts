@@ -1,6 +1,6 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
-import express, { type Express } from 'express';
+import express, { type ErrorRequestHandler, type Express } from 'express';
 import swaggerUi from 'swagger-ui-express';
 
 import { createSwaggerSpec } from './utilities/createSwaggerSpec.js';
@@ -16,7 +16,18 @@ const PORT = process.env.PORT || 3000;
 const app: Express = express();
 app.use(cors({ origin: process.env.ALLOWED_ORIGIN }));
 app.use(express.json());
+
+const jsonErrorHandler: ErrorRequestHandler = (error, _request, response, next) => {
+  if (error instanceof SyntaxError) {
+    response.status(400).json({ message: 'Invalid JSON body' });
+    return;
+  }
+
+  next(error);
+};
+
 app.use('/mail', mailRouter);
+app.use(jsonErrorHandler);
 
 if (isDevelopment) {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(createSwaggerSpec(Number(PORT))));
