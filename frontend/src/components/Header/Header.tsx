@@ -44,15 +44,15 @@ export function Header(): ReactElement {
           </h1>
 
           <p>
-            I'm a <strong>Frontend Engineer</strong> with {yearsOfProfessionalExperience} years of  
+            I'm a <span className='fw-bold'>Frontend Engineer</span> with {yearsOfProfessionalExperience} years of  
             {' '}professional experience building production-grade web applications across startup, 
             {' '}enterprise and public-sector environments.
           </p>
 
           <p>
-            I work mainly with <strong>React</strong>, <strong>Angular</strong>, <strong>TypeScript</strong>, 
-            {' '}and <strong>JavaScript</strong>, with additional backend experience using <strong>Node.js</strong>,
-            {' '}<strong>NestJS</strong>, <strong>REST APIs</strong> and <strong>PostgreSQL</strong>.
+            I work mainly with <span className='fw-bold'>React</span>, <span className='fw-bold'>Angular</span>, <span className='fw-bold'>TypeScript</span>, 
+            {' '}and <span className='fw-bold'>JavaScript</span>, with additional backend experience using <span className='fw-bold'>Node.js</span>,
+            {' '}<span className='fw-bold'>NestJS</span>, <span className='fw-bold'>REST APIs</span> and <span className='fw-bold'>PostgreSQL</span>.
             {' '}I care about building interfaces that are performant, accessible, maintainable and easy to use.
           </p>
 

@@ -11,11 +11,11 @@ export function Footer(): ReactElement {
       <AnimatedDiv className='footer__content'>
         <p>© {new Date().getFullYear()} Joel Spinelli — Built with React, TypeScript, and Node.js.</p>
 
-        <div className='footer__links-container'>
+        <nav className='footer__links-container' aria-label='Professional links'>
           <GithubIconLink size={30} />
           <LinkedInIconLink size={30} />
           <DownloadIconLink size={30} />
-        </div>
+        </nav>
       </AnimatedDiv>
     </footer>
   );

@@ -35,7 +35,7 @@ function TechnologyListItem(props: TechnologyListItemProps): ReactElement {
     <li className='technology'>
       <AnimatedDiv>
         <img alt='' decoding='async' height={height} loading='lazy' src={src} width={width} />
-        <strong>{label}</strong>
+        <span className='fw-bold'>{label}</span>
       </AnimatedDiv>
     </li>
   );

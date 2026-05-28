@@ -12,10 +12,9 @@ import locationIcon from '../../assets/icons/location-icon.svg';
 const innovateDescription = (
   <>
     <p>
-      My current role, working on a <strong>real-time asset tracking platform</strong> for a US-based startup.
-      <br />
-      I work on complex UI flows, <strong>hierarchical location data</strong>, and 
-      {' '}<strong>performance-sensitive frontend state management</strong>.
+      My current role, working on a <span className='fw-bold'>real-time asset tracking platform</span> for a US-based startup.
+      I work on complex UI flows, <span className='fw-bold'>hierarchical location data</span>, and 
+      {' '}<span className='fw-bold'>performance-sensitive frontend state management</span>.
     </p>
   </>
 );
@@ -23,21 +22,21 @@ const innovateBody = (
   <>
     <p>
       One of the most useful pieces of work I contributed to was 
-      {' '}<strong>rebuilding a hierarchical location-management feature</strong> instead of reusing 
+      {' '}<span className='fw-bold'>rebuilding a hierarchical location-management feature</span> instead of reusing 
       an older implementation from a similar internal app. The old version worked, but it made the 
       UI depend on repeated backend reads after common interactions.
     </p>
 
     <p>
       The feature lets users browse and edit a tree of campuses, buildings, floors and locations. 
-      The original approach relied on <strong>repeated GET requests</strong> to keep that tree updated, 
+      The original approach relied on <span className='fw-bold'>repeated GET requests</span> to keep that tree updated, 
       including full-tree fetches after mutations and extra requests when selecting or deep-linking 
       to an entity.
     </p>
 
     <p>
-      I proposed a different approach: <strong>fetch the full tree once on initial load, then treat it 
-      as the source of truth on the frontend</strong>. Selection and deep links could resolve entities 
+      I proposed a different approach: <span className='fw-bold'>fetch the full tree once on initial load, then treat it 
+      as the source of truth on the frontend</span>. Selection and deep links could resolve entities 
       from memory, while create, update and delete actions could update the local tree after the 
       mutation completed.
     </p>
@@ -101,7 +100,7 @@ const innovateBody = (
 
     <p>
       The main challenge was not just storing the data, but updating it safely. Because each parent
-      entity referenced its children, I wrote <strong>search and update logic for nested tree data</strong> 
+      entity referenced its children, I wrote <span className='fw-bold'>search and update logic for nested tree data</span> 
       {' '}that could find, edit, add and remove entities without rebuilding more state than necessary.
     </p>
 
@@ -115,8 +114,8 @@ const innovateBody = (
 
 const eyDescription = (
   <p>
-    A <strong>full-stack enterprise project</strong> for an internal legal team, building a system to 
-    prepare and submit Spanish tax forms with <strong>versioned backend calculation logic</strong>.
+    A <span className='fw-bold'>full-stack enterprise project</span> for an internal legal team, building a system to 
+    prepare and submit Spanish tax forms with <span className='fw-bold'>versioned backend calculation logic</span>.
   </p>
 );
 const eyBody = (
@@ -131,33 +130,33 @@ const eyBody = (
       At first, the backend logic looked manageable because we only expected a few form models.
       Over time, more forms were added, and each one came with its own calculations, exceptions
       and validation rules. The service layer gradually turned into 
-      {' '}<strong>a large set of conditional blocks handling form-specific behaviour</strong>.
+      {' '}<span className='fw-bold'>a large set of conditional blocks handling form-specific behaviour</span>.
     </p>
 
     <p>
       The problem became much worse when yearly versions were introduced. A form was 
       no longer just “Form 222”, for example — it could be “Form 222 for 2013”, “Form 222 for 2015”, 
       and so on, each with different rules. In a short period, 
-      {' '}<strong>the main service grew from roughly 600 lines to around 1200</strong>, and debugging 
+      {' '}<span className='fw-bold'>the main service grew from roughly 600 lines to around 1200</span>, and debugging 
       one form could easily break another because the code was tightly coupled.
     </p>
 
     <p>
-      The key observation was that <strong>the forms were different, but not completely unrelated</strong>. 
+      The key observation was that <span className='fw-bold'>the forms were different, but not completely unrelated</span>. 
       Many methods and properties were shared across every form, some methods always had the same 
       signature but needed different implementations, and only a small number of behaviours were truly 
       form-specific. That made the existing conditional approach the wrong fit for the problem.
     </p>
 
     <p>
-      I proposed extracting the form logic into <strong>isolated classes per form/version</strong>. 
+      I proposed extracting the form logic into <span className='fw-bold'>isolated classes per form/version</span>. 
       Shared behaviour lived in an abstract base class, method contracts could be declared once, and 
       each concrete form could override only the logic that changed for that model or year.
     </p>
 
     <p>
-      To instantiate the correct form dynamically, I created a <strong>map between form identifiers 
-      and their implementation classes</strong>. This acted as a routing layer between the database 
+      To instantiate the correct form dynamically, I created a <span className='fw-bold'>map between form identifiers 
+      and their implementation classes</span>. This acted as a routing layer between the database 
       form ID and the calculation logic that needed to run.
     </p>
 
@@ -171,36 +170,36 @@ const eyBody = (
 
 const governmentDescription = (
   <p>
-    My first frontend role, working on <strong>public-sector web applications</strong> with a strong 
-    focus on accessible UI implementation, semantic HTML and <strong>WCAG AA standards</strong>.
+    My first frontend role, working on <span className='fw-bold'>public-sector web applications</span> with a strong 
+    focus on accessible UI implementation, semantic HTML and <span className='fw-bold'>WCAG AA standards</span>.
   </p>
 ); 
 const governmentBody = (
   <>
     <p>
       This was my first frontend role. I started by building React apps for public-sector services, 
-      with a focus on <strong>responsive, accessible and design-accurate</strong> user interfaces.
+      with a focus on <span className='fw-bold'>responsive, accessible and design-accurate</span> user interfaces.
     </p>
 
     <p>
       Because these were government websites, accessibility was not optional. In practice, however,
-      {' '}<strong>many screens did not meet the expected standards</strong>. I studied WCAG guidelines, 
+      {' '}<span className='fw-bold'>many screens did not meet the expected standards</span>. I studied WCAG guidelines, 
       reviewed strong public-sector examples such as UK government services, and helped bring our 
       interfaces closer to accessible standards.
     </p>
 
     <p>
       A major challenge was that accessibility had not been part of the default design process.
-      Some institutional colors had poor contrast, and several UI patterns needed adjustment. From 
-      an implementation standpoint, <strong>I ensured the websites were fully usable with keyboard 
-      navigation</strong>, including complex UI components such as image carousels. I also <strong>collaborated 
-      with the design team</strong> to improve those patterns without breaking the visual identity of the product, 
+      Some institutional colors had <span className='fw-bold'>poor contrast</span>, and several UI patterns needed adjustment. From 
+      an implementation standpoint, <span className='fw-bold'>I ensured the websites were fully usable with keyboard 
+      navigation</span>, including complex UI components such as image carousels. I also <span className='fw-bold'>collaborated 
+      with the design team</span> to improve those patterns without breaking the visual identity of the product, 
       advising on color choices, animation considerations, icon and image accessibility, and text readability.
     </p>
 
     <p>
-      This role changed the way I write frontend code. I became much more deliberate with <strong>semantic 
-      HTML, ARIA attributes, keyboard navigation and alternative text</strong>, especially how those 
+      This role changed the way I write frontend code. I became much more deliberate with <span className='fw-bold'>semantic 
+      HTML, ARIA attributes, keyboard navigation and alternative text</span>, especially how those 
       implementation details affect real usability.
     </p>
 
