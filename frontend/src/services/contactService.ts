@@ -5,8 +5,8 @@ export type ContactMessagePayload = {
   subject: string;
 };
 
-type ContactMessageResponse = {
-  errorMessage?: string;
+type ContactMessageErrorResponse = {
+  errors?: string[];
 };
 
 export async function sendContactMessage(payload: ContactMessagePayload): Promise<void> {
@@ -18,7 +18,9 @@ export async function sendContactMessage(payload: ContactMessagePayload): Promis
       method: 'POST'
     }
   );
-  const data: ContactMessageResponse = await response.json();
 
-  if (!response.ok) throw new Error(data.errorMessage ?? 'Something went wrong.');
+  if (response.ok) return;
+  
+  const data: ContactMessageErrorResponse = await response.json();
+  throw new Error(data.errors?.join(' ') ?? 'Something went wrong.');
 }

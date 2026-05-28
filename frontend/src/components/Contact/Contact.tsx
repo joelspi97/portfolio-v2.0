@@ -117,7 +117,7 @@ export function Contact(): ReactElement {
         type: 'success' 
       });
 
-    } catch (error) {
+    } catch (error: unknown) {
       setSubmitStatus({
         loading: false, 
         message: error instanceof Error ? (error as Error).message : 'Something went wrong.', 

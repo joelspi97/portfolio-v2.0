@@ -36,7 +36,7 @@ app.use(express.json());
 
 const jsonErrorHandler: ErrorRequestHandler = (error, _request, response, next) => {
   if (error instanceof SyntaxError) {
-    response.status(400).json({ message: 'Invalid JSON body' });
+    response.status(400).json({ errors: ['Invalid JSON body'] });
     return;
   }
 
