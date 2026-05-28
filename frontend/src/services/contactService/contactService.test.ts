@@ -1,6 +1,6 @@
 import { sendContactMessage, type ContactMessagePayload } from './contactService';
 
-describe('sendContactMessage', () => {
+describe('sendContactMessage', (): void => {
   let fetchMock: ReturnType<typeof vi.fn>;
 
   beforeEach((): void => {
