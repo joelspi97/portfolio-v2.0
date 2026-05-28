@@ -2,8 +2,9 @@
 @use '../../scss/abstracts/mixins/icon' as *;
 
 .header {
-  background-color: $dark-blue;
-  box-shadow: none;
+  background:
+    radial-gradient(circle at 84% 24%, rgba($light-blue, 0.16), transparent 28rem),
+    linear-gradient(135deg, #0b1020 0%, $dark-blue 58%, #172313 100%);
   color: $portfolio-white;
   min-height: 93vh;
   overflow: hidden;
@@ -64,8 +65,8 @@
     }
 
     p {
-      font-size: 1.4rem;
-      line-height: 2.1rem;
+      font-size: 1.5rem;
+      line-height: 2.4rem;
       padding-bottom: 1.6rem;
 
       &:last-of-type {
@@ -89,8 +90,9 @@
   }
 
   &__profile-picture {
-    border-radius: 25rem;
+    border-radius: 1.8rem;
     height: 28rem;
+    object-fit: cover;
     width: 28rem;
   }
 }

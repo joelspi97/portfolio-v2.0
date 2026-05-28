@@ -264,7 +264,10 @@ export function CaseStudiesSection(): ReactElement {
     <section className='section case-studies-section' id='case-studies'>
       <div className='section-decoration' />
 
-      <h2 className='section-heading'>Case Studies</h2>
+      <div className='case-studies-section__heading'>
+        <h2 className='section-heading'>Case Studies</h2>
+        <p>Selected work where technical decisions changed product quality, performance, or maintainability.</p>
+      </div>
 
       <ul className='case-studies-section__case-studies-container center-content'>
         {caseStudies.map((caseStudy: CaseStudyDefinition): ReactElement => (

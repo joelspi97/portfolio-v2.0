@@ -24,8 +24,17 @@
     left: calc(100% - 4.5rem);
   }
 
-  .section-heading {
+  &__heading {
     margin-bottom: 4.5rem;
+    max-width: 72rem;
+    text-align: center;
+
+    p {
+      color: $grey;
+      font-size: 1.5rem;
+      line-height: 2.4rem;
+      margin-top: 1.4rem;
+    }
   }
 
   &__form-wrapper {

@@ -146,8 +146,9 @@ export function Contact(): ReactElement {
       <div className='section-decoration section-decoration--left' />
       <div className='section-decoration section-decoration--right' />
 
-      <AnimatedDiv>
+      <AnimatedDiv className='contact__heading'>
         <h2 className='section-heading'>Get in touch!</h2>
+        <p>Send a short note about the product, team, or problem you want help with.</p>
       </AnimatedDiv>
 
       <AnimatedDiv className='contact__form-wrapper'>

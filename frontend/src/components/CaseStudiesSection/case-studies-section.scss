@@ -2,7 +2,8 @@
 @use '../../scss/abstracts/mixins/icon' as *;
 
 .case-studies-section {
-  background-color: $dark-blue;
+  background:
+    linear-gradient(180deg, #0b1020 0%, $dark-blue 100%);
   color: $portfolio-white;
   overflow: hidden;
   z-index: 1;
@@ -11,19 +12,27 @@
     background-color: $portfolio-white;
   }
 
-  h2 {
-    background-color: $dark-blue;
-    margin-bottom: 4.5rem;
+  &__heading {
+    margin-bottom: 5rem;
+    max-width: 78rem;
+    text-align: center;
+
+    p {
+      color: rgba($portfolio-white, 0.78);
+      font-size: 1.5rem;
+      line-height: 2.4rem;
+      margin-top: 1.4rem;
+    }
   }
 
   &__case-studies-container {
     display: flex;
     flex-direction: column;
-    row-gap: 3.5rem;
+    row-gap: 2rem;
     justify-items: center;
     list-style: none;
     margin: 0;
     padding: 0;
-    width: 100%;
+    width: min(104rem, 100%);
   }
 }
