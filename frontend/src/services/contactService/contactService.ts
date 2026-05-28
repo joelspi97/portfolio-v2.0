@@ -10,7 +10,7 @@ type ContactMessageErrorResponse = {
 };
 
 export async function sendContactMessage(payload: ContactMessagePayload): Promise<void> {
-  const response = await fetch(
+  const response: Response = await fetch(
     `${import.meta.env.VITE_SERVER_URL}/mail`,
     {
       body: JSON.stringify(payload),
@@ -22,5 +22,8 @@ export async function sendContactMessage(payload: ContactMessagePayload): Promis
   if (response.ok) return;
   
   const data: ContactMessageErrorResponse = await response.json();
-  throw new Error(data.errors?.join(' ') ?? 'Something went wrong.');
+  const errorMessage = (Array.isArray(data.errors) && data.errors.length) 
+    ? data.errors.join(' ') 
+    : 'Something went wrong.';
+  throw new Error(errorMessage);
 }
