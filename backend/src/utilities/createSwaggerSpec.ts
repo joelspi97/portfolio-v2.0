@@ -17,12 +17,15 @@ export function createSwaggerSpec(port: number) {
             type: 'object',
             required: ['email', 'message', 'name'],
             properties: {
-              email: { type: 'string', format: 'email' },
-              message: { type: 'string' },
-              name: { type: 'string' },
+              email: { type: 'string', format: 'email', minLength: 7, maxLength: 254 },
+              message: { type: 'string', minLength: 10, maxLength: 2000 },
+              name: { type: 'string', minLength: 2, maxLength: 80 },
               subject: {
-                type: 'string',
-                nullable: true
+                nullable: true,
+                oneOf: [
+                  { type: 'string', maxLength: 0 },
+                  { type: 'string', minLength: 3, maxLength: 120 }
+                ]
               }
             }
           },
