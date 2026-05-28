@@ -17,11 +17,8 @@
   width: 100%;
 
   &__logo {
-    background-color: rgba($dark-blue, 0.06);
-    border-radius: 1rem;
     grid-row: 1 / span 2;
     margin-right: 1.6rem;
-    padding: 0.8rem;
   }
 
   &__title {
@@ -30,9 +27,15 @@
     margin-bottom: 0.2rem;
 
     a {
-      color: inherit;
+      color: $blue;
       text-decoration-thickness: 0.15rem;
       text-underline-offset: 0.3rem;
+      transition: color 0.15s ease-in-out;
+
+      &:hover,
+      &:focus-visible {
+        color: $green;
+      }
 
       &:focus-visible {
         border-radius: 0.25rem;
