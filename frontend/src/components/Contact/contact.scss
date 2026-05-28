@@ -63,7 +63,13 @@
     justify-content: space-between;
     gap: 1.5rem;
     margin-bottom: 0.5rem;
+    opacity: 1;
     padding: 0.4rem 1rem;
+    transition: opacity 150ms ease;
+
+    @starting-style {
+      opacity: 0;
+    }
 
     &--success {
       background-color: $dark-green;
@@ -98,20 +104,19 @@
   }
   
   &__loading-spinner {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-  
-    &::after {
-      animation: spin 1.2s linear infinite;
-      content: '';
-      background-color: $green;
-      border: 0.5rem solid #ffffff;
-      border-radius: 50%;
-      border-top-color: $dark-blue;
-      height: 3rem;
-      width: 3rem;
+    animation: spin 1.2s linear infinite;
+    background-color: $green;
+    border: 0.5rem solid #ffffff;
+    border-radius: 50%;
+    border-top-color: $dark-blue;
+    height: 3.8rem;
+    margin: 0 auto 0.5rem;
+    opacity: 1;
+    transition: opacity 150ms ease;
+    width: 3.8rem;
+
+    @starting-style {
+      opacity: 0;
     }
   }
 
@@ -137,6 +142,14 @@
       border-color: $grey;
       color: $grey;
       cursor: default;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-form {
+    &__state-msg {
+      transition: none;
     }
   }
 }

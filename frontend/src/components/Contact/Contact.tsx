@@ -128,6 +128,11 @@ export function Contact(): ReactElement {
 
   function updateFormValues(id: FieldId, value: string): void {
     const error: string | null = validateFormField(id, value);
+
+    if (submitStatus.message) {
+      setSubmitStatus(createDefaultSubmitStatus());
+    }
+
     setFormValues(prevValue => ({ ...prevValue, [id]: { error, value } }));
   }
 
