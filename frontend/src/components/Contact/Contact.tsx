@@ -10,7 +10,7 @@ import {
 
 import { useReducedMotion } from 'framer-motion';
 
-import { sendContactMessage, type ContactMessagePayload } from '../../services/contactService';
+import { sendContactMessage, type ContactMessagePayload } from '../../services/contactService/contactService';
 import {
   fields,
   type FieldId,
