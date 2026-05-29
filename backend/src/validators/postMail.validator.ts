@@ -47,7 +47,7 @@ export function validatePostMailRequestBody(body: unknown): string[] {
     } else if (key === 'email' && !emailRegex.test(trimmedValue)) {
       accumulator.push('Email must use a valid format.');
 
-    } else if (value.length > validation.maxLength) {
+    } else if (trimmedValue.length > validation.maxLength) {
       accumulator.push(`${validation.label} must be ${validation.maxLength} characters or less.`);
     }
 

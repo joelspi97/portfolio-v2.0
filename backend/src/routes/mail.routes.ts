@@ -6,10 +6,10 @@ import { validatePostMailRequestBody } from '../validators/postMail.validator.js
 
 export const mailRouter: Router = Router();
 
-mailRouter.post('/', (
+mailRouter.post('/', async (
   request: Request<{}, {}, IPostMailRequestDto>, 
   response: Response<IPostMailErrorResponseDto>
-): void => {
+): Promise<void> => {
   const errorMessages = validatePostMailRequestBody(request.body);
 
   if (errorMessages.length) {
@@ -17,10 +17,12 @@ mailRouter.post('/', (
     return;
   }
 
-  sendContactEmail(request.body)
-    .then(() => response.sendStatus(204))
-    .catch((error: unknown) => {
-      console.error('Failed to send contact email', error);
-      response.status(500).json({ errors: ['Unable to send message. Please try again later.'] });
-    });
+  try {
+    await sendContactEmail(request.body);
+    response.sendStatus(204);
+    
+  } catch (error: unknown) {
+    console.error('Failed to send contact email', error);
+    response.status(500).json({ errors: ['Unable to send message. Please try again later.'] });
+  }
 });

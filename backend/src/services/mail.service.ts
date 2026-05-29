@@ -22,8 +22,8 @@ export async function sendContactEmail({ email, message, name, subject }: IPostM
   const emailSubject = (typeof subject === 'string' && subject.trim()) ? subject.trim() : name;
 
   const result = await getResendClient().emails.send({
-    from: 'onboarding@resend.dev',
-    to: 'joelspi97@gmail.com',
+    from: process.env.RESEND_FROM_EMAIL as string,
+    to: process.env.RESEND_TO_EMAIL as string,
     subject: `Message from portfolio - ${emailSubject}`,
     html: `<p>
       <strong>Sender name</strong>: ${escapeHtml(name)}
@@ -34,7 +34,5 @@ export async function sendContactEmail({ email, message, name, subject }: IPostM
     </p>`
   });
 
-  if (result.error) {
-    throw new Error(result.error.message);
-  }
+  if (result.error) throw new Error(result.error.message);
 }

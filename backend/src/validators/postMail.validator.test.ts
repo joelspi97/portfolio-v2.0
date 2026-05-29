@@ -43,6 +43,17 @@ describe('validatePostMailRequestBody', (): void => {
     expect(result).toEqual([]);
   });
 
+  it('accepts padded values exactly at maximum length after trimming', (): void => {
+    const result = validatePostMailRequestBody({
+      email: ` ${'a'.repeat(242)}@test.com `,
+      message: ` ${'m'.repeat(2000)} `,
+      name: ` ${'n'.repeat(80)} `,
+      subject: ` ${'s'.repeat(120)} `
+    });
+
+    expect(result).toEqual([]);
+  });
+
   it('validates minimum length after trimming whitespace', (): void => {
     const result = validatePostMailRequestBody({
       email: ' john@example.com ',
@@ -126,5 +137,10 @@ describe('validatePostMailRequestBody', (): void => {
     });
 
     expect(result).toEqual(['Email must use a valid format.']);
+  });
+
+  it('ignores unknown properties', (): void => {
+    const result = validatePostMailRequestBody({ ...validRequestBody, extra: 'ignored' });
+    expect(result).toEqual([]);
   });
 });

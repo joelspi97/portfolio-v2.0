@@ -6,7 +6,7 @@ const isNotProduction = process.env.NODE_ENV !== 'production';
 
 if (isNotProduction) dotenv.config();
 
-const REQUIRED_ENV_VARS = ['ALLOWED_ORIGIN', 'RESEND_API_KEY'] as const;
+const REQUIRED_ENV_VARS = ['ALLOWED_ORIGIN', 'RESEND_API_KEY', 'RESEND_FROM_EMAIL', 'RESEND_TO_EMAIL'] as const;
 type RequiredEnvVar = (typeof REQUIRED_ENV_VARS)[number];
 
 function getRequiredEnv(): Record<RequiredEnvVar, string> {
