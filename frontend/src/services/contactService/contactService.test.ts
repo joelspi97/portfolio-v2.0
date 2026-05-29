@@ -52,4 +52,9 @@ describe('sendContactMessage', (): void => {
     fetchMock.mockResolvedValueOnce({ ok: false, json: vi.fn().mockResolvedValue({}) });
     await expect(sendContactMessage(payload)).rejects.toThrow('Something went wrong.');
   });
+
+  it('throws fallback message when response is not ok and body cannot be parsed', async (): Promise<void> => {
+    fetchMock.mockResolvedValueOnce({ ok: false, json: vi.fn().mockRejectedValue(new Error('Invalid JSON')) });
+    await expect(sendContactMessage(payload)).rejects.toThrow('Something went wrong.');
+  });
 });
