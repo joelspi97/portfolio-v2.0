@@ -1,49 +1,153 @@
-# Joel Spinelli's Personal Portfolio
+# Joel Spinelli Portfolio
 
-Webpage made with React to display some basic information about myself and show some projects I made.
+Full-stack portfolio site for presenting my frontend engineering experience, selected case studies, core technologies, and a working contact flow.
 
-It features:
-* A projects section in which other works made by me can be seen.
-* A fully functional contact form that allows the user to directly send me an email without leaving the website. 
-* An accessible and fully responsive UI that follows the Web Content Accessibility Guidelines (WCAG) 2.1 (AAA).
+The project is split into a React/Vite frontend and a small Express API. The frontend focuses on accessible, responsive UI and case-study content. The backend handles contact-form delivery through Resend with request validation, CORS configuration, and Swagger docs in non-production environments.
 
-To build it I used the following: 
-* React 
-* NodeJS 
-* Express 
-* Sass
+Live site: exampleurl
 
-## Production URL: https://joelspinelli.netlify.app/
+## Preview
 
-## In case you want to run this project in your local environment: 
-You need to have both node and npm installed on your computer. I recommend installing them by using the [Node Version Manager](https://github.com/nvm-sh/nvm) (nvm), otherwise you can download them from [here](https://nodejs.org/en). 
+![Desktop home screen of the portfolio](./screenshots/home-desktop.png)
 
-To build this project I used Node v16.15.1 and npm v8.11.0, so it's also advisable that you use the same versions. 
+| Expanded case study | Contact form |
+| --- | --- |
+| ![Expanded case study showing technical details and comparison table](./screenshots/case-study.png) | ![Contact form with successful submit state](./screenshots/contact-form.png) |
 
-**Follow these steps:** 
-1. Open the project on your preferred code editor. 
-1. Open a terminal and go inside the frontend directory: **cd frontend**
-1. Run the following command: **npm install**
-1. Run the following command: **npm start**
+## Quality Checks
 
-**Optional:** You could also make the contact form functional, but that will require extra, more complex steps: 
-1. Open a new terminal and go inside the backend directory: **cd backend** 
-1. Run the following command: **npm install**
-1. Create a file called **.env** and inside of it declare the following environment variables: 
-    1. **EMAIL**=insert_here_your_email (use a gmail account)
-    1. **PASS**=insert_here_your_application_password (if you want to be able to use the contact form, you'll need to create an application password for your gmail account and authorize it)
-    1. **PORT**=port_in_which_you_want_to_run_the_project's_backend_server 
-    1. **ALLOWED_ORIGIN**=http://localhost:frontend_development_server_port
-1. Create a file called .env inside of the frontend folder, and declare this variable: **REACT_APP_SERVER_URL=http://localhost:YOUR_FRONTEND_SERVER_PORT/** 
-1. Run the following command: **npm run devStart**
+Lighthouse result from the deployed production build, measured on desktop.
 
-## Screenshots
-![Screenshot of Joel's portoflio 1 of 4. It's the initial view, which is a picture of Joel coding con his laptop.](./screenshots/screenshot1.png)
+![Lighthouse report showing 100 scores for performance, accessibility, best practices, and SEO](examplepath)
 
-![Screenshot of Joel's portoflio 2 of 4. It's the about-me section of the portfolio, which tells a little about Joel's professional experience and shows his technology stack.](./screenshots/screenshot2.png)
+## What It Shows
 
-![Screenshot of Joel's portoflio 3 of 4. It's the projects section of Joel's portfolio, which contains cards with some information about each one of the projects.](./screenshots/screenshot3.png)
+- Production-style React + TypeScript component structure.
+- Fully responsive portfolio UI with mobile navigation.
+- Accessible interaction patterns that meet WCAG 2.2 AA standards: semantic sections, keyboard-friendly menu behavior, focus handling, live status messaging, visible validation errors, and reduced-motion support.
+- Real-life case studies that explain technical decisions around performance, maintainability, and accessibility.
+- Contact form with client-side validation, loading/success/error states, and duplicate-submit protection.
+- Express email API with server-side validation, safe generic error responses, invalid JSON handling, and tested route behavior.
 
-![Screenshot of Joel's portoflio 4 of 4. It's the contact form of Joel's portfolio.](./screenshots/screenshot4.png)
+## Tech Stack
 
-_I don't claim ownership for any of the images used on it (beside the ones that include myself in them)._
+**Frontend:** React, TypeScript, Vite, Sass, Framer Motion, Vitest, Testing Library, ESLint  
+**Backend:** Node.js, Express, TypeScript, Resend, Swagger UI, Vitest, Supertest  
+**Package manager:** pnpm
+
+## Project Structure
+
+```txt
+frontend/
+  src/
+    components/      React components and SCSS
+    services/        Contact API client
+    hooks/           Shared frontend hooks
+  public/            Fonts, profile image, technology icons
+
+backend/
+  src/
+    routes/          Express routes
+    services/        Resend email integration
+    validators/      Request validation
+    utilities/       Swagger spec creation
+```
+
+## Local Setup
+
+Install dependencies separately because the frontend and backend each have their own workspace.
+
+```sh
+cd frontend
+pnpm install
+
+cd ../backend
+pnpm install
+```
+
+Create environment files:
+
+```sh
+# frontend/.env
+VITE_SERVER_URL=http://localhost:3000
+
+# backend/.env
+ALLOWED_ORIGIN=http://localhost:5173
+RESEND_API_KEY=your_resend_api_key
+RESEND_FROM_EMAIL=your_verified_sender@example.com
+RESEND_TO_EMAIL=your_destination_email@example.com
+PORT=3000
+```
+
+Run the backend:
+
+```sh
+cd backend
+pnpm dev
+```
+
+Run the frontend in another terminal:
+
+```sh
+cd frontend
+pnpm dev
+```
+
+Open the Vite local URL shown in the terminal. In development, API docs are available at:
+
+```txt
+http://localhost:3000/api-docs
+```
+
+## Available Scripts
+
+Frontend:
+
+```sh
+pnpm dev
+pnpm build
+pnpm lint
+pnpm test
+pnpm test:coverage
+```
+
+Backend:
+
+```sh
+pnpm dev
+pnpm build
+pnpm test
+```
+
+## API
+
+`POST /mail`
+
+Sends a portfolio contact message.
+
+Request body:
+
+```json
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "subject": "Portfolio contact",
+  "message": "Hello, I would like to talk about a role."
+}
+```
+
+Responses:
+
+- `204`: message sent.
+- `400`: validation or JSON parsing error.
+- `500`: email provider failure, returned as a generic public error.
+
+## Testing
+
+The test suite covers:
+
+- Contact-form rendering, validation, submit states, and duplicate-submit prevention.
+- Frontend contact service request and error handling.
+- Backend request validation.
+- Mail route success, validation failures, and safe server errors.
+- App-level CORS, invalid JSON handling, and Swagger availability outside production.
