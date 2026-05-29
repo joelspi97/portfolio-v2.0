@@ -14,12 +14,6 @@ Live site: [joel-spinelli.com](https://joel-spinelli.com/)
 | --- | --- |
 | ![Expanded case study showing technical details and comparison table](./screenshots/case-study.png) | ![Contact form with successful submit state](./screenshots/contact-form.png) |
 
-## Quality Checks
-
-Lighthouse result from the deployed production build, measured on desktop.
-
-![Lighthouse report showing 100 scores for performance, accessibility, best practices, and SEO](examplepath)
-
 ## What It Shows
 
 - Production-style React + TypeScript component structure.
