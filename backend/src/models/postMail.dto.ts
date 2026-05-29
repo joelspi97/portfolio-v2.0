@@ -2,7 +2,7 @@ export interface IPostMailRequestDto {
   email: string;
   message: string;
   name: string;
-  subject?: null | string;
+  subject?: string;
 }
 
 export interface IPostMailErrorResponseDto {

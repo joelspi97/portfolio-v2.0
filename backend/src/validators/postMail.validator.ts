@@ -35,13 +35,11 @@ export function validatePostMailRequestBody(body: unknown): string[] {
     const validation = fieldValidations[key];
     const trimmedValue = typeof value === 'string' ? value.trim() : '';
 
-    if (!isNonEmptyString(value)) {
-      if (validation.required) {
-        accumulator.push(`${validation.label} is required.`);
+    if (value !== undefined && typeof value !== 'string') {
+      accumulator.push(`${validation.label} must be of type string.`);
 
-      } else if (value !== undefined && value !== null && typeof value !== 'string') {
-        accumulator.push(`Field '${key}' must be of type string.`);
-      }
+    } else if (!isNonEmptyString(value)) {
+      if (validation.required) accumulator.push(`${validation.label} is required.`);
 
     } else if (trimmedValue.length < validation.minLength) {
       accumulator.push(`${validation.label} must be at least ${validation.minLength} characters.`);

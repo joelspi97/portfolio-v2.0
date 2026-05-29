@@ -21,7 +21,6 @@ export function createSwaggerSpec(port: number) {
               message: { type: 'string', minLength: 10, maxLength: 2000 },
               name: { type: 'string', minLength: 2, maxLength: 80 },
               subject: {
-                nullable: true,
                 oneOf: [
                   { type: 'string', maxLength: 0 },
                   { type: 'string', minLength: 3, maxLength: 120 }

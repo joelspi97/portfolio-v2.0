@@ -1,11 +1,6 @@
-import cors from 'cors';
 import dotenv from 'dotenv';
-import express, { type ErrorRequestHandler, type Express } from 'express';
-import swaggerUi from 'swagger-ui-express';
 
-import { createSwaggerSpec } from './utilities/createSwaggerSpec.js';
-
-import { mailRouter } from './routes/mail.routes.js';
+import { createApp } from './app.js';
 
 const isNotProduction = process.env.NODE_ENV !== 'production';
 
@@ -29,27 +24,7 @@ function getRequiredEnv(): Record<RequiredEnvVar, string> {
 
 const env = getRequiredEnv();
 const PORT = process.env.PORT || 3000;
-
-const app: Express = express();
-app.use(cors({ origin: env.ALLOWED_ORIGIN }));
-app.use(express.json());
-
-const jsonErrorHandler: ErrorRequestHandler = (error, _request, response, next) => {
-  if (error instanceof SyntaxError) {
-    response.status(400).json({ errors: ['Invalid JSON body'] });
-    return;
-  }
-
-  next(error);
-};
-
-app.use('/mail', mailRouter);
-app.use(jsonErrorHandler);
-
-if (isNotProduction) {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(createSwaggerSpec(Number(PORT))));
-}
-
+const app = createApp({ allowedOrigin: env.ALLOWED_ORIGIN, isNotProduction, port: Number(PORT) });
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   if (isNotProduction) console.log(`Swagger docs at http://localhost:${PORT}/api-docs`);
