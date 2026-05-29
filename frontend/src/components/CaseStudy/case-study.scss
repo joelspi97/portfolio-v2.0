@@ -165,14 +165,16 @@
     min-width: unset;
     padding: 1rem 1.5rem;
     text-decoration: none;
-    transition: border-color 0.15s ease-in-out,
+    transition: background-color 0.15s ease-in-out,
+                border-color 0.15s ease-in-out,
                 color 0.15s ease-in-out,
                 transform 0.15s ease-in-out;
 
     &:hover,
     &:focus-visible {
-      border-color: $dark-green;
-      color: $portfolio-white;
+      background-color: $portfolio-white;
+      border-color: $dark-blue;
+      color: $dark-blue;
       outline-color: $green;
       outline-offset: 0.4rem;
       transform: translateY(-0.1rem);

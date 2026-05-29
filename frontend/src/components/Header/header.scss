@@ -4,7 +4,7 @@
 .header {
   background:
     radial-gradient(circle at 84% 24%, rgba($light-blue, 0.16), transparent 28rem),
-    linear-gradient(135deg, #0b1020 0%, $dark-blue 58%, #172313 100%);
+    linear-gradient(180deg, #0b1020 0%, #172313 48%, $dark-blue 100%);
   color: $portfolio-white;
   min-height: 93vh;
   overflow: hidden;
@@ -81,6 +81,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+
+    a {
+      &:focus-visible {
+        outline-color: $light-green;
+      }
+    }
   }
 
   &__cta {

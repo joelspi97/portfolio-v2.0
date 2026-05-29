@@ -12,7 +12,7 @@
 
     &:focus-visible {
       border-radius: 0.25rem;
-      outline: 0.2rem solid $green;
+      outline: 0.2rem solid $light-green;
       outline-offset: 0.2rem;
     }
   }
@@ -31,7 +31,7 @@
     width: 3rem;
 
     &:focus-visible {
-      outline: 0.2rem solid $portfolio-white;
+      outline: 0.2rem solid $light-green;
       outline-offset: 0.3rem;
     }
 
@@ -94,12 +94,11 @@
       border: none;
       border-radius: 0.5rem;
       cursor: pointer;
-      filter: brightness(0) invert(1);
       margin-bottom: 5rem;
       margin-left: auto;
 
-      &:focus {
-        outline: 0.2rem solid $portfolio-white;
+      &:focus-visible {
+        outline: 0.2rem solid $light-green;
       }
     }
 
@@ -107,6 +106,10 @@
       font-size: 1.4rem;
       margin-bottom: 3rem;
       white-space: wrap;
+
+      &:focus-visible {
+        outline-color:  $light-green;
+      }
     }
   }
 }
