@@ -2,18 +2,23 @@
 @use '../../scss/abstracts/mixins/icon' as *;
 
 .nav {
-  align-items: center;
   display: flex;
   justify-content: space-around;
   width: 100%;
 
   &__wcag-link {
     display: flex;
+    margin-top: 0.2rem;
 
     &:focus-visible {
       border-radius: 0.25rem;
       outline: 0.2rem solid $light-green;
       outline-offset: 0.2rem;
+    }
+
+    img {
+      height: 3.1rem;
+      width: 8.8rem;
     }
   }
 
@@ -76,8 +81,11 @@
     background-color: $dark-blue;
     border-left: 0.2rem solid $portfolio-white;
     display: flex;
+    gap: 2rem;
     height: 100vh;
     flex-direction: column;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
     margin-left: auto;
     padding: 2rem;
     position: absolute;
@@ -104,7 +112,6 @@
 
     .portfolio-btn {
       font-size: 1.4rem;
-      margin-bottom: 3rem;
       white-space: wrap;
 
       &:focus-visible {
@@ -129,15 +136,6 @@
       padding: 0;
       position: static;
       width: auto;
-
-      .portfolio-btn {
-        margin-bottom: 0;
-        margin-left: 2rem;
-      }
-
-      & a:first-of-type {
-        margin-left: 0;
-      }
     }
 
     .portfolio-btn {
