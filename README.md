@@ -10,7 +10,7 @@ The project is split into a React/Vite frontend and a small Express API. The fro
 
 | Expanded case study | Contact form |
 | --- | --- |
-| ![Expanded case study showing technical details and comparison table](./screenshots/case-study-expanded.png) | ![Contact form with successful submit state](./screenshots/contact-validation.png) |
+| ![Expanded case study showing technical details and comparison table](./screenshots/case-study.png) | ![Contact form with successful submit state](./screenshots/contact-form.png) |
 
 ## What It Shows
 
