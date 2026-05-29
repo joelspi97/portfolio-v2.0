@@ -8,28 +8,7 @@ import { DownloadIconLink, GithubIconLink, LinkedInIconLink } from '../reusable/
 
 import { NavigationBar } from '../NavigationBar/NavigationBar';
 
-const CAREER_START_YEAR = 2021;
-const CAREER_START_MONTH_INDEX = 6;
-
-function getyearsOfProfessionalExperience(): string {
-  const currentDate = new Date();
-  let years = currentDate.getFullYear() - CAREER_START_YEAR;
-  let months = currentDate.getMonth() - CAREER_START_MONTH_INDEX;
-
-  if (months < 0) {
-    years -= 1;
-    months += 12;
-  }
-
-  if (months >= 10) return `${years + 1}`;
-  if (months >= 6) return `${years}+`;
-
-  return `${years}`;
-}
-
 export function Header(): ReactElement {
-  const yearsOfProfessionalExperience = getyearsOfProfessionalExperience();
-
   return (
     <header className='header section'>
       <div className='header__menu'>
@@ -44,7 +23,7 @@ export function Header(): ReactElement {
           </h1>
 
           <p>
-            I'm a <span className='fw-bold'>Frontend Engineer</span> with {yearsOfProfessionalExperience} years of  
+            I'm a <span className='fw-bold'>Frontend Engineer</span> with 5 years of  
             {' '}professional experience building production-grade web applications across startup, 
             {' '}enterprise and public-sector environments.
           </p>
