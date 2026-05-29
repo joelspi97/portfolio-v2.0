@@ -188,7 +188,7 @@ export function Contact(): ReactElement {
               <span>{submitStatus.message}</span>
               
               <button
-                aria-label='Dismiss message.'
+                aria-label='Dismiss status.'
                 className='contact-form__dismiss-btn'
                 onClick={dismissSubmitStatus}
                 type='button'

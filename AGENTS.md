@@ -43,6 +43,7 @@ cd frontend
 pnpm dev
 pnpm build
 pnpm lint
+pnpm test
 ```
 
 Backend:
@@ -51,6 +52,7 @@ Backend:
 cd backend
 pnpm dev
 pnpm build
+pnpm test
 ```
 
 ## Frontend Guidance
