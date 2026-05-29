@@ -4,6 +4,8 @@ Full-stack portfolio site for presenting my frontend engineering experience, sel
 
 The project is split into a React/Vite frontend and a small Express API. The frontend focuses on accessible, responsive UI and case-study content. The backend handles contact-form delivery through Resend with request validation, CORS configuration, and Swagger docs in non-production environments.
 
+Live site: exampleurl
+
 ## Preview
 
 ![Desktop home screen of the portfolio](./screenshots/home-desktop.png)
@@ -11,6 +13,12 @@ The project is split into a React/Vite frontend and a small Express API. The fro
 | Expanded case study | Contact form |
 | --- | --- |
 | ![Expanded case study showing technical details and comparison table](./screenshots/case-study.png) | ![Contact form with successful submit state](./screenshots/contact-form.png) |
+
+## Quality Checks
+
+Lighthouse result from the deployed production build, measured on desktop.
+
+![Lighthouse report showing 100 scores for performance, accessibility, best practices, and SEO](examplepath)
 
 ## What It Shows
 
