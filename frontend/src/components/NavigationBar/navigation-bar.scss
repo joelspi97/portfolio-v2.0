@@ -8,6 +8,7 @@
 
   &__wcag-link {
     display: flex;
+    height: fit-content;
     margin-top: 0.2rem;
 
     &:focus-visible {
