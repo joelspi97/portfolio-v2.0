@@ -1,0 +1,29 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins/icon' as *;
+
+.footer {
+  background-color: $portfolio-white;
+  color: $dark-blue;
+  padding: 0.5rem 2rem 2rem;
+  text-align: center;
+
+  &__content {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    
+    p {
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 1.5;
+      min-width: 28rem;
+    }
+
+    .footer__links-container {
+      display: flex;
+      gap: 2rem;
+    }
+  }
+}

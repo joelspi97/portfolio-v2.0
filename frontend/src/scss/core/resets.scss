@@ -1,0 +1,19 @@
+@use '../abstracts/variables' as *;
+
+* {
+  box-sizing: border-box;
+  font-family: $main-font;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

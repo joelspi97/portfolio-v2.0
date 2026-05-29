@@ -1,0 +1,79 @@
+@use '../../scss/abstracts/variables' as *;
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    text-align: start;
+    width: fit-content;
+  }
+
+  &__required-mark {
+    color: $red;
+  }
+
+  &__input {
+    border: 0.15rem solid $dark-blue;
+    border-radius: 0.25rem;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    padding: 0.7rem 1rem;
+    transition: border-color 0.15s ease-in-out;
+
+    &:read-only {
+      border-color: $grey;
+      color: $grey;
+    }
+
+    &:focus-visible {
+      outline-offset: 0.2rem;
+      outline: 0.2rem solid $green;
+    }
+
+    &::placeholder {
+      color: #595959;
+    }
+
+    &--error {
+      border-color: $red;
+      outline-color: $red;
+    }
+  }
+
+  &__textarea-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+
+    .form-field__input {
+      margin-bottom: 0.4rem;
+    }
+  }
+
+  &__character-count {
+    color: #595959;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    text-align: end;
+  }
+
+  &__error {
+    color: $red;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+    margin-top: -2.2rem;
+  }
+  
+  textarea.form-field__input {
+    min-height: 5.1rem;
+    resize: vertical;
+  }
+}

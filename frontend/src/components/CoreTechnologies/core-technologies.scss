@@ -1,0 +1,102 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins/icon' as *;
+
+.core-technologies {
+  background-color: $portfolio-white;
+  color: $dark-blue;
+  z-index: 2;
+
+  &__heading-container {
+    margin-bottom: 5rem;
+    max-width: 70rem;
+
+    p {
+      color: $grey;
+      font-size: 1.5rem;
+      line-height: 1.6;
+      margin-top: 1.4rem;
+    }
+  }
+
+  &__stack {
+    width: min(104rem, 100%);
+
+    .technology-wrapper {
+      align-items: flex-start;
+      display: grid;
+      column-gap: clamp(4rem, 5vw, 6.5rem);
+      grid-template-columns: repeat(auto-fit, minmax(8.2rem, 1fr));
+      justify-content: center;
+      justify-items: center;
+      list-style: none;
+      row-gap: 4rem;
+
+      .technology {
+        height: 100%;
+        max-width: 11rem;
+        width: 100%;
+
+        > div {
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          justify-content: flex-end;
+          min-height: 12rem;
+          width: 100%;
+        }
+
+        img {
+          background-color: $portfolio-white;
+          margin: auto 0;
+          max-height: 7rem;
+          object-fit: contain;
+          transition: transform 0.15s ease-in-out;
+          width: min(100%, 7.2rem);
+        }
+
+        .fw-bold {
+          color: $dark-blue;
+          font-size: 1.4rem;
+          line-height: 1.5;
+          margin-top: 1.4rem;
+          text-align: center;
+          white-space: nowrap;
+        }
+
+        &:hover img {
+          transform: translateY(-0.3rem);
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .core-technologies {
+    &__stack {
+      .technology-wrapper {
+        column-gap: 3rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .core-technologies {
+    &__stack {
+      .technology-wrapper {
+        .technology {
+          img {
+            transition: none;
+          }
+
+          &:hover img {
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+}
