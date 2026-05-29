@@ -19,7 +19,7 @@ export function AnimatedArticle(props: AnimatedArticle): ReactElement {
       initial={
         shouldReduceMotion
           ? false
-          : slideFromTheLeft ? { opacity: 0.01, x: -100 } : { opacity: 0.01, x: 100 }
+          : slideFromTheLeft ? { opacity: 0, x: -100 } : { opacity: 0, x: 100 }
       }
       style={style ? style : undefined}
       transition={shouldReduceMotion ? undefined : { delay: 0.1, duration: 0.5 }}

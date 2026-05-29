@@ -15,7 +15,7 @@ export function Header(): ReactElement {
         <NavigationBar />
       </div>
 
-      <AnimatedDiv className='header__content'>
+      <AnimatedDiv animationDelay={0} className='header__content'>
         <div className='header__text-content'>
           <h1 className='section-heading'>
             <span>Joel Spinelli</span>
