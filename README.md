@@ -4,7 +4,7 @@ Full-stack portfolio site for presenting my frontend engineering experience, sel
 
 The project is split into a React/Vite frontend and a small Express API. The frontend focuses on accessible, responsive UI and case-study content. The backend handles contact-form delivery through Resend with request validation, CORS configuration, and Swagger docs in non-production environments.
 
-Live site: exampleurl
+Live site: [joel-spinelli.com](https://joel-spinelli.com/)
 
 ## Preview
 
