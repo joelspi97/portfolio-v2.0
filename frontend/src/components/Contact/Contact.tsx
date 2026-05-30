@@ -8,8 +8,7 @@ import {
   type ReactElement 
 } from 'react';
 
-import { useReducedMotion } from 'framer-motion';
-
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { sendContactMessage, type ContactMessagePayload } from '../../services/contactService/contactService';
 import {
   fields,
@@ -55,7 +54,7 @@ export function Contact(): ReactElement {
 
   const hasVisibleErrors = Object.values(formValues).some(({ error }): boolean => Boolean(error));
   const invalidFieldFocusId = useRef<FieldId | null>(null);
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   const statusMessage = submitStatus.loading ? 'Sending message.' : submitStatus.message ?? '';
 
   useEffect(() => {
