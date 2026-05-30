@@ -24,4 +24,31 @@
   img {
     border-radius: 50%;
   }
+
+  &--labeled {
+    background-color: transparent;
+    border-radius: 0.5rem;
+    color: $portfolio-white;
+    font-size: 1.4rem;
+    font-weight: 600;
+    gap: 0.8rem;
+    text-decoration: none;
+    transition: color 0.15s ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      background-color: transparent;
+      color: $light-green;
+
+      img {
+        background-color: $light-green;
+      }
+    }
+
+    img {
+      background-color: $portfolio-white;
+      padding: 0.1rem;
+      transition: background-color 0.15s ease-in-out;
+    }
+  }
 }

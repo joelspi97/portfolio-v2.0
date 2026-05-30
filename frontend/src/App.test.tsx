@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 
 import { App } from "./App";
 
@@ -18,5 +18,15 @@ describe('App.tsx', (): void => {
     expect(getByRole('heading', { name: /get in touch/i })).toBeInTheDocument();
 
     expect(getByRole('contentinfo')).toBeInTheDocument();
+  });
+
+  it('renders visible labels for the professional links in the header', (): void => {
+    render(<App />);
+
+    const professionalLinks = within(screen.getByRole('banner')).getByRole('navigation', { name: /professional links/i });
+
+    expect(within(professionalLinks).getByText('GitHub')).toBeVisible();
+    expect(within(professionalLinks).getByText('LinkedIn')).toBeVisible();
+    expect(within(professionalLinks).getByText('Download CV')).toBeVisible();
   });
 });

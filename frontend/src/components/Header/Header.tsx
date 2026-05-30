@@ -42,9 +42,9 @@ export function Header(): ReactElement {
           </p>
 
           <nav className='header__cta-wrapper' aria-label='Professional links'>
-            <GithubIconLink size={40} />
-            <LinkedInIconLink size={40} />
-            <DownloadIconLink size={40} />
+            <GithubIconLink showLabel size={40} />
+            <LinkedInIconLink showLabel size={40} />
+            <DownloadIconLink showLabel size={40} />
           </nav>
         </div>
 
