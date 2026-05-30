@@ -1,8 +1,8 @@
 import './case-study.scss';
 
-import { useId, useState, type ReactElement } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useId, useRef, useState, type ReactElement } from 'react';
 
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { AnimatedArticle } from '../reusable/AnimatedArticle';
 import type { CaseStudyProps } from './CaseStudy.types';
 
@@ -10,8 +10,36 @@ export function CaseStudy(props: CaseStudyProps): ReactElement {
   const { body, description, href, slideFromTheLeft, logoSrc, name, stack } = props;
 
   const [showMore, setShowMore] = useState<boolean>(false);
+  const [showBody, setShowBody] = useState<boolean>(false);
   const bodyId = useId();
-  const shouldReduceMotion = useReducedMotion();
+  const closeTimeout = useRef<number | undefined>(undefined);
+  const shouldReduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+
+  useEffect((): (() => void) => {
+    return (): void => window.clearTimeout(closeTimeout.current);
+  }, []);
+
+  function toggleBody(): void {
+    if (showMore) {
+      setShowMore(false);
+
+      if (shouldReduceMotion) {
+        setShowBody(false);
+      } else {
+        closeTimeout.current = window.setTimeout((): void => {
+          setShowBody(false);
+          closeTimeout.current = undefined;
+        }, 280);
+      }
+
+      return;
+    }
+
+    window.clearTimeout(closeTimeout.current);
+    closeTimeout.current = undefined;
+    setShowBody(true);
+    setShowMore(true);
+  }
 
   return (
     <AnimatedArticle 
@@ -48,26 +76,22 @@ export function CaseStudy(props: CaseStudyProps): ReactElement {
         aria-expanded={showMore}
         aria-label={`Show ${showMore ? "less" : "more"} information about the ${name} case study.`}
         className='case-study__button'
-        onClick={() => setShowMore(prevValue => !prevValue)}
+        onClick={toggleBody}
         type='button'
       >
         Show {showMore ? 'less' : 'more'}
       </button>
 
-      <AnimatePresence initial={false}>
-        {showMore ? (
-          <motion.section
-            animate={shouldReduceMotion ? undefined : { opacity: 1 }}
-            className='case-study__body'
-            exit={shouldReduceMotion ? undefined : { opacity: 0 }}
-            id={bodyId}
-            initial={shouldReduceMotion ? false : { opacity: 0 }}
-            transition={shouldReduceMotion ? undefined : { duration: 0.28, ease: 'easeOut' }}
-          >
-            {body}
-          </motion.section>
-        ) : undefined}
-      </AnimatePresence>
+      {showBody ? (
+        <section
+          aria-hidden={!showMore}
+          className={`case-study__body${showMore ? '' : ' case-study__body--closing'}`}
+          id={bodyId}
+          inert={!showMore ? true : undefined}
+        >
+          {body}
+        </section>
+      ) : undefined}
     </AnimatedArticle>
   );
 }

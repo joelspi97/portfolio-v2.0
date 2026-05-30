@@ -69,13 +69,11 @@
   }
 
   .backdrop {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     background-color: $dark-blue;
+    inset: 0;
     opacity: 0.6;
-    position: absolute;
+    position: fixed;
+    z-index: 1;
   }
 
   &__link-wrapper {
@@ -83,19 +81,20 @@
     border-left: 0.2rem solid $portfolio-white;
     display: flex;
     gap: 2rem;
-    height: 100vh;
+    height: 100dvh;
     flex-direction: column;
     flex-wrap: wrap;
     margin-bottom: 3rem;
     margin-left: auto;
     padding: 2rem;
-    position: absolute;
-    right: 0%;
+    position: fixed;
+    right: 0;
     text-align: center;
-    top: 0%;
+    top: 0;
     transition: background-color 0.15s ease-in-out,
                 color 0.15s ease-in-out;
     width: 62vw;
+    z-index: 2;
 
     .close-btn {
       @include icon(3rem, 3rem, '../../assets/icons/x-icon.svg');
@@ -137,6 +136,7 @@
       padding: 0;
       position: static;
       width: auto;
+      z-index: auto;
     }
 
     .portfolio-btn {

@@ -21,7 +21,9 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 4.5rem;
+    position: relative;
     width: 100%;
+    z-index: 1;
 
     .portfolio-btn {
       font-size: 1.4rem;

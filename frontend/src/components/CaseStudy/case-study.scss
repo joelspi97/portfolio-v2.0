@@ -89,9 +89,14 @@
   }
 
   &__body {
+    animation: case-study-body-fade-in 0.28s ease-out;
     grid-column: 1 / -1;
     min-width: 0;
     width: 100%;
+
+    &--closing {
+      animation: case-study-body-fade-out 0.28s ease-out;
+    }
 
     h4 {
       font-size: 1.6rem;
@@ -204,6 +209,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   .case-study {
+    &__body {
+      animation: none;
+    }
+
     .case-study__button {
       transition: none;
 
@@ -212,5 +221,17 @@
         transform: none;
       }
     }
+  }
+}
+
+@keyframes case-study-body-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes case-study-body-fade-out {
+  to {
+    opacity: 0;
   }
 }

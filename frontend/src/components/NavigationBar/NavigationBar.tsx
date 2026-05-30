@@ -23,19 +23,35 @@ export function NavigationBar(): ReactElement {
   
   const closeButton = useRef<HTMLButtonElement | null>(null);
   const hamburgerButton = useRef<HTMLButtonElement | null>(null);
+  const lockedScrollPosition = useRef<number>(0);
   const menuElement = useRef<HTMLDivElement | null>(null);
+  const pageScrollIsLocked = useRef<boolean>(false);
   const isDesktopNavigation = useMediaQuery('(min-width: 610px)');
   const isHamburgerMenuVisible = isHamburgerMenuOpen && !isDesktopNavigation;
 
   useEffect((): (() => void) => {
-    if (isHamburgerMenuVisible) {
-      document.body.classList.add('no-scroll');
-      closeButton.current?.focus();
-    } else {
+    function unlockPageScroll(): void {
+      if (!pageScrollIsLocked.current) return;
+
+      document.documentElement.classList.remove('no-scroll');
       document.body.classList.remove('no-scroll');
+      document.body.style.top = '';
+      window.scrollTo(0, lockedScrollPosition.current);
+      pageScrollIsLocked.current = false;
     }
 
-    return (): void => document.body.classList.remove('no-scroll');
+    if (isHamburgerMenuVisible) {
+      lockedScrollPosition.current = window.scrollY;
+      document.body.style.top = `-${lockedScrollPosition.current}px`;
+      document.documentElement.classList.add('no-scroll');
+      document.body.classList.add('no-scroll');
+      pageScrollIsLocked.current = true;
+      closeButton.current?.focus();
+    } else {
+      unlockPageScroll();
+    }
+
+    return unlockPageScroll;
   }, [isHamburgerMenuVisible]);
 
   useEffect((): (() => void) => {
@@ -106,7 +122,6 @@ export function NavigationBar(): ReactElement {
   }, [isDesktopNavigation, isHamburgerMenuOpen]);
 
   function toggleHamburgerMenu(): void {
-    window.scrollTo(0, 0);
     setOpenMenuIsHamburgerMenuOpen(prevValue => !prevValue);
   }
 

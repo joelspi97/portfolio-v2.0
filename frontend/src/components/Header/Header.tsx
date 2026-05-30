@@ -11,9 +11,9 @@ import { NavigationBar } from '../NavigationBar/NavigationBar';
 export function Header(): ReactElement {
   return (
     <header className='header section'>
-      <div className='header__menu'>
+      <AnimatedDiv className='header__menu'>
         <NavigationBar />
-      </div>
+      </AnimatedDiv>
 
       <AnimatedDiv className='header__content'>
         <div className='header__text-content'>

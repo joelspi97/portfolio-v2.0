@@ -236,6 +236,7 @@ const caseStudies: CaseStudyDefinition[] = [
     body: eyBody,
     description: eyDescription,
     href: 'https://www.ey.com/',
+    slideFromTheLeft: true,
     name: 'EY',
     logoSrc: companyIcon,
     stack: [
