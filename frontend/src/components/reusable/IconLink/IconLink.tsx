@@ -11,6 +11,7 @@ type IconLinkProps = {
   href: string;
   size: number;
   src: string;
+  target?: '_blank';
   title: string;
 };
 
@@ -19,15 +20,15 @@ type IconLinkWrapper = {
 };
 
 export function IconLink(props: IconLinkProps): ReactElement {
-  const { ariaLabel, href, size, src, title } = props;
+  const { ariaLabel, href, size, src, target, title } = props;
 
   return (
     <a
       aria-label={ariaLabel}
       className='icon-link focusable'
       href={href}
-      rel='noreferrer'
-      target='_blank'
+      rel={target === '_blank' ? 'noreferrer' : undefined}
+      target={target}
       title={title}
       style={{ borderWidth: `${size/200}rem`, padding: `${size/400}rem` }}
     >
@@ -59,6 +60,7 @@ export function GithubIconLink(props: IconLinkWrapper): ReactElement {
       href='https://github.com/joelspi97/portfolio-v2.0'
       src={githubIcon}
       size={size}
+      target='_blank'
       title="Visit this website's Github repository"
     />
   );
@@ -73,6 +75,7 @@ export function LinkedInIconLink(props: IconLinkWrapper): ReactElement {
       href='https://www.linkedin.com/in/joel-spinelli'
       size={size}
       src={linkedinIcon}
+      target='_blank'
       title="Visit my LinkedIn profile"
     />
   );
