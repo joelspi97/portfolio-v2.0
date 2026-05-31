@@ -145,3 +145,8 @@ The test suite covers:
 - Backend request validation.
 - Mail route success, validation failures, and safe server errors.
 - App-level CORS, invalid JSON handling, and Swagger availability outside production.
+
+## Third-Party Assets
+
+Technology names, logos, and trademarks belong to their respective owners.
+Third-party icons are used for identification purposes.
