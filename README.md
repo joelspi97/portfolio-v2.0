@@ -149,4 +149,4 @@ The test suite covers:
 ## Third-Party Assets
 
 Technology names, logos, and trademarks belong to their respective owners.
-Third-party icons are used for identification purposes.
+Some interface icons were sourced from [SVG Repo](https://www.svgrepo.com/).
