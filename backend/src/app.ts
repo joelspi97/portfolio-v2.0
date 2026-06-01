@@ -1,5 +1,6 @@
 import cors from 'cors';
 import express, { type ErrorRequestHandler, type Express } from 'express';
+import { ipKeyGenerator, rateLimit } from 'express-rate-limit';
 import swaggerUi from 'swagger-ui-express';
 
 import { mailRouter } from './routes/mail.routes.js';
@@ -16,6 +17,17 @@ export function createApp({ allowedOrigin, isNotProduction, port }: CreateAppOpt
   app.use(cors({ origin: allowedOrigin }));
   app.use(express.json());
 
+  const mailRateLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 3,
+    standardHeaders: true,
+    legacyHeaders: false,
+    keyGenerator: request => ipKeyGenerator(
+      request.get('x-real-ip') ?? request.ip ?? request.socket.remoteAddress ?? 'unknown'
+    ),
+    message: { errors: ['Too many requests. Please try again later.'] }
+  });
+
   const jsonErrorHandler: ErrorRequestHandler = (error, _request, response, next) => {
     if (error instanceof SyntaxError) {
       response.status(400).json({ errors: ['Invalid JSON body'] });
@@ -25,7 +37,7 @@ export function createApp({ allowedOrigin, isNotProduction, port }: CreateAppOpt
     next(error);
   };
 
-  app.use('/mail', mailRouter);
+  app.use('/mail', mailRateLimiter, mailRouter);
   app.use(jsonErrorHandler);
 
   if (isNotProduction) {
