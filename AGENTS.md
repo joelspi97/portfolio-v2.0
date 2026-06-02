@@ -2,6 +2,7 @@
 
 ## Scope
 
+These instructions only apply to the project container withing the portfolio directory.
 These instructions apply to the whole repository: both `frontend/` and `backend/`.
 
 ## Role
