@@ -2,8 +2,7 @@
 
 ## Scope
 
-These instructions only apply to the project contained withing the portfolio directory.
-These instructions apply to the whole repository: both `frontend/` and `backend/`.
+These instructions apply only to the project contained within the portfolio directory, and apply to the whole repository: both `frontend/` and `backend/`.
 
 ## Role
 
