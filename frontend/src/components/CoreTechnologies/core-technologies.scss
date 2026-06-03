@@ -19,7 +19,7 @@
   }
 
   &__stack {
-    width: min(104rem, 100%);
+    width: min(120rem, 90%);
 
     .technology-wrapper {
       align-items: flex-start;
@@ -40,15 +40,15 @@
           align-items: center;
           display: flex;
           flex-direction: column;
+          gap: 0.5rem;
           height: 100%;
-          justify-content: flex-end;
+          justify-content: flex-start;
           min-height: 12rem;
           width: 100%;
         }
 
         img {
           background-color: $portfolio-white;
-          margin: auto 0;
           max-height: 7rem;
           object-fit: contain;
           transition: transform 0.15s ease-in-out;
@@ -59,9 +59,8 @@
           color: $dark-blue;
           font-size: 1.4rem;
           line-height: 1.5;
-          margin-top: 1.4rem;
+          margin-top: 2rem;
           text-align: center;
-          white-space: nowrap;
         }
 
         &:hover img {

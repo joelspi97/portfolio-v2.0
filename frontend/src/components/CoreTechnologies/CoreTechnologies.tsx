@@ -19,6 +19,7 @@ const technologyListItemDefinitions: TechnologyListItemProps[] = [
   { height: 128, label: 'HTML5', src: '/images/technologies/html-icon.svg', width: 128 },
   { height: 128, label: 'CSS3', src: '/images/technologies/css-icon.svg', width: 128 },
   { height: 128, label: 'Sass', src: '/images/technologies/sass-icon.svg', width: 128 },
+  { height: 128, label: 'Jest', src: '/images/technologies/jest-icon.svg', width: 128 },
   { height: 128, label: 'NestJS', src: '/images/technologies/nest-js-icon.svg', width: 133 },
   { height: 128, label: 'Node.js', src: '/images/technologies/node-js-icon.svg', width: 128 },
   { height: 128, label: 'PostgreSQL', src: '/images/technologies/postgresql-icon.svg', width: 128 },
@@ -51,7 +52,7 @@ export function CoreTechnologies(): ReactElement {
         <p>Frontend-heavy stack with enough backend depth to ship complete product work.</p>
       </AnimatedDiv>
 
-      <div className='core-technologies__stack center-content'>
+      <div className='core-technologies__stack'>
         <ul className='technology-wrapper' role='list'>
           {technologyListItemDefinitions.map(({ height, label, src, width }): ReactElement => (
             <TechnologyListItem key={label} height={height} label={label} src={src} width={width} />
