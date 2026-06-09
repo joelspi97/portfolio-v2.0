@@ -17,7 +17,7 @@ export function Header(): ReactElement {
 
       <AnimatedDiv className='header__content'>
         <div className='header__text-content'>
-          <h1 className='section-heading'>
+          <h1 className='section-heading' id='intro-heading' tabIndex={-1}>
             <span>Joel Spinelli</span>
             <span>Frontend Engineer</span>
           </h1>

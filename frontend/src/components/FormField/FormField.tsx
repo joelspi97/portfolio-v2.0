@@ -24,7 +24,6 @@ export function FormField<FieldId extends string>(props: FormFieldProps<FieldId>
   const counterId = `${id}-character-count`;
   const errorId = `${id}-error`;
   const inputClassName = `form-field__input${error ? ' form-field__input--error' : ''}`;
-  const characterCountDescription = `${value.length} characters used out of ${maxLength} maximum.`;
 
   return (
     <div className='form-field'>
@@ -50,11 +49,9 @@ export function FormField<FieldId extends string>(props: FormFieldProps<FieldId>
               value={value}
             />
 
-            <span aria-hidden='true' className='form-field__character-count'>
-              {value.length} / {maxLength}
+            <span className='form-field__character-count' id={counterId}>
+              {value.length} of {maxLength} characters used.
             </span>
-
-            <span className='sr-only' id={counterId}>{characterCountDescription}</span>
           </div>
         : <input
             autoComplete={autoComplete}

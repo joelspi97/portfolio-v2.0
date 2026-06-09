@@ -146,6 +146,8 @@ The test suite covers:
 - Mail route success, validation failures, and safe server errors.
 - App-level CORS, invalid JSON handling, and Swagger availability outside production.
 
+Accessibility was also checked manually with VoiceOver, keyboard tab navigation, contrast-ratio checks for all color pairs, zoom and small-width viewport testing, and usability checks for every interactive element. The UI uses semantic HTML, REM-based CSS units that respect browser font settings, reduced-motion adaptations, and responsive layouts with no loss of content. The site was also tested with Lighthouse and WAVE.
+
 ## Third-Party Assets
 
 Technology names, logos, and trademarks belong to their respective owners.

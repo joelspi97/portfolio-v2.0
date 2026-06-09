@@ -31,7 +31,7 @@
 
     p {
       color: $grey;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       line-height: 1.6;
       margin-top: 1.4rem;
     }
@@ -53,13 +53,20 @@
   width: 90%;
 
   &__required-note {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     line-height: 1.5;
     margin-bottom: 1.6rem;
   }
 
   &__required-mark {
     color: $red;
+  }
+
+  &__announcer {
+    font-size: 1.6rem;
+    left: -10000px;
+    position: absolute;
+    top: auto;
   }
 
   &__state-msg {

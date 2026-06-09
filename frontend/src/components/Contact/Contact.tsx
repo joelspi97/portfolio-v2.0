@@ -158,7 +158,7 @@ export function Contact(): ReactElement {
             ) are required.
           </p>
 
-          <p aria-atomic='true' aria-live='polite' className='sr-only' role='status'>
+          <p aria-atomic='true' aria-live='polite' className='contact-form__announcer' role='status'>
             {statusMessage}
           </p>
 
@@ -199,10 +199,13 @@ export function Contact(): ReactElement {
           
           {submitStatus.loading && (
             shouldReduceMotion
-              ? <p aria-hidden='true' className='contact-form__loading-message'>
+              ? <p className='contact-form__loading-message'>
                   Sending message...
                 </p>
-              : <div aria-hidden='true' className='contact-form__loading-spinner'></div>
+              : <div 
+                  aria-hidden='true'
+                  className='contact-form__loading-spinner'
+                ></div>
           )}
 
           <button 

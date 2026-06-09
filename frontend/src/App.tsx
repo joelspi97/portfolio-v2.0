@@ -32,6 +32,8 @@ export function App(): ReactElement {
 
   return (
     <>
+      <a className='skip-link' href='#intro-heading'>Skip navigation</a>
+
       <Header />
       
       <main>
