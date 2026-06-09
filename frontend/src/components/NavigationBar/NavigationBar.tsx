@@ -146,13 +146,13 @@ export function NavigationBar(): ReactElement {
         ? <>
             <button 
               aria-expanded={isHamburgerMenuVisible}
+              aria-label='Open navigation menu.'
               className='hamburger-menu focusable' 
               onClick={toggleHamburgerMenu} 
               ref={hamburgerButton}
               type='button'
             >
-              <span className='sr-only'>Open navigation menu.</span>
-              <span className='hamburger-icon'></span>
+              <span aria-hidden='true' className='hamburger-icon'></span>
             </button>
 
             {isHamburgerMenuVisible && 
@@ -161,6 +161,7 @@ export function NavigationBar(): ReactElement {
 
                 <div className='nav__link-wrapper' ref={menuElement}>
                   <button 
+                    aria-label='Close navigation menu.'
                     className='close-btn' 
                     onClick={() => { 
                       setOpenMenuIsHamburgerMenuOpen(false);
@@ -169,8 +170,7 @@ export function NavigationBar(): ReactElement {
                     ref={closeButton}
                     type='button' 
                   >
-                    <span className='sr-only'>Close navigation menu.</span>
-                    <span className='close-icon'></span>
+                    <span aria-hidden='true' className='close-icon'></span>
                   </button>
                 
                   {navLinks}

@@ -5,7 +5,7 @@
   flex-direction: column;
 
   &__label {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 600;
     line-height: 1.5;
     margin-bottom: 0.5rem;
@@ -20,7 +20,7 @@
   &__input {
     border: 0.15rem solid $dark-blue;
     border-radius: 0.25rem;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     line-height: 1.6;
     margin-bottom: 2rem;
     padding: 0.7rem 1rem;
@@ -57,15 +57,15 @@
   }
 
   &__character-count {
-    color: #595959;
-    font-size: 1.3rem;
+    color: $grey;
+    font-size: 1.4rem;
     line-height: 1.5;
     text-align: end;
   }
 
   &__error {
     color: $red;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 600;
     line-height: 1.5;
     margin-bottom: 1.2rem;

@@ -49,14 +49,13 @@ export function CaseStudy(props: CaseStudyProps): ReactElement {
       <img alt='' className='case-study__logo' decoding='async' height={40} loading='lazy' src={logoSrc} width={40} />
 
       <h3 className='case-study__title'>
-        <a href={href} rel='noreferrer' target='_blank'>
+        <a aria-label={`${name}, opens in a new tab.`} href={href} rel='noreferrer' target='_blank'>
           {name}
-          <span className='sr-only'>, opens in a new tab.</span>
         </a>
       </h3>
 
       <div className='case-study__meta'>
-        <h4 className='sr-only'>Technologies used in the {name} case study:</h4>
+        <span className='case-study__stack-label'>Technologies:</span>
 
         <ul className='case-study__stack'>
           {stack.map((language: string, index: number): ReactElement => {

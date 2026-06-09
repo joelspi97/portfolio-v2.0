@@ -45,6 +45,12 @@
     }
   }
 
+  &__meta {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   &__stack {
     display: flex;
     flex-wrap: wrap;
@@ -54,14 +60,22 @@
 
     li {
       color: $dark-green;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 600;
       line-height: 1.5;
     }
   }
 
+  &__stack-label {
+    color: $dark-blue;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-right: 0.5rem;
+  }
+
   p {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
 
@@ -131,7 +145,7 @@
 
   &__comparison-table {
     border-collapse: collapse;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     line-height: 1.5;
     min-width: 62rem;
     width: 100%;
