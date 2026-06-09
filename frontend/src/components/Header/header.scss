@@ -51,10 +51,10 @@
       font-size: 4rem;
       line-height: 1.2;
       margin-bottom: 3rem;
+      scroll-margin-top: 1.5rem;
+      width: fit-content;
 
       span {
-        width: fit-content;
-
         &:first-of-type {
           color: $light-blue;
         }
@@ -66,8 +66,10 @@
         }
       }
 
-      &:focus {
-        outline: none;
+      &:focus-visible {
+        border-radius: 0.5rem;
+        outline: 0.2rem solid $light-green;
+        outline-offset: 0.4rem;
       }
     }
 
